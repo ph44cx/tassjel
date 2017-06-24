@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   before_action :set_locale
+  
+  rescue_from CanCan::AccessDenied do
+ 	  redirect_to root_path, notice: "you are not authorized to access this page"
+  end
+  
   private
     def set_locale
       I18n.locale = params[:locale] if params[:locale].present?
