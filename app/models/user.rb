@@ -3,8 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  
+  SERVICE= ['Bachelor Degree', 'Master', 'PhD', 'Transfer University']
   belongs_to :role
+  has_many :messages
+  has_many :conversations, foreign_key: :sender_id
   before_create :assign_role
   after_create :assign_unique_id
   
@@ -14,8 +16,16 @@ class User < ApplicationRecord
   end
   
   def assign_unique_id
-    if self.service.include?('Ph.D')
-      self.unique_id = "TS0030000#{self.id}"
+    if self.service.include?('Bachelor Degree')
+      self.unique_id = "TS00#{100000 + self.id}"
+    elsif self.service.include?('Master')
+      self.unique_id = "TS00#{200000 + self.id}"
+    elsif self.service.include?('PhD')
+      self.unique_id = "TS00#{300000 + self.id}"
+    elsif service.include?('Transfer University')
+      self.unique_id = "TSTR#{400000 + self.id}"
+    else
+      self.unique_id = self.id
     end
   end
 
