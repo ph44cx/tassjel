@@ -15,6 +15,7 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'devise'
+gem 'cancancan', '~> 1.15'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -23,6 +24,7 @@ end
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
+  gem 'pry-rails'
   gem 'sqlite3'
   gem 'spring'
   gem 'pry-rails'
