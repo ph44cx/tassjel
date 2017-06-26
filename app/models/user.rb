@@ -6,9 +6,17 @@ class User < ApplicationRecord
   
   belongs_to :role
   before_create :assign_role
+  after_create :assign_unique_id
+  
   
   def role?
     role.name
+  end
+  
+  def assign_unique_id
+    if self.service.include?('Ph.D')
+      self.unique_id = "TS0030000#{self.id}"
+    end
   end
 
   def assign_role
