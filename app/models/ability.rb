@@ -13,6 +13,7 @@ class Ability
           can [:read, :create, :update,:destroy], User
         elsif user.role? == "student"
           can [:read], Post
+          can [:read, :create, :update,:destroy], User
         else
           can [:read], :all
     end

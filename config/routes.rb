@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'dashboard' => 'student_dashboard#index'
+  get 'membership' => 'student_dashboard#membership'
+
   get 'chat' => 'chat#index'
 
   devise_for :users, :controllers => { :registrations => "users/registrations" }
