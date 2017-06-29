@@ -4,7 +4,7 @@ ActionMailer::Base.smtp_settings = {
 	:domain => "www.tassjel.com",
 	:authentication => :plain,
 	:enable_starttls_auto => true,
-	:user_name => "test@gmail.com",
-	:password => "test#2017",
+	:user_name => "info@tassjel.com",
+	:password => "tassjel206044",
 	:openssl_verify_mode  => 'none'
 }
