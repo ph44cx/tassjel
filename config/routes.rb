@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'dashboard' => 'student_dashboard#index'
   get 'membership' => 'student_dashboard#membership'
+  get 'instruction' => 'student_dashboard#instruction'
+  get 'uploaded_files' => 'student_dashboard#uploaded_files'
 
   get 'chat' => 'chat#index'
 
