@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
 
@@ -32,15 +33,27 @@
 })();
 
 $(document).ready(function(){
-    $("#membership").click(function(){
+    $("#en_membership").click(function(){
       var url = '/membership';
       $.get(url);
     });
-    $("#instructionID").click(function(){
+    $("#en_instructionID").click(function(){
       var url = '/instruction';
       $.get(url);
     });
-    $("#uploadedFile").click(function(){
+    $("#en_uploadedFile").click(function(){
+      var url = '/uploaded_files';
+      $.get(url);
+    });
+    $("#ar_membership").click(function(){
+      var url = '/membership';
+      $.get(url);
+    });
+    $("#ar_instructionID").click(function(){
+      var url = '/instruction';
+      $.get(url);
+    });
+    $("#ar_uploadedFile").click(function(){
       var url = '/uploaded_files';
       $.get(url);
     });
