@@ -1,10 +1,16 @@
-<script type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#en_myFile').load('/uploaded_files');
+		$('#en_package').load('/membership');
+		$('#en_instruction').load('/instruction');
+	});
+</script>
 <div class="jumbotron">
 	<ul class="nav nav-tabs">
 	  <li class="active"><a href="#en_home" data-toggle="tab" aria-expanded="true">Profile</a></li>
-	  <li class=""><a href="#en_myFile" id="en_uploadedFile" data-toggle="tab" aria-expanded="false">My files</a></li>
-	  <li><a href="#en_package" data-toggle="tab" aria-expanded="false" id="en_membership">Membership</a></li>
-	  <li class=""><a href="#en_instruction" id="en_instructionID" data-toggle="tab" aria-expanded="false">Instructions</a></li>
+	  <li class=""><a href="#en_myFile" data-toggle="tab" aria-expanded="false">My files</a></li>
+	  <li><a href="#en_package" data-toggle="tab" aria-expanded="false">Membership</a></li>
+	  <li class=""><a href="#en_instruction" data-toggle="tab" aria-expanded="false">Instructions</a></li>
 	</ul>
 	<div id="myTabContent" class="tab-content">
 	  <div class="tab-pane fade active in" id="en_home">
