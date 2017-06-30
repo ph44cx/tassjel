@@ -16,6 +16,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'cancancan', '~> 1.15'
+gem 'carrierwave', '~> 0.11.2'
 
 group :development, :test do
   gem 'byebug', platform: :mri

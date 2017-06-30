@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :conversations, foreign_key: :sender_id, dependent: :destroy
   before_create :assign_role
   after_create :assign_unique_id
+  has_one :profile
   
   
   def role?

@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="well bs-component">
+      <p>
+        <p>First name:</p>
+        <%= @profile.try(:st_ba_name) %>
+      </p>
+
+      <p>
+        <p>Surname:</p>
+        <%= @profile.try(:st_ba_surname) %>
+      </p>
+
+      <p>
+        <p>Father name:</p>
+        <%= @profile.try(:st_ba_father) %>
+      </p>
+
+      <p>
+        <p>Mother name:</p>
+        <%= @profile.try(:st_ba_mother) %>
+      </p>
+
+      <p>
+        <p>Cellphone:</p>
+        <%= @profile.try(:st_ba_cellphone) %>
+      </p>
+
+      <p>
+        <p>Passport number:</p>
+        <%= @profile.try(:st_ba_passport) %>
+      </p>
+
+      <p>
+        <p>Nationality:</p>
+        <%= @profile.try(:st_ba_nationality) %>
+      </p>
+
+      <p>
+        <p>Current country:</p>
+        <%= @profile.try(:st_ba_country) %>
+      </p>
+
+      <%= link_to 'Update profile', edit_profile_path(@profile), remote: true %>
+    </div>
+  </div>
+</div>
