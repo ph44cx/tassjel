@@ -13,5 +13,6 @@ Rails.application.routes.draw do
           post :close
       end
     end
+    resources :profiles
   end
 end
