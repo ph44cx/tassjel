@@ -1,0 +1,72 @@
+<%= form_with(model: uni_profile, local: true) do |form| %>
+  <% if uni_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(uni_profile.errors.count, "error") %> prohibited this uni_profile from being saved:</h2>
+
+      <ul>
+      <% uni_profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :uni_logo %>
+    <%= form.text_field :uni_logo, id: :uni_profile_uni_logo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :uni_description %>
+    <%= form.text_field :uni_description, id: :uni_profile_uni_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :uni_galaries %>
+    <%= form.text_field :uni_galaries, id: :uni_profile_uni_galaries %>
+  </div>
+
+  <div class="field">
+    <%= form.label :uni_log_rank %>
+    <%= form.text_field :uni_log_rank, id: :uni_profile_uni_log_rank %>
+  </div>
+
+  <div class="field">
+    <%= form.label :uni_founded_date %>
+    <%= form.date_select :uni_founded_date, id: :uni_profile_uni_founded_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :uni_url %>
+    <%= form.text_field :uni_url, id: :uni_profile_uni_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :uni_email %>
+    <%= form.text_field :uni_email, id: :uni_profile_uni_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :uni_phone1 %>
+    <%= form.text_field :uni_phone1, id: :uni_profile_uni_phone1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :uni_phone2 %>
+    <%= form.text_field :uni_phone2, id: :uni_profile_uni_phone2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :uni_fax %>
+    <%= form.text_field :uni_fax, id: :uni_profile_uni_fax %>
+  </div>
+
+  <div class="field">
+    <%= form.label :uni_address %>
+    <%= form.text_field :uni_address, id: :uni_profile_uni_address %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

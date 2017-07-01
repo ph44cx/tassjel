@@ -1,0 +1,136 @@
+<style>
+  .form-horizontal .form-group{
+    margin-left: 0px; 
+    margin-right: 0px; 
+  }
+</style>
+<script>
+  $(document).ready(function(){
+    $('#state').hide();
+    $('#private').hide();
+    $('#unm_un_uni_sector_state').click(function(){
+      $('#private').hide();
+      $('#state').show();
+    });
+    $('#unm_un_uni_sector_private').click(function(){
+      $('#state').hide();
+      $('#private').show();
+    });
+  });
+</script>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="well bs-component">
+      <%= form_for (@unm_un), remote: true, :html => { :class => "form-horizontal" } do |form| %>
+        <fieldset>
+          <legend>Create University</legend>
+
+            <div class="col-lg-6">
+
+              <div class="form-group">
+                <label for="unm_un_uni_country" class="control-label">Country</label>
+                  <%= form.select :uni_country, UnmUn::COUNTRY, { prompt: "Select Country" }, { class: "form-control", id: "select", :required => true, style: 'width:100%;' }%>
+              </div>
+
+              <div class="form-group">
+                <label for="unm_un_uni_city" class="control-label">City</label>
+                  <%= form.text_field :uni_city, class: 'form-control', id: 'unm_un_uni_city', placeholder: 'City', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="unm_un_uni_sector" class="control-label">Select Sector</label>
+                  <div class="radio">
+                    <label>
+                      <%= form.radio_button :uni_sector, 'state' %>State
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <%= form.radio_button :uni_sector, 'private' %>Private
+                    </label>
+                  </div>
+              </div>
+
+              <div id="state">
+                <div class="form-group">
+                  <label for="unm_un_uni_state_ava_fees" class="control-label">State Fees</label>
+                    <%= form.text_field :uni_state_ava_fees, class: 'form-control', id: 'unm_un_uni_state_ava_fees', placeholder: 'State Fees', autofocus: true %>
+                </div>
+
+                <div class="form-group">
+                  <label for="unm_un_uni_inst_state_ava_fees" class="control-label">Institute State Fees</label>
+                    <%= form.text_field :uni_inst_state_ava_fees, class: 'form-control', id: 'unm_un_uni_inst_state_ava_fees', placeholder: 'Institute State Fees', autofocus: true %>
+                </div>
+              </div>
+
+              <div id="private">
+                <div class="form-group">
+                  <label for="unm_un_uni_private_med_ava_fees" class="control-label">State Fees</label>
+                    <%= form.text_field :uni_private_med_ava_fees, class: 'form-control', id: 'unm_un_uni_private_med_ava_fees', placeholder: 'State Fees', autofocus: true %>
+                </div>
+
+                <div class="form-group">
+                  <label for="unm_un_uni_private_den_ava_fees" class="control-label">Private Fees</label>
+                    <%= form.text_field :uni_private_den_ava_fees, class: 'form-control', id: 'unm_un_uni_private_den_ava_fees', placeholder: 'Private Fees', autofocus: true %>
+                </div>
+
+                <div class="form-group">
+                  <label for="unm_un_uni_private_eng_ava_fees" class="control-label">English Fees</label>
+                    <%= form.text_field :uni_private_eng_ava_fees, class: 'form-control', id: 'unm_un_uni_private_eng_ava_fees', placeholder: 'English Fees', autofocus: true %>
+                </div>
+
+                <div class="form-group">
+                  <label for="unm_un_uni_private_lit_ava_fees" class="control-label">Average Literature Annual Fees</label>
+                    <%= form.text_field :uni_private_lit_ava_fees, class: 'form-control', id: 'unm_un_uni_private_lit_ava_fees', placeholder: 'Average Literature Annual Fees', autofocus: true %>
+                </div>
+
+                <div class="form-group">
+                  <label for="unm_un_uni_inst_private_fees" class="control-label">Institution State Average Annual Fees</label>
+                    <%= form.text_field :uni_inst_private_fees, class: 'form-control', id: 'unm_un_uni_inst_private_fees', placeholder: 'Institution State Average Annual Fees', autofocus: true %>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+              <div class="form-group">
+                <label for="unm_un_uni_faculties_number" class="control-label">​Faculties number</label>
+                  <%= form.text_field :uni_faculties_number, class: 'form-control', id: 'unm_un_uni_faculties_number', placeholder: '​Faculties number', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="unm_un_uni_faculties_name" class="control-label">​Faculties name</label>
+                  <%= form.text_field :uni_faculties_name, class: 'form-control', id: 'unm_un_uni_faculties_name', placeholder: '​Faculties name', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="unm_un_uni_faculties_speciality" class="control-label">​Faculties speciality</label>
+                  <%= form.text_field :uni_faculties_speciality, class: 'form-control', id: 'unm_un_uni_faculties_speciality', placeholder: '​Faculties speciality', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="unm_un_uni_institution_number" class="control-label">​Institution number</label>
+                  <%= form.text_field :uni_institution_number, class: 'form-control', id: 'unm_un_uni_institution_number', placeholder: '​Institution number', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="unm_un_uni_institutions_name" class="control-label">​Institutions name</label>
+                  <%= form.text_field :uni_institutions_name, class: 'form-control', id: 'unm_un_uni_institutions_name', placeholder: '​Institutions name', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="unm_un_uni_institution_speciality" class="control-label">​Institutions specialty</label>
+                  <%= form.text_field :uni_institution_speciality, class: 'form-control', id: 'unm_un_uni_institution_speciality', placeholder: '​Institutions specialty', autofocus: true %><br>
+              </div>
+
+              <div class="form-group">
+                  <%= form.submit "Create University", class: "btn btn-primary", style: 'width:65%;' %>&nbsp;&nbsp;
+                  <li class="btn btn-primary" style='width:30%;' id="go_back"> Cancel</li>
+            </div>
+          </div>
+        <fieldset>
+      <% end %>
+    </div>
+  </div>
+</div>

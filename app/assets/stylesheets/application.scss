@@ -12,7 +12,7 @@
  *
  *= require_tree .
  *= require_self
- */
+*/
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "paper";
@@ -46,24 +46,3 @@ ul {
   padding: 10px;
   float: left;
 }
-
-.error{
-  font-size: x-small;
-  color: red;
-  font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
-  margin-top: 50px;
-  margin-left: 50px;
-}
-
-#show_message,.alert {position:relative;}
-.show_message,.alert {position:relative;}
-
-.disabled{
-  pointer-events:none;
-}
-.alert {position:relative;}
-.alert .close{position:absolute;top:0;right:10px;}
-.alert.alert-danger{background:#f2dede;border:1px solid #ebccd1;color:#b94a48;background-size:20px 20px}
-.alert.alert-success{background:#dff0d8;border:1px solid #d0e6be;color:#468847;background-size:20px 20px}
-.alert.alert-info{background:#d9edf7;border:1px solid #bce8f1;color:#3a87ad;background-size:20px 20px}
-.close{color:#555;font-size:20px;margin-top:-5px}

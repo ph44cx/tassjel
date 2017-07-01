@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uni_country: MyString
+  uni_city: MyString
+  uni_name: MyString
+  uni_sector: MyString
+  uni_state_ava_fees: MyString
+  uni_inst_state_ava_fees: MyString
+  uni_private_med_ava_fees: MyString
+  uni_private_den_ava_fees: MyString
+  uni_private_eng_ava_fees: MyString
+  uni_private_lit_ava_fees: MyString
+  uni_inst_private_fees: MyString
+  uni_faculties_number: MyString
+  uni_faculties_name: MyString
+  uni_faculties_speciality: MyString
+  uni_institution_number: MyString
+  uni_institutions_name: MyString
+  uni_institution_speciality: MyString
+
+two:
+  uni_country: MyString
+  uni_city: MyString
+  uni_name: MyString
+  uni_sector: MyString
+  uni_state_ava_fees: MyString
+  uni_inst_state_ava_fees: MyString
+  uni_private_med_ava_fees: MyString
+  uni_private_den_ava_fees: MyString
+  uni_private_eng_ava_fees: MyString
+  uni_private_lit_ava_fees: MyString
+  uni_inst_private_fees: MyString
+  uni_faculties_number: MyString
+  uni_faculties_name: MyString
+  uni_faculties_speciality: MyString
+  uni_institution_number: MyString
+  uni_institutions_name: MyString
+  uni_institution_speciality: MyString

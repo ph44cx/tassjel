@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uni_logo: MyString
+  uni_description: MyString
+  uni_galaries: 
+  uni_log_rank: MyString
+  uni_founded_date: 2017-07-01
+  uni_url: MyString
+  uni_email: MyString
+  uni_phone1: MyString
+  uni_phone2: MyString
+  uni_fax: MyString
+  uni_address: MyString
+
+two:
+  uni_logo: MyString
+  uni_description: MyString
+  uni_galaries: 
+  uni_log_rank: MyString
+  uni_founded_date: 2017-07-01
+  uni_url: MyString
+  uni_email: MyString
+  uni_phone1: MyString
+  uni_phone2: MyString
+  uni_fax: MyString
+  uni_address: MyString

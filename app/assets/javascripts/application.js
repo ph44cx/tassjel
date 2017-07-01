@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require dataTables/jquery.dataTables
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
@@ -37,29 +38,6 @@ $(document).ajaxSend(function(e, xhr, options) {
  
 });
 
-function showMessage(msg, className) {
-    alertMsg = '<div class="alert alert-' + className + '"><a href="#" class="close right" onclick="closeAlertMsg(event)">×</a><strong>' + msg + '</strong>  </div><script>dismiss_success_message();</script>';
-    $('#show_message').html(alertMsg).show();
-    $('body').animate({scrollTop: 0}, 500);
-}
-
-function showMessagecustom(msg, className, id) {
-    alertMsg = '<div class="alert alert-' + className + '"><a href="#" class="close right" onclick="closeAlertMsg(event)">×</a><strong>' + msg + '</strong>  </div><script>dismiss_success_message();</script>';
-    $('#show_message'+id).html(alertMsg).show();
-    $('body').animate({scrollTop: 0}, 500);
-}
-
-function dismiss_success_message() {
-    setTimeout(
-        $('.alert-success').delay(2000).fadeOut(5000)
-    )
-}
-function dismiss_error_message() {
-    setTimeout(
-        $('.alert-danger').delay(2000).fadeOut(5000)
-    )
-}
-function closeAlertMsg(event) {
-    that = event.currentTarget;
-    $(that).closest('#show_message').fadeOut(5000);
-}
+$(document).ready(function(){
+  $("#unmListTable").DataTable();
+});

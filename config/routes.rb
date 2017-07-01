@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get 'instruction' => 'student_dashboard#instruction'
     get 'uploaded_files' => 'student_dashboard#uploaded_files'
     get 'chat' => 'chat#index'
+    get 'unm_dashboard' => 'unm_dash#index'
     resources :conversations, only: [:create] do
       resources :messages, only: [:create]
         member do
@@ -14,5 +15,7 @@ Rails.application.routes.draw do
       end
     end
     resources :profiles
+    resources :uni_profiles
+    resources :unm_uns
   end
 end
