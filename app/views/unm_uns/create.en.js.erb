@@ -1,0 +1,16 @@
+<%if @unm_un.errors.present?%>
+  swal({   title: "Error!",  
+   text: "<%= escape_javascript (render 'errors') %>",   
+   type: "error",   
+   confirmButtonText: "Ok",
+   html: true
+    });
+<%else%>
+swal({
+  title: "University successfully registered!",
+  timer: 2000,
+  showConfirmButton: false
+});
+	$(".row").empty();
+	$(".row").append("<%= escape_javascript render(partial: '/unm_uns/show') %>");
+<%end%>

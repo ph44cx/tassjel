@@ -6,6 +6,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource.save
       @st_profile = StProfile.new
       @st_profile.user_id = resource.id
+      @st_profile.st_ba_name = resource.first_name
+      @st_profile.st_ba_surname = resource.surname
       @st_profile.save
     end
   end

@@ -15,6 +15,12 @@ class User < ApplicationRecord
   def role?
     role.name
   end
+
+  def confirmation_required?
+    if self.service.include?('N/A')
+      false
+    end
+  end
   
   def assign_unique_id
     if self.service.include?('Bachelor Degree')
@@ -31,6 +37,8 @@ class User < ApplicationRecord
   end
 
   def assign_role
-    self.role_id = Role.find_by_name("student").id
+    if self.service != ('N/A')
+      self.role_id = Role.find_by_name("student").id
+    end
   end
 end

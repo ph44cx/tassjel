@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /en|ar/ do
     root "pages#index"
     devise_for :users, :controllers => { :registrations => "users/registrations" }
-    get 'dashboard' => 'student_dashboard#index'
-    get 'membership' => 'student_dashboard#membership'
-    get 'instruction' => 'student_dashboard#instruction'
-    get 'uploaded_files' => 'student_dashboard#uploaded_files'
+    get 'st_dashboard' => 'st_dashboard#index'
+    get 'membership' => 'st_dashboard#membership'
+    get 'instruction' => 'st_dashboard#instruction'
+    get 'uploaded_files' => 'st_dashboard#uploaded_files'
     get 'chat' => 'chat#index'
     get 'unm_dashboard' => 'unm_dash#index'
     resources :conversations, only: [:create] do

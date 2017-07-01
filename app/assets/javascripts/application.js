@@ -41,3 +41,35 @@ $(document).ajaxSend(function(e, xhr, options) {
 $(document).ready(function(){
   $("#unmListTable").DataTable();
 });
+
+jQuery(function() {
+  return $("[data-behavior='delete']").on("click", function(e) {
+    e.preventDefault();
+    return swal({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this record!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel please!',
+      closeOnConfirm: false,
+      closeOnCancel: false
+    }, (function(_this) {
+      return function(confirmed) {
+        if (confirmed) {
+          $.ajax({
+            url: $(_this).attr("href"),
+            dataType: "JSON",
+            method: "DELETE",
+            success: function() {
+              return location.reload();
+            }
+          });
+        } else {
+          swal('Cancelled', 'Record is safe :)', 'error');
+        }
+      };
+    })(this));
+  });
+});

@@ -10,6 +10,9 @@ class UnmUnsController < ApplicationController
   # GET /unm_uns/1
   # GET /unm_uns/1.json
   def show
+    respond_to do |format|
+      format.js{}
+    end
   end
 
   # GET /unm_uns/new
@@ -19,6 +22,9 @@ class UnmUnsController < ApplicationController
 
   # GET /unm_uns/1/edit
   def edit
+    respond_to do |format|
+      format.js{}
+    end
   end
 
   # POST /unm_uns
@@ -39,13 +45,7 @@ class UnmUnsController < ApplicationController
   # PATCH/PUT /unm_uns/1.json
   def update
     respond_to do |format|
-      if @unm_un.update(unm_un_params)
-        format.html { redirect_to @unm_un, notice: 'Unm un was successfully updated.' }
-        format.json { render :show, status: :ok, location: @unm_un }
-      else
-        format.html { render :edit }
-        format.json { render json: @unm_un.errors, status: :unprocessable_entity }
-      end
+      format.js{}
     end
   end
 
@@ -54,7 +54,7 @@ class UnmUnsController < ApplicationController
   def destroy
     @unm_un.destroy
     respond_to do |format|
-      format.html { redirect_to unm_uns_url, notice: 'Unm un was successfully destroyed.' }
+      format.html { redirect_to unm_uns_url, notice: 'University was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
