@@ -14,7 +14,7 @@ Rails.application.routes.draw do
           post :close
       end
     end
-    resources :profiles
+    resources :st_profiles
     resources :uni_profiles
     resources :unm_uns
   end

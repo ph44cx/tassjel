@@ -4,9 +4,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     if resource.save
-      @profile = Profile.new
-      @profile.user_id = resource.id
-      @profile.save
+      @st_profile = StProfile.new
+      @st_profile.user_id = resource.id
+      @st_profile.save
     end
   end
 

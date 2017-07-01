@@ -1,6 +1,6 @@
 development:
   adapter: postgresql
-  encoding: unicode
+  encoding: SQL_ASCII
   database: local_tassjel_db
   pool: 5
   username: 
@@ -8,7 +8,7 @@ development:
 
 production:
   adapter: postgresql
-  encoding: unicode
+  encoding: SQL_ASCII
   database: tassjel_prod
   pool: 5
   username: 

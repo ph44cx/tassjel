@@ -4,45 +4,45 @@
     <div class="well bs-component">
       <p>
         <p>First name:</p>
-        <%= @profile.try(:st_ba_name) %>
+        <%= @st_profile.try(:st_ba_name) %>
       </p>
 
       <p>
         <p>Surname:</p>
-        <%= @profile.try(:st_ba_surname) %>
+        <%= @st_profile.try(:st_ba_surname) %>
       </p>
 
       <p>
         <p>Father name:</p>
-        <%= @profile.try(:st_ba_father) %>
+        <%= @st_profile.try(:st_ba_father) %>
       </p>
 
       <p>
         <p>Mother name:</p>
-        <%= @profile.try(:st_ba_mother) %>
+        <%= @st_profile.try(:st_ba_mother) %>
       </p>
 
       <p>
         <p>Cellphone:</p>
-        <%= @profile.try(:st_ba_cellphone) %>
+        <%= @st_profile.try(:st_ba_cellphone) %>
       </p>
 
       <p>
         <p>Passport number:</p>
-        <%= @profile.try(:st_ba_passport) %>
+        <%= @st_profile.try(:st_ba_passport) %>
       </p>
 
       <p>
         <p>Nationality:</p>
-        <%= @profile.try(:st_ba_nationality) %>
+        <%= @st_profile.try(:st_ba_nationality) %>
       </p>
 
       <p>
         <p>Current country:</p>
-        <%= @profile.try(:st_ba_country) %>
+        <%= @st_profile.try(:st_ba_country) %>
       </p>
 
-      <%= link_to 'Update profile', edit_profile_path(@profile), remote: true %>
+      <%= link_to 'Update profile', edit_st_profile_path(@st_profile), remote: true %>
     </div>
   </div>
 </div>

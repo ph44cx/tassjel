@@ -1,7 +1,0 @@
- <%=pluralize(@profile.errors.count, "error")%>
-  prohibited the record from being saved:
-  <% @profile.errors.full_messages.each do |msg|%>
-    <li>
-      <%= msg%>
-    </li>
-  <%end%>

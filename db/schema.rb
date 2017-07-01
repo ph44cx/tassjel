@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20170701065101) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "st_ba_passport_photo"
+    t.string "st_ba_official_photo"
   end
 
   create_table "uni_profiles", force: :cascade do |t|

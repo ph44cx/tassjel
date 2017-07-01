@@ -1,5 +1,5 @@
-class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
+class StProfilesController < ApplicationController
+  before_action :set_st_profile, only: [:show, :edit, :update, :destroy]
 
   def show
     
@@ -15,10 +15,10 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = Profile.new(profile_params)
+    @st_profile = st_Profile.new(st_profile_params)
 
     respond_to do |format|
-      if @profile.save
+      if @st_profile.save
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
         format.json { render :show, status: :created, location: @profile }
       else
@@ -30,7 +30,7 @@ class ProfilesController < ApplicationController
 
   def update
     respond_to do |format| 
-      if @profile.update(profile_params)
+      if @st_profile.update(st_profile_params)
         format.js{}
       else
         format.js{}
@@ -39,11 +39,11 @@ class ProfilesController < ApplicationController
   end
 
   private
-    def set_profile
-      @profile = Profile.find(params[:id])
+    def set_st_profile
+      @st_profile = StProfile.find(params[:id])
     end
 
-    def profile_params
-      params.require(:profile).permit(:st_ba_name, :st_ba_surname, :st_ba_father, :st_ba_mother, :st_ba_cellphone, :st_ba_passport, :st_ba_nationality)
+    def st_profile_params
+      params.require(:st_profile).permit(:st_ba_name, :st_ba_surname, :st_ba_father, :st_ba_mother, :st_ba_cellphone, :st_ba_passport, :st_ba_nationality)
     end
 end
