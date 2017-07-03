@@ -1,59 +1,71 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%#= notice %></p> -->
+<script>
+  $(document).ready(function(){
+      $("#goBackShow").click(function(){
+      var url = '/unm_uns/<%= @university_profile.unm_un.id%>';
+      $.get(url);
+    });
+  });
+</script>
 
-<p>
-  <strong>Uni logo:</strong>
-  <%= @uni_profile.uni_logo %>
-</p>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="well bs-component">
+    <button id= 'goBackShow' class="btn btn-primary custom">Back</button>
+      <p>
+        <strong>Uni logo:</strong>
+        <%= @university_profile.uni_logo %>
+      </p>
 
-<p>
-  <strong>Uni description:</strong>
-  <%= @uni_profile.uni_description %>
-</p>
+      <p>
+        <strong>Uni description:</strong>
+        <%= @university_profile.uni_description %>
+      </p>
 
-<p>
-  <strong>Uni galaries:</strong>
-  <%= @uni_profile.uni_galaries %>
-</p>
+      <p>
+        <strong>Uni galaries:</strong>
+        <%= @university_profile.uni_galaries %>
+      </p>
 
-<p>
-  <strong>Uni log rank:</strong>
-  <%= @uni_profile.uni_log_rank %>
-</p>
+      <p>
+        <strong>Uni log rank:</strong>
+        <%= @university_profile.uni_log_rank %>
+      </p>
 
-<p>
-  <strong>Uni founded date:</strong>
-  <%= @uni_profile.uni_founded_date %>
-</p>
+      <p>
+        <strong>Uni founded date:</strong>
+        <%= @university_profile.uni_founded_date %>
+      </p>
 
-<p>
-  <strong>Uni url:</strong>
-  <%= @uni_profile.uni_url %>
-</p>
+      <p>
+        <strong>Uni url:</strong>
+        <%= @university_profile.uni_url %>
+      </p>
 
-<p>
-  <strong>Uni email:</strong>
-  <%= @uni_profile.uni_email %>
-</p>
+      <p>
+        <strong>Uni email:</strong>
+        <%= @university_profile.uni_email %>
+      </p>
 
-<p>
-  <strong>Uni phone1:</strong>
-  <%= @uni_profile.uni_phone1 %>
-</p>
+      <p>
+        <strong>Uni phone1:</strong>
+        <%= @university_profile.uni_phone1 %>
+      </p>
 
-<p>
-  <strong>Uni phone2:</strong>
-  <%= @uni_profile.uni_phone2 %>
-</p>
+      <p>
+        <strong>Uni phone2:</strong>
+        <%= @university_profile.uni_phone2 %>
+      </p>
 
-<p>
-  <strong>Uni fax:</strong>
-  <%= @uni_profile.uni_fax %>
-</p>
+      <p>
+        <strong>Uni fax:</strong>
+        <%= @university_profile.uni_fax %>
+      </p>
 
-<p>
-  <strong>Uni address:</strong>
-  <%= @uni_profile.uni_address %>
-</p>
-
-<%= link_to 'Edit', edit_uni_profile_path(@uni_profile) %> |
-<%= link_to 'Back', uni_profiles_path %>
+      <p>
+        <strong>Uni address:</strong>
+        <%= @university_profile.uni_address %>
+      </p>
+    </div>
+  </div>
+</div>

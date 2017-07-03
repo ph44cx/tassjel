@@ -2,8 +2,8 @@
   $(document).ready(function(){
     $(".myTable1").DataTable();
     $('.createProfile').click(function(){
-      $('.row').empty();
-      $(".row").append("<%= escape_javascript render(:partial => '/university_profiles/form') %>");
+      $('.tab-pane').empty();
+      $(".tab-pane").append("<%= escape_javascript render(:partial => '/university_profiles/form') %>");
     })
   });
 </script>

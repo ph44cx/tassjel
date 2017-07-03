@@ -3,12 +3,18 @@
     $('#unm_dashboard').click(function(){
       window.location.replace('<%= unm_dashboard_url%>');
     });
+      $(".viewProfile").click(function(){
+      var url = '/university_profiles/<%= @unm_un.university_profile_id%>';
+      $.get(url);
+    });
   });
 </script>
 <div class="row">
   <div class="col-lg-12">
     <div class="well bs-component">
     <fieldset>
+    <a href="/unm_dashboard"><button class="btn btn-primary back">Back</button></a>
+    &nbsp; &nbsp;<button class="btn btn-primary view viewProfile">View profile</button>
     <div class="col-lg-6">
       <p>Uni country:
         <%= @unm_un.uni_country %>
@@ -80,8 +86,6 @@
       <p>Uni institution speciality:
         <%= @unm_un.uni_institution_speciality %>
       </p>
-
-      <%= link_to 'Back', unm_uns_path, remote: true, id: 'unm_dashboard' %>
       </div>
       </fieldset>
     </div>
