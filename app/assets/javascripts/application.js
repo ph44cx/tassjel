@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require dataTables/jquery.dataTables
 //= require bootstrap-sprockets
 //= require turbolinks
@@ -35,11 +36,21 @@
 
 $(document).ajaxSend(function(e, xhr, options) {
   var token = $("meta[name='csrf-token']").attr("content");
- 
 });
 
 $(document).ready(function(){
-  $("#unmListTable").DataTable();
+  $(".myTable").DataTable();
+  $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = localStorage.getItem('activeTab');
+    if(activeTab){
+        $('#myTabs a[href="' + activeTab + '"]').tab('show');
+    }
+    
+    $(".alert").fadeTo(4000, 1000).slideUp(1000, function(){
+    $(".alert").slideUp(1000);
+  });
 });
 
 jQuery(function() {

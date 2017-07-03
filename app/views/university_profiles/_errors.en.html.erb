@@ -1,0 +1,10 @@
+<% if @university_profile.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(uni_profile.errors.count, "error") %> prohibited this uni_profile from being saved:</h2>
+    <ul>
+    <% uni_profile.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -44,6 +44,7 @@ class UnmUnsController < ApplicationController
   # PATCH/PUT /unm_uns/1
   # PATCH/PUT /unm_uns/1.json
   def update
+    @unm_un.update(unm_un_params)
     respond_to do |format|
       format.js{}
     end
@@ -67,6 +68,6 @@ class UnmUnsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def unm_un_params
-      params.require(:unm_un).permit(:uni_country, :uni_city, :uni_name, :uni_sector, :uni_state_ava_fees, :uni_inst_state_ava_fees, :uni_private_med_ava_fees, :uni_private_den_ava_fees, :uni_private_eng_ava_fees, :uni_private_lit_ava_fees, :uni_inst_private_fees, :uni_faculties_number, :uni_faculties_name, :uni_faculties_speciality, :uni_institution_number, :uni_institutions_name, :uni_institution_speciality)
+      params.require(:unm_un).permit(:uni_country, :uni_city, :uni_name, :uni_sector, :uni_state_ava_fees, :uni_inst_state_ava_fees, :uni_private_med_ava_fees, :uni_private_den_ava_fees, :uni_private_eng_ava_fees, :uni_private_lit_ava_fees, :uni_inst_private_fees, :uni_faculties_number, :uni_faculties_name, :uni_faculties_speciality, :uni_institution_number, :uni_institutions_name, :uni_institution_speciality, :university_profile_id)
     end
 end

@@ -17,9 +17,7 @@ class User < ApplicationRecord
   end
 
   def confirmation_required?
-    if self.service.include?('N/A')
-      false
-    end
+    false if self.service.include?('N/A')
   end
   
   def assign_unique_id

@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="well bs-component">
+<!-- <p id="notice"><%#= notice %></p> -->
+
+<h1>University Profiles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>University logo</th>
+      <th>University description</th>
+      <th>University galaries</th>
+      <th>University log rank</th>
+      <th>University founded date</th>
+      <th>University url</th>
+      <th>University email</th>
+      <th>University phone1</th>
+      <th>University phone2</th>
+      <th>University fax</th>
+      <th>University address</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @university_profiles.each do |university_profile| %>
+      <tr>
+        <td><%= university_profile.uni_logo %></td>
+        <td><%= university_profile.uni_description %></td>
+        <td><%= university_profile.uni_galaries %></td>
+        <td><%= university_profile.uni_log_rank %></td>
+        <td><%= university_profile.uni_founded_date %></td>
+        <td><%= university_profile.uni_url %></td>
+        <td><%= university_profile.uni_email %></td>
+        <td><%= university_profile.uni_phone1 %></td>
+        <td><%= university_profile.uni_phone2 %></td>
+        <td><%= university_profile.uni_fax %></td>
+        <td><%= university_profile.uni_address %></td>
+        <td><%= link_to 'Show', university_profile %></td>
+        <td><%= link_to 'Edit', edit_university_profile_path(university_profile) %></td>
+        <td><%= link_to 'Destroy', university_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Uni Profile', new_university_profile_path, remote: true %>
+</div>
+</div>
+</div>

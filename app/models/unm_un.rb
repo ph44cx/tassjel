@@ -1,4 +1,4 @@
 class UnmUn < ApplicationRecord
-	has_one :uni_profile
+	belongs_to :university_profile
 	COUNTRY= ['Turkey', 'Ukraine', 'Malaysia', 'Cyprus', 'Canada', 'Russia', 'UK', 'Germany']
 end

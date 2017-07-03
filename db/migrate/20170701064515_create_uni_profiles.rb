@@ -1,6 +1,6 @@
 class CreateUniProfiles < ActiveRecord::Migration[5.1]
   def change
-    create_table :uni_profiles do |t|
+    create_table :university_profiles do |t|
       t.string :uni_logo
       t.string :uni_description
       t.json :uni_galaries

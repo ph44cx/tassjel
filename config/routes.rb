@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       end
     end
     resources :st_profiles
-    resources :uni_profiles
+    resources :university_profiles
     resources :unm_uns
   end
 end

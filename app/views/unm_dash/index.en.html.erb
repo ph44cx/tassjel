@@ -1,11 +1,23 @@
+<script>
+  $(document).ready(function(){
+    $('.tabReload').click(function(){
+      window.location.replace("<%=unm_dashboard_url%>");
+    });
+  });
+</script>
+
 <div class="container">
 	<div class="jumbotron">
-		<ul class="nav nav-tabs">
-	  <li class="active"><a href="#ar_profile" data-toggle="tab" aria-expanded="true">Universities</a></li>
-	</ul>
-		<div id="myTabContent" class="tab-content">
-		  <div class="tab-pane fade active in" id="ar_profile">
+		<ul class="nav nav-tabs tabReload" id="myTabs">
+	  	<li class="active"><a href="#en_profile" data-toggle="tab" id="unm_dashboard_en" aria-expanded="true">Universities</a></li>
+	  	<li><a href="#en_university_profile" data-toggle="tab" aria-expanded="true">Universities profile</a></li>
+		</ul>
+		<div class="tab-content">
+		  <div class="tab-pane fade active in" id="en_profile">
 		  	<%= render partial: '/unm_dash/universities_list'%>
+		  </div>
+		  <div class="tab-pane fade" id="en_university_profile">
+		  	<%= render template: '/university_profiles/index'%>
 		  </div>
 		</div>
 	</div>

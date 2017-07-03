@@ -1,0 +1,88 @@
+<style>
+  .form-horizontal .form-group{
+    margin-left: 0px!important; 
+    margin-right: 0px!important; 
+  }
+</style>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="well bs-component">
+      <%= form_for (@university_profile), remote: true, :html => { :class => "form-horizontal" } do |form| %>
+        <fieldset>
+          <legend>Create University Profile</legend>
+
+            <div class="col-lg-6">
+
+              <div class="form-group">
+                <label for="unm_un_uni_country" class="control-label">Country</label>
+                  <%= form.select :unm_un_name, UnmUn.all.map { |u| [u.uni_name] }, { prompt: "Select University" }, { class: "form-control", id: "select", :required => true, style: 'width:100%;' }%>
+              </div>
+
+              <div class="form-group">
+                <label for="uni_profile_uni_logo" class="control-label">University logo</label>
+                  <%= form.file_field :uni_logo, class: 'form-control', id: 'uni_profile_uni_logo', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="uni_profile_uni_description" class="control-label">Description</label>
+                  <%= form.text_field :uni_description, class: 'form-control', id: 'uni_profile_uni_description', placeholder: 'Description', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="uni_profile_uni_galaries" class="control-label">Galleries</label>
+                  <%= form.file_field :uni_galaries, multiple: true, class: 'form-control', id: 'uni_profile_uni_galaries', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="uni_profile_uni_log_rank" class="control-label">Rank</label>
+                  <%= form.text_field :uni_log_rank, class: 'form-control', id: 'uni_profile_uni_log_rank', placeholder: 'Rank', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="uni_profile_uni_founded_date" class="control-label">Founded Date</label>
+                  <%= form.date_field :uni_founded_date, class: 'form-control', id: 'uni_profile_uni_founded_date', placeholder: 'Founded Date', autofocus: true %>
+              </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+              <div class="form-group">
+                <label for="uni_profile_uni_url" class="control-label">Profile Url</label>
+                  <%= form.text_field :uni_url, class: 'form-control', id: 'uni_profile_uni_url', placeholder: 'Profile Url', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="uni_profile_uni_email" class="control-label">Email</label>
+                  <%= form.text_field :uni_email, class: 'form-control', id: 'uni_profile_uni_email', placeholder: 'Email', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="uni_profile_uni_phone1" class="control-label">Phone No.</label>
+                  <%= form.text_field :uni_phone1, class: 'form-control', id: 'uni_profile_uni_phone1', placeholder: 'Phone No.', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="uni_profile_uni_phone2" class="control-label">Phone No.</label>
+                  <%= form.text_field :uni_phone2, class: 'form-control', id: 'uni_profile_uni_phone2', placeholder: 'Phone No.', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="uni_profile_uni_fax" class="control-label">Fax No.</label>
+                  <%= form.text_field :uni_fax, class: 'form-control', id: 'uni_profile_uni_fax', placeholder: 'Fax No.', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="uni_profile_uni_address" class="control-label">Address</label>
+                  <%= form.text_field :uni_address, class: 'form-control', id: 'uni_profile_uni_address', placeholder: 'Address', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <%= form.button "Create Profile", class: "btn btn-primary", style: 'width:65%;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>In progress...."} %>
+              </div>
+          </div>
+          </fieldset>
+        <% end %>
+    </div>
+  </div>
+</div>

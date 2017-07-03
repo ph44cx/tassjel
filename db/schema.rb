@@ -53,11 +53,9 @@ ActiveRecord::Schema.define(version: 20170701065101) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "st_ba_passport_photo"
-    t.string "st_ba_official_photo"
   end
 
-  create_table "uni_profiles", force: :cascade do |t|
+  create_table "university_profiles", force: :cascade do |t|
     t.string "uni_logo"
     t.string "uni_description"
     t.json "uni_galaries"
@@ -93,7 +91,7 @@ ActiveRecord::Schema.define(version: 20170701065101) do
     t.string "uni_institution_speciality"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "uni_profile_id"
+    t.integer "university_profile_id"
   end
 
   create_table "users", force: :cascade do |t|

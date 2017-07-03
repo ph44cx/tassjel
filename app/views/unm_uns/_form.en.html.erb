@@ -26,9 +26,17 @@
     <div class="well bs-component">
       <%= form_for (@unm_un), remote: true, :html => { :class => "form-horizontal" } do |form| %>
         <fieldset>
+        <%if @unm_un.id.present?%>
+          <legend>Update University</legend>
+        <%else%>
           <legend>Create University</legend>
-
+        <%end%>
             <div class="col-lg-6">
+
+              <div class="form-group">
+                <label for="unm_un_uni_name" class="control-label">Name</label>
+                  <%= form.text_field :uni_name, class: 'form-control', id: 'unm_un_uni_name', placeholder: 'University Name', autofocus: true %>
+              </div>
 
               <div class="form-group">
                 <label for="unm_un_uni_country" class="control-label">Country</label>
