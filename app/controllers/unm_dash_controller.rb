@@ -1,7 +1,7 @@
 class UnmDashController < ApplicationController
   def index
-  	@unm_un = UnmUn.new
-  	@unm_uns = UnmUn.all
+  	@university = University.new
+  	@universitys = University.all
   	@university_profiles = UniversityProfile.all
   	@university_profile = UniversityProfile.new
   end

@@ -2,7 +2,7 @@
   $(document).ready(function(){
     $('#createUniversity').click(function(){
       $('.row').empty();
-      $(".row").append("<%= escape_javascript render(:partial => '/unm_uns/form') %>");
+      $(".row").append("<%= escape_javascript render(:partial => '/universities/form') %>");
     })
     $(".myTable").DataTable();
   });
@@ -22,15 +22,15 @@
           </tr>
         </thead>
           <tbody>
-          <% @unm_uns.each do |unm_un| %>
+          <% @universitys.each do |university| %>
             <tr>
-              <td><%= unm_un.uni_name %></td>
-              <td><%= unm_un.uni_country %></td>
-              <td><%= unm_un.uni_city %></td>
-              <td><%= unm_un.uni_sector %></td>
-              <td><%= link_to 'Show', unm_un_path(unm_un), remote: true %>
-                  <%= link_to 'Edit', edit_unm_un_path(unm_un), remote: true %>
-                  <%= link_to 'Destroy', unm_un, data: { behavior: 'delete' } %>
+              <td><%= university.uni_name %></td>
+              <td><%= university.uni_country %></td>
+              <td><%= university.uni_city %></td>
+              <td><%= university.uni_sector %></td>
+              <td><%= link_to 'Show', university_path(university), remote: true %>
+                  <%= link_to 'Edit', edit_university_path(university), remote: true %>
+                  <%= link_to 'Destroy', university, data: { behavior: 'delete' } %>
               </td>
             </tr>
             <%end%>

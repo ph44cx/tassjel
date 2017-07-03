@@ -1,6 +1,6 @@
-class CreateUnmUns < ActiveRecord::Migration[5.1]
+class CreateUniversities < ActiveRecord::Migration[5.1]
   def change
-    create_table :unm_uns do |t|
+    create_table :universities do |t|
       t.string :uni_country
       t.string :uni_city
       t.string :uni_name

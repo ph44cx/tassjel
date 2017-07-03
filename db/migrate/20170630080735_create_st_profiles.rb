@@ -1,4 +1,4 @@
-class CreateProfiles < ActiveRecord::Migration[5.1]
+class CreateStProfiles < ActiveRecord::Migration[5.1]
   def change
     create_table :st_profiles do |t|
       t.string :st_ba_name

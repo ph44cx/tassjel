@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20170701065101) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "conversations", force: :cascade do |t|
     t.integer "recipient_id"
     t.integer "sender_id"
@@ -27,8 +24,8 @@ ActiveRecord::Schema.define(version: 20170701065101) do
 
   create_table "messages", force: :cascade do |t|
     t.text "body"
-    t.bigint "user_id"
-    t.bigint "conversation_id"
+    t.integer "user_id"
+    t.integer "conversation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
@@ -53,25 +50,11 @@ ActiveRecord::Schema.define(version: 20170701065101) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "st_ba_passport_photo"
+    t.string "st_ba_official_photo"
   end
 
-  create_table "university_profiles", force: :cascade do |t|
-    t.string "uni_logo"
-    t.string "uni_description"
-    t.json "uni_galaries"
-    t.string "uni_log_rank"
-    t.date "uni_founded_date"
-    t.string "uni_url"
-    t.string "uni_email"
-    t.string "uni_phone1"
-    t.string "uni_phone2"
-    t.string "uni_fax"
-    t.string "uni_address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "unm_uns", force: :cascade do |t|
+  create_table "universities", force: :cascade do |t|
     t.string "uni_country"
     t.string "uni_city"
     t.string "uni_name"
@@ -92,6 +75,22 @@ ActiveRecord::Schema.define(version: 20170701065101) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "university_profile_id"
+  end
+
+  create_table "university_profiles", force: :cascade do |t|
+    t.string "uni_logo"
+    t.string "uni_description"
+    t.string "uni_galaries"
+    t.string "uni_log_rank"
+    t.date "uni_founded_date"
+    t.string "uni_url"
+    t.string "uni_email"
+    t.string "uni_phone1"
+    t.string "uni_phone2"
+    t.string "uni_fax"
+    t.string "uni_address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -120,6 +119,4 @@ ActiveRecord::Schema.define(version: 20170701065101) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "messages", "conversations"
-  add_foreign_key "messages", "users"
 end

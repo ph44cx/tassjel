@@ -2,7 +2,7 @@
   $(document).ready(function(){
     $('#createUniversity').click(function(){
       $('.row').empty();
-      $(".row").append("<%= escape_javascript render(:partial => '/unm_uns/form') %>");
+      $(".row").append("<%= escape_javascript render(:partial => '/universities/form') %>");
     })
   });
 </script>

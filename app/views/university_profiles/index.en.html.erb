@@ -27,7 +27,7 @@
         <tbody>
           <% @university_profiles.each do |university_profile| %>
             <tr>
-              <td><%= university_profile.unm_un.try(:uni_name) %></td>
+              <td><%= university_profile.university.try(:uni_name) %></td>
               <td><%= university_profile.uni_description %></td>
               <td><%= university_profile.uni_log_rank %></td>
               <td><%= university_profile.uni_founded_date %></td>

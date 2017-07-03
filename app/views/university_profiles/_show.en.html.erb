@@ -2,7 +2,7 @@
 <script>
   $(document).ready(function(){
       $("#goBackShow").click(function(){
-      var url = '/unm_uns/<%= @university_profile.unm_un.id%>';
+      var url = '/universities/<%= @university_profile.university.id%>';
       $.get(url);
     });
   });
