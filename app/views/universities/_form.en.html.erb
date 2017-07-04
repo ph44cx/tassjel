@@ -7,6 +7,8 @@
 <script>
   $(document).ready(function(){
     $('#state').hide();
+    $('.fac').hide();
+    $('.addMore').hide();
     $('#private').hide();
     $('#university_uni_sector_state').click(function(){
       $('#private').hide();
@@ -19,7 +21,18 @@
     $('#unm_dashboard').click(function(){
       window.location.replace("<%=unm_dashboard_url%>");
     });
+    $('#clos').click(function(){
+      $('.test').hide();
+      $('.fac').show();
+      $('.addMore').show();
+    });
   });
+  function showInput() {
+      document.getElementById('display').innerHTML = 
+        document.getElementsByClassName("fields").length - 1 ;
+        var faculties_number = document.getElementsByClassName("fields").length - 1;
+        $("#faculties_number_field").val(faculties_number);
+    }
 </script>
 <div class="row">
   <div class="col-lg-12">
@@ -104,20 +117,48 @@
             </div>
 
             <div class="col-lg-6">
+              
+            <li class="test"><a data-toggle="modal" href="#" data-target="#myModal">Add Faculties</a></li>
+            <li class="addMore"><a data-toggle="modal" href="#" data-target="#myModal">Add More Faculties</a></li>
+            <p class="fac"> Added faculties number: <span id = "display"></span> </p>
 
-              <%= form.fields_for :faculties, Faculty.new do |fac_form| %>
-                <div class="form-group">
-                <label>​Faculty name</label>
-                  <%= fac_form.text_field :uni_faculties_name, class: 'form-control', placeholder: '​Faculties name', autofocus: true %>
+
+              <!-- Add faculties modal -->
+            <div class="modal" id="myModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Modal title</h4>
+                  </div>
+
+                  <div class="modal-body">
+                    <%= form.fields_for :faculties, Faculty.new do |fac_form| %>
+                      <div class="form-group">
+                        <label>​Faculty name</label>
+                          <%= fac_form.text_field :uni_faculties_name, class: 'form-control', placeholder: '​Faculties name', autofocus: true %>
+                      </div>
+
+                      <div class="form-group">
+                        <label>​Faculty Speciality</label>
+                          <%= fac_form.text_field :uni_faculties_speciality, class: 'form-control', placeholder: '​Faculties speciality', autofocus: true %>
+                      </div>
+
+                      <%= fac_form.hidden_field :uni_faculties_number, :id => "faculties_number_field"%>
+                    <% end %>
+
+                    <p><%= form.link_to_add "Add more Faculty", :faculties %></p>
+                  
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" id ="clos" class="btn btn-default" onclick="showInput();" data-dismiss="modal">Done</button>
+                  </div>
                 </div>
+              </div>
+            </div>
+            <!-- ends here -->
 
-                <div class="form-group">
-                <label>​Faculty Speciality</label>
-                  <%= fac_form.text_field :uni_faculties_speciality, class: 'form-control', placeholder: '​Faculties speciality', autofocus: true %>
-                </div>
-
-              <% end %>
-              <p><%= form.link_to_add "Add more Faculty", :faculties %></p>
 
               <div class="form-group">
                 <label for="university_uni_institution_number" class="control-label">​Institution number</label>
@@ -144,6 +185,8 @@
             </div>
           </div>
         <fieldset>
+
+
       <% end %>
     </div>
   </div>
