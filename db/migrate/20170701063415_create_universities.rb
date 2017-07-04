@@ -12,12 +12,10 @@ class CreateUniversities < ActiveRecord::Migration[5.1]
       t.string :uni_private_eng_ava_fees
       t.string :uni_private_lit_ava_fees
       t.string :uni_inst_private_fees
-      t.string :uni_faculties_number
-      t.string :uni_faculties_name
-      t.string :uni_faculties_speciality
       t.string :uni_institution_number
       t.string :uni_institutions_name
       t.string :uni_institution_speciality
+      t.integer :university_profile_id
 
       t.timestamps
     end

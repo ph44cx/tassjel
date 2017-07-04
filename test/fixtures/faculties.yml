@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uni_faculties_number: 1
+  uni_faculties_name: MyString
+  uni_faculties_speciality: MyString
+  reference: 
+
+two:
+  uni_faculties_number: 1
+  uni_faculties_name: MyString
+  uni_faculties_speciality: MyString
+  reference: 

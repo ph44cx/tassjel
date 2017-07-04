@@ -68,6 +68,6 @@ class UniversitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def university_params
-      params.require(:university).permit(:uni_country, :uni_city, :uni_name, :uni_sector, :uni_state_ava_fees, :uni_inst_state_ava_fees, :uni_private_med_ava_fees, :uni_private_den_ava_fees, :uni_private_eng_ava_fees, :uni_private_lit_ava_fees, :uni_inst_private_fees, :uni_faculties_number, :uni_faculties_name, :uni_faculties_speciality, :uni_institution_number, :uni_institutions_name, :uni_institution_speciality, :university_profile_id)
+      params.require(:university).permit(:uni_country, :uni_city, :uni_name, :uni_sector, :uni_state_ava_fees, :uni_inst_state_ava_fees, :uni_private_med_ava_fees, :uni_private_den_ava_fees, :uni_private_eng_ava_fees, :uni_private_lit_ava_fees, :uni_inst_private_fees, :uni_faculties_number, :uni_faculties_name, :uni_faculties_speciality, :uni_institution_number, :uni_institutions_name, :uni_institution_speciality, :university_profile_id, :faculties_attributes => [ :id, :uni_faculties_number, :uni_faculties_name, :uni_faculties_speciality] )
     end
 end

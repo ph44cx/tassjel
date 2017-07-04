@@ -24,7 +24,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="well bs-component">
-      <%= form_for (@university), remote: true, :html => { :class => "form-horizontal" } do |form| %>
+      <%= nested_form_for (@university), remote: true, :html => { :class => "form-horizontal" } do |form| %>
         <fieldset>
         <%if @university.id.present?%>
           <legend>Update University</legend>
@@ -105,20 +105,19 @@
 
             <div class="col-lg-6">
 
-              <div class="form-group">
-                <label for="university_uni_faculties_number" class="control-label">​Faculties number</label>
-                  <%= form.text_field :uni_faculties_number, class: 'form-control', id: 'university_uni_faculties_number', placeholder: '​Faculties number', autofocus: true %>
-              </div>
+              <%= form.fields_for :faculties, Faculty.new do |fac_form| %>
+                <div class="form-group">
+                <label>​Faculty name</label>
+                  <%= fac_form.text_field :uni_faculties_name, class: 'form-control', placeholder: '​Faculties name', autofocus: true %>
+                </div>
 
-              <div class="form-group">
-                <label for="university_uni_faculties_name" class="control-label">​Faculties name</label>
-                  <%= form.text_field :uni_faculties_name, class: 'form-control', id: 'university_uni_faculties_name', placeholder: '​Faculties name', autofocus: true %>
-              </div>
+                <div class="form-group">
+                <label>​Faculty Speciality</label>
+                  <%= fac_form.text_field :uni_faculties_speciality, class: 'form-control', placeholder: '​Faculties speciality', autofocus: true %>
+                </div>
 
-              <div class="form-group">
-                <label for="university_uni_faculties_speciality" class="control-label">​Faculties speciality</label>
-                  <%= form.text_field :uni_faculties_speciality, class: 'form-control', id: 'university_uni_faculties_speciality', placeholder: '​Faculties speciality', autofocus: true %>
-              </div>
+              <% end %>
+              <p><%= form.link_to_add "Add more Faculty", :faculties %></p>
 
               <div class="form-group">
                 <label for="university_uni_institution_number" class="control-label">​Institution number</label>

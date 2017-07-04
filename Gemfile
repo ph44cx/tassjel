@@ -18,7 +18,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'cancancan', '~> 1.15'
 gem 'carrierwave', '~> 0.11.2'
-gem 'pg', '~> 0.20.0'
+gem "nested_form"
 gem 'jquery-datatables-rails', '~> 3.4'
 
 group :development, :test do
@@ -38,5 +38,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :production do
+  gem 'pg', '~> 0.20.0'
   gem 'rails_12factor', '~> 0.0.3'
 end
