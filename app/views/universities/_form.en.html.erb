@@ -1,3 +1,4 @@
+<!-- delete('["''"],') -->
 <style>
   .form-horizontal .form-group{
     margin-left: 0px; 
@@ -117,20 +118,15 @@
             </div>
 
             <div class="col-lg-6">
-              
-            <li class="test"><a data-toggle="modal" href="#" data-target="#myModal">Add Faculties</a></li>
-            <li class="addMore"><a data-toggle="modal" href="#" data-target="#myModal">Add More Faculties</a></li>
-            <p class="fac"> Added faculties number: <span id = "display"></span> </p>
 
-
-              <!-- Add faculties modal -->
+            <!-- Add faculties modal -->
             <div class="modal" id="myModal">
               <div class="modal-dialog">
                 <div class="modal-content">
 
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Modal title</h4>
+                    <h4 class="modal-title">New Faculties</h4>
                   </div>
 
                   <div class="modal-body">
@@ -142,13 +138,13 @@
 
                       <div class="form-group">
                         <label>​Faculty Speciality</label>
-                          <%= fac_form.text_field :uni_faculties_speciality, class: 'form-control', placeholder: '​Faculties speciality', autofocus: true %>
+                          <%= fac_form.select :uni_faculties_speciality, University::FACULTYSPECIALITY, { prompt: "Select specialty" }, { class: "form-control", id: "select", multiple:true, :required => true, style: 'width:100%;' } %>
                       </div>
 
                       <%= fac_form.hidden_field :uni_faculties_number, :id => "faculties_number_field"%>
                     <% end %>
 
-                    <p><%= form.link_to_add "Add more Faculty", :faculties %></p>
+                    <%= form.link_to_add "Add more Faculty", :faculties %>
                   
                   </div>
                   <div class="modal-footer">
@@ -172,7 +168,19 @@
 
               <div class="form-group">
                 <label for="university_uni_institution_speciality" class="control-label">​Institutions specialty</label>
-                  <%= form.text_field :uni_institution_speciality, class: 'form-control', id: 'university_uni_institution_speciality', placeholder: '​Institutions specialty', autofocus: true %><br>
+                  <%= form.text_field :uni_institution_speciality, class: 'form-control', id: 'university_uni_institution_speciality', placeholder: '​Institutions specialty', autofocus: true %>
+              </div>
+
+              <label class="fac"> Added faculties number: <span id="display"></span></label>
+
+              <div class="test">
+                <a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a>&nbsp;
+                <a data-toggle="modal" href="#" data-target="#myModal">Add Faculties</a>
+              </div><br>
+
+              <div class="addMore">
+                <a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a>&nbsp;
+                <a data-toggle="modal" href="#" data-target="#myModal">Add More Faculties</a>
               </div>
 
               <div class="form-group">
