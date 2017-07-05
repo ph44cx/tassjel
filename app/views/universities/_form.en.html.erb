@@ -8,7 +8,7 @@
 <script>
   $(document).ready(function(){
     $('#state').hide();
-    $('.selectFaculties').select2();
+    $('.select2').select2();
     $('.fac').hide();
     $('.addMore').hide();
     $('#private').hide();
@@ -139,7 +139,7 @@
 
                       <div class="form-group">
                         <label>​Faculty Speciality</label>
-                          <%= fac_form.select :uni_faculties_speciality, University::FACULTYSPECIALITY, { prompt: "Select specialty" }, { class: "selectFaculties", id: "select", multiple:true, :required => true, style: 'width:100%;' } %>
+                          <%= fac_form.select :uni_faculties_speciality, University::FACULTYSPECIALITY, { prompt: "Select specialty" }, { class: "select2", id: "select", multiple:true, :required => true, style: 'width:100%;' } %>
                       </div>
 
                       <%= fac_form.hidden_field :uni_faculties_number, :id => "faculties_number_field"%>
