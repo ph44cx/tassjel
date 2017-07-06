@@ -17,5 +17,6 @@ Rails.application.routes.draw do
     resources :st_profiles
     resources :university_profiles
     resources :universities
+    get 'unm_dash/update_specialities'
   end
 end

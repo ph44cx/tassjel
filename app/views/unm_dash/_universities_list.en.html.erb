@@ -1,8 +1,8 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $('#createUniversity').click(function(){
-      $('.row').empty();
-      $(".row").append("<%= escape_javascript render(:partial => '/universities/form') %>");
+      $('.tab-pane').empty();
+      $(".tab-pane").append("<%= escape_javascript render(:partial => '/universities/form') %>");
     })
     $(".myTable").DataTable();
   });

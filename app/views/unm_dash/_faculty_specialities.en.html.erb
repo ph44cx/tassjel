@@ -1,0 +1,4 @@
+<%= faculty_speciality = FacultySpeciality.where('faculty_name_id=?', params[:faculty_name_id]) %>
+<%faculty_speciality.all.each do |faculty|%>
+<option value="<%= faculty.id %>"><%= faculty.speciality.titleize %></option>
+<%end%>

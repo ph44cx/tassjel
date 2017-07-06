@@ -41,7 +41,6 @@ $(document).ajaxSend(function(e, xhr, options) {
 
 $(document).ready(function(){
   $(".myTable").DataTable();
-  // $('select').select2();
   $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
         localStorage.setItem('activeTab', $(e.target).attr('href'));
     });

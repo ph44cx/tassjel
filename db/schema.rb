@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170704071501) do
+ActiveRecord::Schema.define(version: 20170706052532) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer "recipient_id"
@@ -30,6 +30,20 @@ ActiveRecord::Schema.define(version: 20170704071501) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["university_id"], name: "index_faculties_on_university_id"
+  end
+
+  create_table "faculty_names", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "faculty_specialities", force: :cascade do |t|
+    t.string "speciality"
+    t.integer "faculty_name_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["faculty_name_id"], name: "index_faculty_specialities_on_faculty_name_id"
   end
 
   create_table "messages", force: :cascade do |t|
