@@ -3,24 +3,40 @@
     margin-left: 0px!important; 
     margin-right: 0px!important; 
   }
+  .btn {
+    text-transform: capitalize!important;
+  }
 </style>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.select2').select2();
+    $('input[type=file]').bootstrapFileInput();
+    $('.file-inputs').bootstrapFileInput();
+  });
+</script>
 <div class="row">
   <div class="col-lg-12">
     <div class="well bs-component">
-      <%= form_for (@university_profile), remote: true, :html => { :class => "form-horizontal" } do |form| %>
+      <%= form_for (@university_profile), :html => { :class => "form-horizontal" } do |form| %>
         <fieldset>
           <legend>Create University Profile</legend>
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>
 
             <div class="col-lg-6">
 
               <div class="form-group">
                 <label for="university_uni_country" class="control-label">Country</label>
-                  <%= form.select :university_name, University.all.map { |u| [u.uni_name] }, { prompt: "Select University" }, { class: "form-control", id: "select", :required => true, style: 'width:100%;' }%>
+                  <%= form.select :university_name, University.all.map { |u| [u.uni_name] }, { prompt: "Select University" }, { class: "select2", id: "select", :required => true, style: 'width:100%;' }%>
               </div>
 
               <div class="form-group">
-                <label for="uni_profile_uni_logo" class="control-label">University logo</label>
-                  <%= form.file_field :uni_logo, class: 'form-control', id: 'uni_profile_uni_logo', autofocus: true %>
+                <label for="uni_profile_uni_logo" class="control-label">Logo</label><br/>
+                  <%= form.file_field :uni_logo, title: 'choose logo', id: 'uni_profile_uni_logo', class: "btn-sm btn-primary" %>
+              </div>
+
+              <div class="form-group">
+                <label for="uni_profile_uni_cover_photo" class="control-label">Cover photo</label><br/>
+                  <%= form.file_field :uni_cover_photo,title: 'choose cover photo', class: 'btn-sm btn-primary', id: 'uni_profile_uni_logo'%>
               </div>
 
               <div class="form-group">
@@ -29,8 +45,8 @@
               </div>
 
               <div class="form-group">
-                <label for="uni_profile_uni_galaries" class="control-label">Galleries</label>
-                  <%= form.file_field :uni_galaries, multiple: true, class: 'form-control', id: 'uni_profile_uni_galaries', autofocus: true %>
+                <label for="uni_profile_uni_galaries" class="control-label">Galleries</label><br/>
+                  <%= form.file_field :uni_galaries, title: 'choose galery images', multiple: true, class: 'btn-sm btn-primary', id: 'uni_profile_uni_galaries' %>
               </div>
 
               <div class="form-group">

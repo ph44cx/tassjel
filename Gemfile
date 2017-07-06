@@ -17,7 +17,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'cancancan', '~> 1.15'
-gem 'carrierwave', '~> 0.11.2'
+gem 'carrierwave', '~> 1.0'
 gem "nested_form"
 gem 'jquery-datatables-rails', '~> 3.4'
 

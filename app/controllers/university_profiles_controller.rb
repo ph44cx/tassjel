@@ -1,5 +1,4 @@
 class UniversityProfilesController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_university_profile, only: [:show, :edit, :update, :destroy]
 
   # GET /university_profiles
@@ -35,9 +34,11 @@ class UniversityProfilesController < ApplicationController
     respond_to do |format|
       if @university_profile.save
         @university.update(university_profile_id: @university_profile.id)
-        format.js{}
+        format.html { redirect_to unm_dashboard_path, notice: 'University profile was successfully updated.' }
+        format.json { render :show, status: :ok, location: @university_profile }
       else
-        format.js{}
+        format.html { render :new }
+        format.json { render json: @university_profile.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -74,6 +75,6 @@ class UniversityProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def university_profile_params
-      params.require(:university_profile).permit(:uni_logo, :uni_description, :uni_galaries, :uni_log_rank, :uni_founded_date, :uni_url, :uni_email, :uni_phone1, :uni_phone2, :uni_fax, :uni_address, :university_name)
+      params.require(:university_profile).permit(:uni_logo, :uni_cover_photo, :uni_description, :uni_log_rank, :uni_founded_date, :uni_url, :uni_email, :uni_phone1, :uni_phone2, :uni_fax, :uni_address, :university_name, :uni_galaries =>[])
     end
 end

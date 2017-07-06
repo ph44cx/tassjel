@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 20170706180101) do
 
   create_table "university_profiles", force: :cascade do |t|
     t.string "uni_logo"
+    t.string "uni_cover_photo"
     t.string "uni_description"
     t.string "uni_galaries"
     t.string "uni_log_rank"

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require dataTables/jquery.dataTables
+//= require bootstrap.file-input
 //= require jquery_nested_form
 //= require bootstrap-sprockets
 //= require turbolinks
@@ -40,6 +41,8 @@ $(document).ajaxSend(function(e, xhr, options) {
 });
 
 $(document).ready(function(){
+  // $('input[type=file]').bootstrapFileInput();
+  // $('.file-inputs').bootstrapFileInput();
   $(".myTable").DataTable();
   // $('select').select2();
   $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
