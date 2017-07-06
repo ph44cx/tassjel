@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170704071501) do
+ActiveRecord::Schema.define(version: 20170706180101) do
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.integer "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_cities_on_country_id"
+  end
 
   create_table "conversations", force: :cascade do |t|
     t.integer "recipient_id"
@@ -22,6 +30,12 @@ ActiveRecord::Schema.define(version: 20170704071501) do
     t.index ["sender_id"], name: "index_conversations_on_sender_id"
   end
 
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "faculties", force: :cascade do |t|
     t.integer "uni_faculties_number"
     t.string "uni_faculties_name"
@@ -30,6 +44,30 @@ ActiveRecord::Schema.define(version: 20170704071501) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["university_id"], name: "index_faculties_on_university_id"
+  end
+
+  create_table "faculty_names", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "faculty_specialities", force: :cascade do |t|
+    t.string "speciality"
+    t.integer "faculty_name_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["faculty_name_id"], name: "index_faculty_specialities_on_faculty_name_id"
+  end
+
+  create_table "institutions", force: :cascade do |t|
+    t.string "uni_institution_number"
+    t.string "uni_institution_name"
+    t.string "uni_institution_speciality"
+    t.integer "university_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["university_id"], name: "index_institutions_on_university_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -79,9 +117,9 @@ ActiveRecord::Schema.define(version: 20170704071501) do
     t.string "uni_institution_number"
     t.string "uni_institutions_name"
     t.string "uni_institution_speciality"
+    t.integer "university_profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "university_profile_id"
   end
 
   create_table "university_profiles", force: :cascade do |t|

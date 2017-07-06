@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uni_institution_number: MyString
+  uni_institution_name: MyString
+  uni_institution_speciality: MyString
+  references: 
+
+two:
+  uni_institution_number: MyString
+  uni_institution_name: MyString
+  uni_institution_speciality: MyString
+  references: 

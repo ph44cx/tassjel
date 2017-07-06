@@ -1,0 +1,4 @@
+<%= cities = City.where('country_id=?', params[:country_id]) %>
+<%cities.all.each do |city|%>
+<option value="<%= city.id %>"><%= city.name.titleize %></option>
+<%end%>
