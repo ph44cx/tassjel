@@ -10,6 +10,8 @@ class User < ApplicationRecord
   before_create :assign_role
   after_create :assign_unique_id
   has_one :st_profile
+  has_one :st_ba_file
+  has_many :st_wishes
   
   
   def role?

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-
+  add_flash_types :success, :warning, :danger, :info
   before_action :authenticate_user!
   protect_from_forgery with: :exception
   
@@ -22,6 +22,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if current_user.role.name == "university_manager"
       unm_dashboard_url
+    elsif
+      current_user.role.name == "student" && current_user.st_ba_file.nil?
+        create_file_url
     else
       st_dashboard_url
     end

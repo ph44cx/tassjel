@@ -17,6 +17,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "paper";
+@import "font-awesome";
 
 ul {
   padding-left: 0px;
@@ -29,6 +30,9 @@ ul {
   overflow-x: hidden;
 }
 
+.btn {
+  text-transform: capitalize!important;
+  }
 
 .message-sent {
   position: relative;

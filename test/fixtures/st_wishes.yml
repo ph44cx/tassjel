@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  st_ba_country_wish: MyString
+  st_ba_city_wish: MyString
+  st_wish_priority: MyString
+  st_ba_univ_wish: MyString
+  st_ba_specialty_wish: MyString
+  user_id: 1
+
+two:
+  st_ba_country_wish: MyString
+  st_ba_city_wish: MyString
+  st_wish_priority: MyString
+  st_ba_univ_wish: MyString
+  st_ba_specialty_wish: MyString
+  user_id: 1

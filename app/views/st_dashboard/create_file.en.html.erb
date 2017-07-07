@@ -1,16 +1,16 @@
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(document).ready(function(){
 		$('#createStFile').click(function(){
 			$('.well').empty();
-			$(".well").append("<%= escape_javascript render(:partial => '/st_ba_files/form') %>");
+			$(".well").append("<%#= escape_javascript render(:partial => '/st_ba_files/form') %>");
 		})
 	});
-</script>
+</script> -->
 <div class="jumbotron">
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="well bs-component">
-				<a class="btn btn-primary btn-lg btn-block" id="createStFile">Create file</a>
+				<a class="btn btn-primary btn-lg btn-block" id="createStFile" href="/st_ba_files/new">Create file</a>
 			</div>
 		</div>
 	</div>

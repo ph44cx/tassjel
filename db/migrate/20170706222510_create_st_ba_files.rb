@@ -22,6 +22,7 @@ class CreateStBaFiles < ActiveRecord::Migration[5.1]
       t.string :st_ba_cer_extra_photo2
       t.string :st_ba_cer_extra_photo3
       t.string :st_ba_cer_extra_photo4
+      t.integer :user_id
 
       t.timestamps
     end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170706222510) do
+ActiveRecord::Schema.define(version: 20170707121510) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20170706222510) do
     t.string "st_ba_cer_extra_photo2"
     t.string "st_ba_cer_extra_photo3"
     t.string "st_ba_cer_extra_photo4"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -126,6 +127,17 @@ ActiveRecord::Schema.define(version: 20170706222510) do
     t.datetime "updated_at", null: false
     t.string "st_ba_passport_photo"
     t.string "st_ba_official_photo"
+  end
+
+  create_table "st_wishes", force: :cascade do |t|
+    t.string "st_ba_country_wish"
+    t.string "st_ba_city_wish"
+    t.string "st_wish_priority"
+    t.string "st_ba_univ_wish"
+    t.string "st_ba_specialty_wish"
+    t.integer "st_ba_file_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "universities", force: :cascade do |t|

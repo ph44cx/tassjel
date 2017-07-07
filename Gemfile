@@ -20,6 +20,7 @@ gem 'cancancan', '~> 1.15'
 gem 'carrierwave', '~> 1.0'
 gem "nested_form"
 gem 'jquery-datatables-rails', '~> 3.4'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
 
 group :development, :test do
   gem 'byebug', platform: :mri

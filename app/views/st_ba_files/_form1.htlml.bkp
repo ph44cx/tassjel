@@ -1,0 +1,165 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('select').select2();
+    $('input[type=file]').bootstrapFileInput();
+    $('.file-inputs').bootstrapFileInput();
+    $('#extraCert').hide()
+    $('#st_certificates').hide()
+    $('#st_ba_file_st_ba_cer_extra_yes').click(function(){
+      $('#extraCert').show()
+    })
+    $('#st_ba_file_st_ba_cer_extra_no').click(function(){
+      $('#extraCert').hide()
+    })
+    $('#addStCertificates').click(function(){
+      $('#st_certificates').show()
+    })
+  })
+</script>
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="well bs-component">
+        <%= form_for (@st_ba_file), :html => { novalidate: true }  do |form| %>
+        <fieldset>
+        <legend>ST-FILE-BA(HIGH SCHOOL)</legend>
+          <div class="col-lg-6">
+            <%= form.hidden_field :user_id, value: current_user.id%>
+            <div class="form-group">
+              <label for="st_file_ba_st_ba_cer_source" class="control-label">Certificate Source</label>
+                <%= form.text_field :st_ba_cer_source, class: 'form-control', id: 'st_file_ba_st_ba_cer_source', placeholder: 'Certificate Source', autofocus: true %>
+            </div>
+
+            <div class="form-group">
+              <label for="st_file_ba_st_ba_cer_marks" class="control-label">Certificate Marks</label>
+                <%= form.text_field :st_ba_cer_marks, class: 'form-control', id: 'st_file_ba_st_ba_cer_marks', placeholder: 'Certificate Source', autofocus: true %>
+            </div>
+
+            <div class="form-group">
+              <label for="st_file_ba_st_ba_cer_year" class="control-label">Certificate Year</label>
+                <%= form.text_field :st_ba_cer_year, class: 'form-control', id: 'st_file_ba_st_ba_cer_year', placeholder: 'Certificate Source', autofocus: true %>
+            </div>
+
+            <div class="form-group">
+              <label for="st_file_ba_st_ba_cer_extra" class="control-label">Extra Certificates</label>
+                <div class="radio">
+                  <label>
+                    <%= form.radio_button :st_ba_cer_extra, 'yes' %>Yes
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <%= form.radio_button :st_ba_cer_extra, 'no' %>No
+                  </label>
+                </div>
+            </div>
+
+            <div id="extraCert">
+              <div class="form-group">
+                  <label for="st_file_ba_st_ba_cer_extra_cert" class="control-label">Certificates</label>
+                    <%= form.select :st_ba_cer_extra_cert, StBaFile::CERTIFICATES, { prompt: "Select Certificate" }, { class: "select2", id: "select", :required => true, style: 'width:100%;'} %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="st_file_ba_st_ba_cer_extra_sat" class="control-label">Certificate Source</label>
+                <%= form.text_field :st_ba_cer_extra_sat, class: 'form-control', id: 'st_file_ba_st_ba_cer_extra_sat', placeholder: 'Certificate Source', autofocus: true %>
+            </div>
+
+            <div class="form-group">
+              <label for="st_file_ba_st_ba_cer_extra_gcse" class="control-label">Certificate Source</label>
+                <%= form.text_field :st_ba_cer_extra_gcse, class: 'form-control', id: 'st_file_ba_st_ba_cer_extra_gcse', placeholder: 'Certificate Source', autofocus: true %>
+            </div>
+
+            <div class="form-group">
+              <label for="st_file_ba_st_ba_cer_extra_tahseli" class="control-label">Certificate Source</label>
+                <%= form.text_field :st_ba_cer_extra_tahseli, class: 'form-control', id: 'st_file_ba_st_ba_cer_extra_tahseli', placeholder: 'Certificate Source', autofocus: true %>
+            </div>
+
+            <div class="form-group">
+              <label for="st_file_ba_st_ba_cer_extra_qudorat" class="control-label">Certificate Source</label>
+                <%= form.text_field :st_ba_cer_extra_qudorat, class: 'form-control', id: 'st_file_ba_st_ba_cer_extra_qudorat', placeholder: 'Certificate Source', autofocus: true %>
+            </div>
+
+            <div class="form-group">
+              <label for="st_file_ba_st_ba_cer_extra_yos" class="control-label">Certificate Source</label>
+                <%= form.text_field :st_ba_cer_extra_yos, class: 'form-control', id: 'st_file_ba_st_ba_cer_extra_yos', placeholder: 'Certificate Source', autofocus: true %>
+            </div>
+
+            <div class="form-group">
+              <label for="st_file_ba_st_ba_cer_extra_mearyi" class="control-label">Certificate Source</label>
+                <%= form.text_field :st_ba_cer_extra_mearyi, class: 'form-control', id: 'st_file_ba_st_ba_cer_extra_mearyi', placeholder: 'Certificate Source', autofocus: true %>
+            </div>
+
+          </div>
+
+
+          <div class="col-lg-6">
+
+            <div class="form-group">
+              <label for="st_file_ba_st_ba_cer_lang" class="control-label">Certificate Source</label>
+                <%= form.check_box :st_ba_cer_lang, class: 'form-control', id: 'st_file_ba_st_ba_cer_lang', placeholder: 'Certificate Source', autofocus: true %>
+            </div>
+
+            <div class="form-group">
+              <label for="st_file_ba_st_ba_cer_lang_toefl" class="control-label">Certificate Source</label>
+                <%= form.text_field :st_ba_cer_lang_toefl, class: 'form-control', id: 'st_file_ba_st_ba_cer_lang_toefl', placeholder: 'Certificate Source', autofocus: true %>
+            </div>
+
+            <div class="form-group">
+              <label for="st_file_ba_st_ba_cer_lang_ielts" class="control-label">Certificate Source</label>
+                <%= form.text_field :st_ba_cer_lang_ielts, class: 'form-control', id: 'st_file_ba_st_ba_cer_lang_ielts', placeholder: 'Certificate Source', autofocus: true %>
+            </div>
+
+            <div class="form-group">
+              <label for="st_file_ba_st_ba_cer_lang_other" class="control-label">Certificate Source</label>
+                <%= form.text_field :st_ba_cer_lang_other, class: 'form-control', id: 'st_file_ba_st_ba_cer_lang_other', placeholder: 'Certificate Source', autofocus: true %>
+            </div>
+
+            <div class="form-group">
+              <a class="btn btn-warning" id="addStCertificates">Upload Certificates</a>
+            </div>
+
+              <div id="st_certificates">
+                <!-- Attachments -->
+                <div class="form-group">
+                  <label for="st_file_ba_st_ba_cer_photo" class="control-label">Certificate photo</label>&nbsp;&nbsp;
+                  <%= form.file_field :st_ba_cer_photo, id: :st_file_ba_st_ba_cer_photo, class: 'btn btn-default btn-xs' %>
+                </div>
+
+                <div class="form-group">
+                  <label for="st_file_ba_st_ba_cer_photo_transcript" class="control-label">Certificate photo transcript</label>&nbsp;&nbsp;
+                  <%= form.file_field :st_ba_cer_photo_transcript, id: :st_file_ba_st_ba_cer_photo_transcript, class: 'btn btn-default btn-xs' %>
+                </div>
+
+                <div class="form-group">
+                  <label for="st_file_ba_st_ba_cer_extra_photo1" class="control-label">Certificate extra photo1</label>&nbsp;&nbsp;
+                  <%= form.file_field :st_ba_cer_extra_photo1, id: :st_file_ba_st_ba_cer_extra_photo1, class: 'btn btn-default btn-xs' %>
+                </div>
+
+                <div class="form-group">
+                  <label for="st_file_ba_st_ba_cer_extra_photo2" class="control-label">Certificate extra photo2</label>&nbsp;&nbsp;
+                  <%= form.file_field :st_ba_cer_extra_photo2, id: :st_file_ba_st_ba_cer_extra_photo2, class: 'btn btn-default btn-xs' %>
+                </div>
+
+                <div class="form-group">
+                  <label for="st_file_ba_st_ba_cer_extra_photo3" class="control-label">Certificate extra photo3</label>&nbsp;&nbsp;
+                  <%= form.file_field :st_ba_cer_extra_photo3, id: :st_file_ba_st_ba_cer_extra_photo3, class: 'btn btn-default btn-xs' %>
+                </div>
+
+                <div class="form-group">
+                  <label for="st_file_ba_st_ba_cer_extra_photo4" class="control-label">Certificate extra photo4</label>&nbsp;&nbsp;
+                  <%= form.file_field :st_ba_cer_extra_photo4, id: :st_file_ba_st_ba_cer_extra_photo4, class: 'btn btn-default btn-xs' %>
+                </div>
+                <!-- Attachments -->
+              </div>
+
+              <div class="form-group">
+                <%= form.button 'Save file', class: "btn btn-primary", style: 'width:65%;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Creating file...."}%>
+              </div>
+            </fieldset>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>
