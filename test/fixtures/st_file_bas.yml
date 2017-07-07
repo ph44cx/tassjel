@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  st_ba_cer_source: MyString
+  st_ba_cer_marks: MyString
+  st_ba_cer_year: MyString
+  st_ba_cer_extra: false
+  st_ba_cer_extra_cert: MyString
+  st_ba_cer_extra_sat: MyString
+  st_ba_cer_extra_gcse: MyString
+  st_ba_cer_extra_tahseli: MyString
+  st_ba_cer_extra_qudorat: MyString
+  st_ba_cer_extra_yos: MyString
+  st_ba_cer_extra_mearyi: MyString
+  st_ba_cer_lang: false
+  st_ba_cer_lang_toefl: MyString
+  st_ba_cer_lang_ielts: MyString
+  st_ba_cer_lang_other: MyString
+  st_ba_cer_photo: MyString
+  st_ba_cer_photo_transcript: MyString
+  st_ba_cer_extra_photo1: MyString
+  st_ba_cer_extra_photo2: MyString
+  st_ba_cer_extra_photo3: MyString
+  st_ba_cer_extra_photo4: MyString
+
+two:
+  st_ba_cer_source: MyString
+  st_ba_cer_marks: MyString
+  st_ba_cer_year: MyString
+  st_ba_cer_extra: false
+  st_ba_cer_extra_cert: MyString
+  st_ba_cer_extra_sat: MyString
+  st_ba_cer_extra_gcse: MyString
+  st_ba_cer_extra_tahseli: MyString
+  st_ba_cer_extra_qudorat: MyString
+  st_ba_cer_extra_yos: MyString
+  st_ba_cer_extra_mearyi: MyString
+  st_ba_cer_lang: false
+  st_ba_cer_lang_toefl: MyString
+  st_ba_cer_lang_ielts: MyString
+  st_ba_cer_lang_other: MyString
+  st_ba_cer_photo: MyString
+  st_ba_cer_photo_transcript: MyString
+  st_ba_cer_extra_photo1: MyString
+  st_ba_cer_extra_photo2: MyString
+  st_ba_cer_extra_photo3: MyString
+  st_ba_cer_extra_photo4: MyString

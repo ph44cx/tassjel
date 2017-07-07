@@ -1,8 +1,8 @@
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
     $("#go_back").click(function(){
-      $(".row").empty();
-      $(".row").append("<%= escape_javascript render(:template => '/st_profiles/show') %>");
+      $(".tab-pane").empty();
+      $(".tab-pane").append("<%= escape_javascript render(:template => '/st_profiles/show') %>");
     });
   });
 </script>

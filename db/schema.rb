@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170706180101) do
+ActiveRecord::Schema.define(version: 20170706222510) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
@@ -82,6 +82,32 @@ ActiveRecord::Schema.define(version: 20170706180101) do
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "st_ba_files", force: :cascade do |t|
+    t.string "st_ba_cer_source"
+    t.string "st_ba_cer_marks"
+    t.string "st_ba_cer_year"
+    t.boolean "st_ba_cer_extra"
+    t.string "st_ba_cer_extra_cert"
+    t.string "st_ba_cer_extra_sat"
+    t.string "st_ba_cer_extra_gcse"
+    t.string "st_ba_cer_extra_tahseli"
+    t.string "st_ba_cer_extra_qudorat"
+    t.string "st_ba_cer_extra_yos"
+    t.string "st_ba_cer_extra_mearyi"
+    t.boolean "st_ba_cer_lang"
+    t.string "st_ba_cer_lang_toefl"
+    t.string "st_ba_cer_lang_ielts"
+    t.string "st_ba_cer_lang_other"
+    t.string "st_ba_cer_photo"
+    t.string "st_ba_cer_photo_transcript"
+    t.string "st_ba_cer_extra_photo1"
+    t.string "st_ba_cer_extra_photo2"
+    t.string "st_ba_cer_extra_photo3"
+    t.string "st_ba_cer_extra_photo4"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

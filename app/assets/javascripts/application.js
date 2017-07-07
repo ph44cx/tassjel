@@ -44,7 +44,6 @@ $(document).ready(function(){
   // $('input[type=file]').bootstrapFileInput();
   // $('.file-inputs').bootstrapFileInput();
   $(".myTable").DataTable();
-  // $('select').select2();
   $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
         localStorage.setItem('activeTab', $(e.target).attr('href'));
     });

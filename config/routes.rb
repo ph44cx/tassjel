@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     resources :st_profiles
     resources :university_profiles
     resources :universities
+    resources :st_ba_files
     get 'unm_dash/update_cities'
+    get 'create_file' => 'st_dashboard#create_file'
   end
 end

@@ -22,4 +22,8 @@ class StDashboardController < ApplicationController
   		format.js{}
   	end
   end
+
+  def create_file
+    @st_ba_file = StBaFile.new
+  end
 end
