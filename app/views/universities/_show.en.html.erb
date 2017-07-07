@@ -182,8 +182,16 @@
                     <div class="col-sm-3">
                       <div class="card">
                         <div class="card-block">
-                          <h5 class="card-title">Name:<span><%= faculty.uni_faculties_name%></span></h5>
-                          <h6 class="card-text">Speciality: <span><%= faculty.uni_faculties_speciality.delete('["''"],')%></span><h6>
+                          <h5 class="card-title">Name:<span><%= FacultyName.find(faculty.uni_faculties_name).name%></span></h5>
+                          <div style="display: none;">
+                            <% @faculty_specialty_ids = faculty.uni_faculties_speciality.delete('"" ')%>
+                            <% @specialities_array_ids = @faculty_specialty_ids.tr('[]', '').split(',').map(&:to_i) %>
+                          </div>
+                          <% FacultySpeciality.where(id: @specialities_array_ids).each do |specs|%>
+                          <h6 class="card-text">Speciality: <span>
+                            <%= specs.speciality%>
+                          </span><h6>
+                          <%end%>
                         </div>
                       </div>
                     </div>

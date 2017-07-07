@@ -4,10 +4,10 @@ one:
   uni_faculties_number: 1
   uni_faculties_name: MyString
   uni_faculties_speciality: MyString
-  reference: 
+  university: one
 
 two:
   uni_faculties_number: 1
   uni_faculties_name: MyString
   uni_faculties_speciality: MyString
-  reference: 
+  university: two

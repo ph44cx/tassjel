@@ -13,6 +13,30 @@
       $('.fac').show();
       $('.addMore').show();
     });
+
+    // Wizard javascript
+    $('.nav-tabs > li a[title]').tooltip();
+    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+        var $target = $(e.target);
+    
+        if ($target.parent().hasClass('disabled')) {
+            return false;
+        }
+    });
+
+    $(".next-step").click(function (e) {
+        var $active = $('.wizard .nav-tabs li.active');
+        $active.next().removeClass('disabled');
+        nextTab($active);
+    });
+
+    $(".prev-step").click(function (e) {
+        var $active = $('.wizard .nav-tabs li.active');
+        prevTab($active);
+
+    });
+    // Wizard javascript ends
   });
   
   function showInput() {
@@ -30,11 +54,17 @@
     document.getElementById('displayInstSpecs').innerHTML = 
       $(".select2-selection__rendered").text();
   }
+  function nextTab(elem) {
+    $(elem).next().find('a[data-toggle="tab"]').click();
+  }
+  function prevTab(elem) {
+    $(elem).prev().find('a[data-toggle="tab"]').click();
+  }
 </script>
 <div class="row">
   <div class="col-lg-12">
     <div class="well bs-component">
-      <%= nested_form_for (@university), remote: true do |form| %>
+      <%= nested_form_for (@university), remote: true, :html => { novalidate: true } do |form| %>
         <fieldset>
         <%if @university.id.present?%>
           <legend>Update University</legend>
@@ -146,26 +176,158 @@
                   </div>
 
                   <div class="modal-body">
-                    <%= form.fields_for :faculties, Faculty.new do |fac_form| %>
-                      <script>
+                    <section>
+                    <div class="wizard">
+                        <div class="wizard-inner">
+                            <div class="connecting-line"></div>
+                            <ul class="nav nav-tabs" role="tablist">
+
+                                <li role="presentation" class="active">
+                                    <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                                        <span class="round-tab">
+                                            <!-- <i class="glyphicon glyphicon-folder-open"></i> -->
+                                            Faculty1
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li role="presentation" class="disabled">
+                                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                                        <span class="round-tab">
+                                            <!-- <i class="glyphicon glyphicon-pencil"></i> -->
+                                            Faculty2
+                                        </span>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="disabled">
+                                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                        <span class="round-tab">
+                                            <!-- <i class="glyphicon glyphicon-picture"></i> -->
+                                            Faculty3
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li role="presentation" class="disabled">
+                                    <a href="#step4" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                        <span class="round-tab">
+                                            <!-- <i class="glyphicon glyphicon-picture"></i> -->
+                                            Faculty4
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li role="presentation" class="disabled">
+                                    <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                                        <span class="round-tab">
+                                            <i class="glyphicon glyphicon-ok"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                      
+                      <script type="text/javascript">
                         $(document).ready(function(){
                           $('.select2').select2();
                         });
                       </script>
-                      <div class="form-group">
-                        <label>​Faculty Speciality</label>
-                          <%= fac_form.select :uni_faculties_speciality, University::FACULTYSPECIALITY, { prompt: "Select specialty" }, { class: "select2", id: "select", multiple:true, :required => true, style: 'width:100%;' } %>
+
+                      <div class="tab-content">
+                      
+                        <div class="tab-pane active" role="tabpanel" id="step1">
+                          <%= form.fields_for :faculties, Faculty.new, :html => { novalidate: true } do |fac_form| %>
+
+                            <div class="form-group">
+                              <label>​Faculty name</label>
+                                <%= fac_form.select :uni_faculties_name, options_for_select(@faculties.collect { |faculty | [faculty.name.titleize, faculty.id] }, 1), {:include_blank => "Select faculty name"}, { id: 'facultiy_names_select', class: "select2", :required => true, style: 'width:100%;' } %>
+                            </div>
+
+
+                            <div class="form-group">
+                              <label>​Faculty Speciality</label>
+                                <%= fac_form.select :uni_faculties_speciality, options_for_select(@faculty_specialties.collect { |faculty_speciality|  [faculty_speciality.speciality, faculty_speciality.id] }, 0), {:include_blank => "Select faculty specialities"}, { id: 'faculty_specialties_select', class: "select2", multiple:true, :required => true, style: 'width:100%;' } %>
+                            </div>
+
+                            <ul class="list-inline pull-right">
+                                <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                            </ul>
+                          <%end%>
+                        </div>
+
+                        <div class="tab-pane" role="tabpanel" id="step2">
+                          <%= form.fields_for :faculties, Faculty.new, :html => { novalidate: true } do |fac_form| %>                          
+                            <div class="form-group">
+                              <label>​Faculty name</label>
+                                <%= fac_form.select :uni_faculties_name, options_for_select(@faculties.collect { |faculty|[faculty.name.titleize, faculty.id] }, 1), {:include_blank => "Select faculty name"}, { id: 'facultiy_names_select1', class: "select2 hih", :required => true, style: 'width:100%;' } %>
+                            </div>
+
+
+                            <div class="form-group">
+                              <label>​Faculty Speciality</label>
+                                <%= fac_form.select :uni_faculties_speciality, options_for_select(@faculty_specialties.collect { |faculty_speciality|  [faculty_speciality.speciality, faculty_speciality.id] }, 0), {:include_blank => "Select faculty specialities"}, { id: 'faculty_specialties_select1', class: "select2", multiple:true, :required => true, style: 'width:100%;' } %>
+                            </div>
+
+                            <ul class="list-inline pull-right">
+                                <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                                <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                            </ul>
+                          <%end%>
+                        </div>
+                      
+
+                      
+                        <div class="tab-pane" role="tabpanel" id="step3">
+                          <%= form.fields_for :faculties, Faculty.new, :html => { novalidate: true } do |fac_form| %>
+                            <div class="form-group">
+                              <label>​Faculty name</label>
+                                <%= fac_form.select :uni_faculties_name, options_for_select(@faculties.collect { |faculty|[faculty.name.titleize, faculty.id] }, 1), {:include_blank => "Select faculty name"}, { id: 'facultiy_names_select2', class: "select2 hih", :required => true, style: 'width:100%;' } %>
+                            </div>
+
+
+                            <div class="form-group">
+                              <label>​Faculty Speciality</label>
+                                <%= fac_form.select :uni_faculties_speciality, options_for_select(@faculty_specialties.collect { |faculty_speciality|  [faculty_speciality.speciality, faculty_speciality.id] }, 0), {:include_blank => "Select faculty specialities"}, { id: 'faculty_specialties_select2', class: "select2", multiple:true, :required => true, style: 'width:100%;' } %>
+                            </div>
+
+                            <ul class="list-inline pull-right">
+                                <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                                <li><button type="button" class="btn btn-default next-step">Skip</button></li>
+                                <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
+                            </ul>
+                          <% end %>
+                        </div>
+
+                        <div class="tab-pane" role="tabpanel" id="step4">
+                          <%= form.fields_for :faculties, Faculty.new, :html => { novalidate: true } do |fac_form| %>
+                            <div class="form-group">
+                              <label>​Faculty name</label>
+                                <%= fac_form.select :uni_faculties_name, options_for_select(@faculties.collect { |faculty|[faculty.name.titleize, faculty.id] }, 1), {:include_blank => "Select faculty name"}, { id: 'facultiy_names_select3', class: "select2 hih", :required => true, style: 'width:100%;' } %>
+                            </div>
+
+
+                            <div class="form-group">
+                              <label>​Faculty Speciality</label>
+                                <%= fac_form.select :uni_faculties_speciality, options_for_select(@faculty_specialties.collect { |faculty_speciality|  [faculty_speciality.speciality, faculty_speciality.id] }, 0), {:include_blank => "Select faculty specialities"}, { id: 'faculty_specialties_select3', class: "select2", multiple:true, :required => true, style: 'width:100%;' } %>
+                            </div>
+
+                            <ul class="list-inline pull-right">
+                                <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                                <li><button type="button" class="btn btn-default next-step">Skip</button></li>
+                                <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
+                            </ul>
+                          <% end %>
+                        </div>
+
+                        <div class="tab-pane" role="tabpanel" id="complete">
+                            <h3>Complete</h3>
+                            <p>You have successfully added faculties.</p>
+                        </div>
+                        <div class="clearfix"></div>
                       </div>
 
-                      <div class="form-group">
-                        <label>​Faculty fees</label>
-                          <%= fac_form.text_field :uni_faculties_name, class: 'form-control', placeholder: '​Faculties fees', autofocus: true %>
-                      </div>
-
-                      <%= fac_form.hidden_field :uni_faculties_number, :id => "faculties_number_field"%>
-                    <% end %>
-
-                    <%= form.link_to_add "Add more Faculty", :faculties %>
+                    </div>
+                  </section>
                   
                   </div>
                   <div class="modal-footer">

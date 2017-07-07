@@ -19,6 +19,11 @@ Rails.application.routes.draw do
     resources :universities
     resources :st_ba_files
     get 'unm_dash/update_cities'
+    get 'unm_dash/update_faculties'
+    get 'unm_dash/update_faculties1'
+    get 'unm_dash/update_faculties2'
+    get 'unm_dash/update_faculties3'
     get 'create_file' => 'st_dashboard#create_file'
+    resources :faculties
   end
 end

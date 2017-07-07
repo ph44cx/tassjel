@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uni faculties number:</strong>
+  <%= @faculty.uni_faculties_number %>
+</p>
+
+<p>
+  <strong>Uni faculties name:</strong>
+  <%= @faculty.uni_faculties_name %>
+</p>
+
+<p>
+  <strong>Uni faculties speciality:</strong>
+  <%= @faculty.uni_faculties_speciality %>
+</p>
+
+<p>
+  <strong>University:</strong>
+  <%= @faculty.university %>
+</p>
+
+<%= link_to 'Edit', edit_faculty_path(@faculty) %> |
+<%= link_to 'Back', faculties_path %>
