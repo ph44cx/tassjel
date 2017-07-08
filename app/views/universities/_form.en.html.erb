@@ -1,6 +1,7 @@
 <script>
   $(document).ready(function(){
-    $('.select2').select2();
+    $('.select2').select2()
+    $('.fac').hide();;
     $('.addMore').hide();
     $('#private').hide();
     $(".editInst").hide()
@@ -39,12 +40,12 @@
     // Wizard javascript ends
   });
   
-  function showInput() {
-    document.getElementById('display').innerHTML = 
-      document.getElementsByClassName("fields").length - 3 ;
-      var faculties_number = document.getElementsByClassName("fields").length - 3;
-      $("#faculties_number_field").val(faculties_number);
-  }
+  // function showInput() {
+  //   document.getElementById('display').innerHTML = 
+  //     document.getElementsByClassName("fields").length - 3 ;
+  //     $("#faculties_number_field").val(faculties_number);
+  // }
+
   function showInstInput() {
     $(".addInst").hide()
     $(".editInst").show()
@@ -52,7 +53,7 @@
     document.getElementById('displayInstName').innerHTML = 
       $("#university_uni_institutions_name").val();
     document.getElementById('displayInstSpecs').innerHTML = 
-      $(".select2-selection__rendered").text();
+      $(".select2-selection__choice").text();
   }
   function nextTab(elem) {
     $(elem).next().find('a[data-toggle="tab"]').click();
@@ -131,7 +132,7 @@
 
                     <div class="form-group">
                       <label for="university_uni_institution_speciality" class="control-label">​Institutions specialty</label>
-                        <%= inst_form.select :uni_institution_speciality, University::FACULTYSPECIALITY, { prompt: "Select specialty" }, { class: "select2", id: "select", multiple:true, :required => true, style: 'width:100%;'}  %>
+                        <%= inst_form.select :uni_institution_speciality, University::FACULTYSPECIALITY, { prompt: "Select specialty" }, { class: "select2", id: "university_uni_institution_speciality", multiple:true, :required => true, style: 'width:100%;'}  %>
                     </div>
                     <%= inst_form.hidden_field :uni_institution_number, :id => "university_uni_institutions_number_field"%>
                     <%end%>
@@ -155,8 +156,9 @@
               </div><br>
 
               <div class="editInst">
+                <label style="color:#2494a9;">Faculties added successfully</label><br>
                 <a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a>&nbsp;
-                <a data-toggle="modal" href="#" data-target="#instModal">Edit Institution</a>
+                <a data-toggle="modal" href="#" data-target="#instModal">Edit/View Institution</a>
               </div><br>
 
               <div class="institutionsAdded" style="padding: 20px;background:#4d96d0;">
@@ -172,7 +174,7 @@
 
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">New Faculties</h4>
+                    <h4 class="modal-title">Faculty Specialty</h4>
                   </div>
 
                   <div class="modal-body">
@@ -186,7 +188,7 @@
                                     <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
                                         <span class="round-tab">
                                             <!-- <i class="glyphicon glyphicon-folder-open"></i> -->
-                                            Faculty1
+                                            Specialty1
                                         </span>
                                     </a>
                                 </li>
@@ -195,7 +197,7 @@
                                     <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
                                         <span class="round-tab">
                                             <!-- <i class="glyphicon glyphicon-pencil"></i> -->
-                                            Faculty2
+                                            Specialty2
                                         </span>
                                     </a>
                                 </li>
@@ -203,7 +205,7 @@
                                     <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
                                         <span class="round-tab">
                                             <!-- <i class="glyphicon glyphicon-picture"></i> -->
-                                            Faculty3
+                                            Specialty3
                                         </span>
                                     </a>
                                 </li>
@@ -212,7 +214,7 @@
                                     <a href="#step4" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
                                         <span class="round-tab">
                                             <!-- <i class="glyphicon glyphicon-picture"></i> -->
-                                            Faculty4
+                                            Specialty4
                                         </span>
                                     </a>
                                 </li>
@@ -331,14 +333,14 @@
                   
                   </div>
                   <div class="modal-footer">
-                    <button type="button" id ="clos" class="btn btn-default" onclick="showInput();" data-dismiss="modal">Done</button>
+                    <button type="button" id ="clos" class="btn btn-default" data-dismiss="modal">Finish</button>
                   </div>
                 </div>
               </div>
             </div>
             <!-- ends here -->
 
-              <label class="fac"> Added faculties number: <span id="display"></span></label>
+              <label class="fac" style="color:#2494a9;">Faculties added successfully</label>
 
               <div class="test">
                 <a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a>&nbsp;
@@ -347,7 +349,7 @@
 
               <div class="addMore">
                 <a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a>&nbsp;
-                <a data-toggle="modal" href="#" data-target="#myModal">Add More Faculties</a>
+                <a data-toggle="modal" href="#" data-target="#myModal">View Faculty</a>
               </div>
 
                 <div class="form-group">

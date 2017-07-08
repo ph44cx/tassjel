@@ -31,7 +31,6 @@ class UniversitiesController < ApplicationController
   # POST /universitys.json
   def create
     @university = University.new(university_params)
-    binding.pry
 
     respond_to do |format|
       if @university.save
