@@ -1,1 +1,356 @@
-<%= render 'form', university: @university %>
+<script>
+  $(document).ready(function(){
+    $('.select2').select2()
+    $('.fac').hide();;
+    $('.addMore').hide();
+    $('#private').hide();
+    $(".editInst").hide()
+    $(".institutionsAdded").hide()
+    $('#unm_dashboard').click(function(){
+      window.location.replace("<%=unm_dashboard_url%>");
+    });
+    $('#clos').click(function(){
+      $('.test').hide();
+      $('.fac').show();
+      $('.addMore').show();
+    });
+
+    // Wizard javascript
+    $('.nav-tabs > li a[title]').tooltip();
+    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+        var $target = $(e.target);
+    
+        if ($target.parent().hasClass('disabled')) {
+            return false;
+        }
+    });
+
+    $(".next-step").click(function (e) {
+        var $active = $('.wizard .nav-tabs li.active');
+        $active.next().removeClass('disabled');
+        nextTab($active);
+    });
+
+    $(".prev-step").click(function (e) {
+        var $active = $('.wizard .nav-tabs li.active');
+        prevTab($active);
+
+    });
+    // Wizard javascript ends
+  });
+
+  function showInstInput() {
+    $(".addInst").hide()
+    $(".editInst").show()
+    $(".institutionsAdded").show()
+    document.getElementById('displayInstName').innerHTML = 
+      $("#university_uni_institutions_name").val();
+    document.getElementById('displayInstSpecs').innerHTML = 
+      $(".select2-selection__choice").text();
+  }
+  function nextTab(elem) {
+    $(elem).next().find('a[data-toggle="tab"]').click();
+  }
+  function prevTab(elem) {
+    $(elem).prev().find('a[data-toggle="tab"]').click();
+  }
+</script>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="well bs-component">
+      <%= nested_form_for (@university), remote: true, :html => { novalidate: true } do |form| %>
+        <fieldset>
+          <legend>Update University</legend>
+            <div class="col-lg-6">
+
+              <div class="form-group">
+                <label for="university_uni_name" class="control-label">Name</label>
+                  <%= form.text_field :uni_name, class: 'form-control', id: 'university_uni_name', placeholder: 'University Name', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="university_uni_country" class="control-label">Country</label>
+                  <%= form.select :uni_country, options_from_collection_for_select(@countries, :id, :name, selected: @university.uni_country), {:include_blank => "Select country"},  {id: 'country_name_select', class: "select2", style: 'width:100%;'} %>
+              </div>
+
+              <div class="form-group">
+                <label for="university_uni_city" class="control-label">City</label>
+                  <%= form.select :uni_city, options_from_collection_for_select(@cities, :id, :name, selected: @university.uni_city), {}, { id: 'city_name_select', class: "select2", style: 'width:100%;' } %>
+              </div>
+
+              <div class="form-group">
+                <label for="university_uni_sector" class="control-label">Select Sector</label>
+                  <div class="radio">
+                    <label>
+                      <%= form.radio_button :uni_sector, 'state' %>State
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <%= form.radio_button :uni_sector, 'private' %>Private
+                    </label>
+                  </div>
+              </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+            <!-- Add Institution modal -->
+            <div class="modal" id="instModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">New Institution</h4>
+                  </div>
+
+                  <div class="modal-body">
+                    <%= form.fields_for :institutions, Institution.new do |inst_form| %>
+                      <script>
+                        $(document).ready(function(){
+                          $('.select2').select2();
+                        });
+                      </script>
+
+                    <div class="form-group">
+                      <label for="university_uni_institutions_name" class="control-label">​Institutions name</label>
+                        <%= inst_form.text_field :uni_institution_name, class: 'form-control', id: 'university_uni_institutions_name', placeholder: '​Institutions name', autofocus: true %>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="university_uni_institution_speciality" class="control-label">​Institutions specialty</label>
+                        <%= inst_form.select :uni_institution_speciality, University::FACULTYSPECIALITY, { prompt: "Select specialty" }, { class: "select2", id: "university_uni_institution_speciality", multiple:true, :required => true, style: 'width:100%;'}  %>
+                    </div>
+                    <%= inst_form.hidden_field :uni_institution_number, :id => "university_uni_institutions_number_field"%>
+                    <%end%>
+
+                    <%#= form.link_to_add "Add more Institutions", :institutions %>
+                  </div>
+                
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="showInstInput();" data-dismiss="modal">Done</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+              <!--Institution modal ends here -->
+
+              <div class="addInst">
+                <a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a>&nbsp;
+                <a data-toggle="modal" href="#" data-target="#instModal">Edit Institution</a>
+              </div><br>
+
+              <div class="editInst">
+                <label style="color:#2494a9;">Faculties updated successfully</label><br>
+                <a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a>&nbsp;
+                <a data-toggle="modal" href="#" data-target="#instModal">Edit/View Institution</a>
+              </div><br>
+
+            <!-- Add faculties modal -->
+            <div class="modal" id="myModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Faculty Specialty</h4>
+                  </div>
+
+                  <div class="modal-body">
+                    <section>
+                    <div class="wizard">
+                        <div class="wizard-inner">
+                            <div class="connecting-line"></div>
+                            <ul class="nav nav-tabs" role="tablist">
+
+                                <li role="presentation" class="active">
+                                    <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                                        <span class="round-tab">
+                                            <!-- <i class="glyphicon glyphicon-folder-open"></i> -->
+                                            Specialty1
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li role="presentation">
+                                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                                        <span class="round-tab">
+                                            <!-- <i class="glyphicon glyphicon-pencil"></i> -->
+                                            Specialty2
+                                        </span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                        <span class="round-tab">
+                                            <!-- <i class="glyphicon glyphicon-picture"></i> -->
+                                            Specialty3
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li role="presentation">
+                                    <a href="#step4" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                        <span class="round-tab">
+                                            <!-- <i class="glyphicon glyphicon-picture"></i> -->
+                                            Specialty4
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li role="presentation">
+                                    <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                                        <span class="round-tab">
+                                            <i class="glyphicon glyphicon-ok"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                      
+                      <script type="text/javascript">
+                        $(document).ready(function(){
+                          $('.select2').select2();
+                        });
+                      </script>
+
+                      <div class="tab-content">
+                      
+                        <div class="tab-pane active" role="tabpanel" id="step1">
+                          <%= form.fields_for :faculties, Faculty.new, :html => { novalidate: true } do |fac_form| %>
+
+                            <div class="form-group">
+                              <label>​Faculty name</label>
+                                <%= fac_form.select :uni_faculties_name, options_for_select(@faculties.collect { |faculty | [faculty.name.titleize, faculty.id] }, 0), {:include_blank => true}, { id: 'facultiy_names_select', class: "select2", style: 'width:100%;' } %>
+                            </div>
+
+
+                            <div class="form-group">
+                              <label>​Faculty Speciality</label>
+                                <%= fac_form.select :uni_faculties_speciality, options_for_select(@faculty_specialties.collect { |faculty_speciality|  [faculty_speciality.speciality, faculty_speciality.id] }, 0), {:include_blank => false}, { id: 'faculty_specialties_select', class: "select2", multiple:true, style: 'width:100%;' } %>
+                            </div>
+
+                            <ul class="list-inline pull-right">
+                                <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                            </ul>
+                          <%end%>
+                        </div>
+
+                        <div class="tab-pane" role="tabpanel" id="step2">
+                          <%= form.fields_for :faculties, Faculty.new, :html => { novalidate: true } do |fac_form| %>                          
+                            <div class="form-group">
+                              <label>​Faculty name</label>
+                                <%= fac_form.select :uni_faculties_name, options_for_select(@faculties.collect { |faculty|[faculty.name.titleize, faculty.id] }, 0), {:include_blank => true}, { id: 'facultiy_names_select1', class: "select2 hih", :required => true, style: 'width:100%;' } %>
+                            </div>
+
+
+                            <div class="form-group">
+                              <label>​Faculty Speciality</label>
+                                <%= fac_form.select :uni_faculties_speciality, options_for_select(@faculty_specialties.collect { |faculty_speciality|  [faculty_speciality.speciality, faculty_speciality.id] }, 0), {:include_blank => "Select faculty specialities"}, { id: 'faculty_specialties_select1', class: "select2", multiple:true, :required => true, style: 'width:100%;' } %>
+                            </div>
+
+                            <h6>Remove this speciality <%= fac_form.check_box :_destroy %></h6>
+
+                            <ul class="list-inline pull-right">
+                                <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                                <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                            </ul>
+                          <%end%>
+                        </div>
+                      
+
+                      
+                        <div class="tab-pane" role="tabpanel" id="step3">
+                          <%= form.fields_for :faculties, Faculty.new, :html => { novalidate: true } do |fac_form| %>
+                            <div class="form-group">
+                              <label>​Faculty name</label>
+                                <%= fac_form.select :uni_faculties_name, options_for_select(@faculties.collect { |faculty|[faculty.name.titleize, faculty.id] }, 0), {:include_blank => true}, { id: 'facultiy_names_select2', class: "select2 hih", :required => true, style: 'width:100%;' } %>
+                            </div>
+
+
+                            <div class="form-group">
+                              <label>​Faculty Speciality</label>
+                                <%= fac_form.select :uni_faculties_speciality, options_for_select(@faculty_specialties.collect { |faculty_speciality|  [faculty_speciality.speciality, faculty_speciality.id] }, 0), {:include_blank => "Select faculty specialities"}, { id: 'faculty_specialties_select2', class: "select2", multiple:true, :required => true, style: 'width:100%;' } %>
+                            </div>
+
+                            <h6>Remove this speciality <%= fac_form.check_box :_destroy %></h6>
+
+                            <ul class="list-inline pull-right">
+                                <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                                <li><button type="button" class="btn btn-default next-step">Skip</button></li>
+                                <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
+                            </ul>
+                          <% end %>
+                        </div>
+
+                        <div class="tab-pane" role="tabpanel" id="step4">
+                          <%= form.fields_for :faculties, Faculty.new, :html => { novalidate: true } do |fac_form| %>
+                            <div class="form-group">
+                              <label>​Faculty name</label>
+                                <%= fac_form.select :uni_faculties_name, options_for_select(@faculties.collect { |faculty|[faculty.name.titleize, faculty.id] }, 0), {:include_blank => true}, { id: 'facultiy_names_select3', class: "select2 hih", :required => true, style: 'width:100%;' } %>
+                            </div>
+
+
+                            <div class="form-group">
+                              <label>​Faculty Speciality</label>
+                                <%= fac_form.select :uni_faculties_speciality, options_for_select(@faculty_specialties.collect { |faculty_speciality|  [faculty_speciality.speciality, faculty_speciality.id] }, 0), {:include_blank => "Select faculty specialities"}, { id: 'faculty_specialties_select3', class: "select2", multiple:true, :required => true, style: 'width:100%;' } %>
+                            </div>
+
+                            <h6>Remove this speciality <%= fac_form.check_box :_destroy %></h6>
+
+                            <ul class="list-inline pull-right">
+                                <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                                <li><button type="button" class="btn btn-default next-step">Skip</button></li>
+                                <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
+                            </ul>
+                          <% end %>
+                        </div>
+
+                        <div class="tab-pane" role="tabpanel" id="complete">
+                            <h3>Complete</h3>
+                            <p>You have successfully updated faculties.</p>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+
+                    </div>
+                  </section>
+                  
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" id ="clos" class="btn btn-default" data-dismiss="modal">Finish</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ends here -->
+
+              <label class="fac" style="color:#2494a9;">Faculties added successfully</label>
+
+              <div class="test">
+                <a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a>&nbsp;
+                <a data-toggle="modal" href="#" data-target="#myModal">Edit Faculties</a>
+              </div><br>
+
+              <div class="addMore">
+                <a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a>&nbsp;
+                <a data-toggle="modal" href="#" data-target="#myModal">Edit/View Faculty</a>
+              </div>
+
+                <div class="form-group">
+                  <%= form.button "Update University", class: "btn btn-primary", style: 'width:65%;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>In progress...."} %>&nbsp;&nbsp;
+                <li class="btn btn-primary" style='width:30%;' id="unm_dashboard"> Cancel</li>
+              </div>
+            </div>
+          </div>
+        <fieldset>
+
+      <% end %>
+    </div>
+  </div>
+</div>
