@@ -9,8 +9,7 @@ class University < ApplicationRecord
 												"Literature Faculty" => ["Employment Discrimination", "Medieval Resources"]
 											}
 	accepts_nested_attributes_for :faculties, allow_destroy: true, reject_if: :faculty_rejectable?
-	# binding.pry
-	accepts_nested_attributes_for :institutions, allow_destroy: true, :reject_if => :all_blank
+	accepts_nested_attributes_for :institutions, allow_destroy: true, reject_if: :institute_rejectable?
 
 	private
 
@@ -18,15 +17,10 @@ class University < ApplicationRecord
 		att['uni_faculties_name'].blank? && new_record?
 	end
 
-# 	accepts_nested_attributes_for :faculties, reject_if: proc { |attributes|
-#   attributes.all? do |key, value|
-#     if value.is_a? ActionController::Parameters
-#       value.all? { |nested_key, nested_value| nested_key == '_destroy' || nested_value.blank? }
-#     else
-#       key == '_destroy' || value.blank?
-#     end
-#   end
-# }
+	def institute_rejectable?(att)
+		att['uni_institution_name'].blank? && new_record?
+	end
+
 	# def finder(str)
 	# 	FACULTYSPECIALITY[str] || FACULTYSPECIALITY.key(str)
 	# end

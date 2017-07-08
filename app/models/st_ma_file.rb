@@ -1,0 +1,2 @@
+class StMaFile < ApplicationRecord
+end

@@ -10,7 +10,18 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="well bs-component">
+			<%if current_user.service == "Bachelor Degree"%>
 				<a class="btn btn-primary btn-lg btn-block" id="createStFile" href="/st_ba_files/new">Create file</a>
+			<%end%>
+			<%if current_user.service == "Master"%>
+				<a class="btn btn-primary btn-lg btn-block" id="createStFile" href="/st_ma_files/new">Create file</a>
+			<%end%>
+			<% if current_user.service == "PhD"%>
+				<a class="btn btn-primary btn-lg btn-block" id="createStFile" href="/st_phd_files/new">Create file</a>
+			<%end%>
+			<%if current_user.service == "Transfer University"%>
+				<a class="btn btn-primary btn-lg btn-block" id="createStFile" href="/st_tr_files/new">Create file</a>
+			<%end%>
 			</div>
 		</div>
 	</div>

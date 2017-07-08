@@ -1,0 +1,2 @@
+module StMaFilesHelper
+end

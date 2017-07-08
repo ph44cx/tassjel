@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>St Ma Files</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>St ma cer source</th>
+      <th>St ma cer field</th>
+      <th>St ma cer marks</th>
+      <th>St ma cer year</th>
+      <th>St ma passport photo</th>
+      <th>St ma offical photo</th>
+      <th>St ma extra photo1</th>
+      <th>St ma extra photo2</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @st_ma_files.each do |st_ma_file| %>
+      <tr>
+        <td><%= st_ma_file.st_ma_cer_source %></td>
+        <td><%= st_ma_file.st_ma_cer_field %></td>
+        <td><%= st_ma_file.st_ma_cer_marks %></td>
+        <td><%= st_ma_file.st_ma_cer_year %></td>
+        <td><%= st_ma_file.st_ma_passport_photo %></td>
+        <td><%= st_ma_file.st_ma_offical_photo %></td>
+        <td><%= st_ma_file.st_ma_extra_photo1 %></td>
+        <td><%= st_ma_file.st_ma_extra_photo2 %></td>
+        <td><%= st_ma_file.user_id %></td>
+        <td><%= link_to 'Show', st_ma_file %></td>
+        <td><%= link_to 'Edit', edit_st_ma_file_path(st_ma_file) %></td>
+        <td><%= link_to 'Destroy', st_ma_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New St Ma File', new_st_ma_file_path %>

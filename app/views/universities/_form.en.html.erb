@@ -149,7 +149,7 @@
               <div class="addInst">
                 <a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a>&nbsp;
                 <a data-toggle="modal" href="#" data-target="#instModal">Add Institution</a>
-              </div><br>
+              </div>
 
               <div class="editInst">
                 <label style="color:#2494a9;">Faculties added successfully</label><br>
@@ -181,7 +181,7 @@
                             <ul class="nav nav-tabs" role="tablist">
 
                                 <li role="presentation" class="active">
-                                    <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                                    <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Specialty1">
                                         <span class="round-tab">
                                             <!-- <i class="glyphicon glyphicon-folder-open"></i> -->
                                             Specialty1
@@ -190,7 +190,7 @@
                                 </li>
 
                                 <li role="presentation" class="disabled">
-                                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Specialty2">
                                         <span class="round-tab">
                                             <!-- <i class="glyphicon glyphicon-pencil"></i> -->
                                             Specialty2
@@ -198,7 +198,7 @@
                                     </a>
                                 </li>
                                 <li role="presentation" class="disabled">
-                                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Specialty3">
                                         <span class="round-tab">
                                             <!-- <i class="glyphicon glyphicon-picture"></i> -->
                                             Specialty3
@@ -207,7 +207,7 @@
                                 </li>
 
                                 <li role="presentation" class="disabled">
-                                    <a href="#step4" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                    <a href="#step4" data-toggle="tab" aria-controls="step3" role="tab" title="Specialty3">
                                         <span class="round-tab">
                                             <!-- <i class="glyphicon glyphicon-picture"></i> -->
                                             Specialty4
@@ -266,6 +266,8 @@
                                 <%= fac_form.select :uni_faculties_speciality, options_for_select(@faculty_specialties.collect { |faculty_speciality|  [faculty_speciality.speciality, faculty_speciality.id] }, 0), {:include_blank => false}, { id: 'faculty_specialties_select1', class: "select2", multiple:true, style: 'width:100%;' } %>
                             </div>
 
+                            <h6>Remove this speciality <%= fac_form.check_box :_destroy %></h6>
+
                             <ul class="list-inline pull-right">
                                 <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
                                 <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
@@ -288,7 +290,7 @@
                                 <%= fac_form.select :uni_faculties_speciality, options_for_select(@faculty_specialties.collect { |faculty_speciality|  [faculty_speciality.speciality, faculty_speciality.id] }, 0), {:include_blank => false}, { id: 'faculty_specialties_select2', class: "select2", multiple:true, style: 'width:100%;' } %>
                             </div>
 
-                            <%= fac_form.link_to_remove "Remove this speciality" %>
+                            <h6>Remove this speciality <%= fac_form.check_box :_destroy %></h6>
 
                             <ul class="list-inline pull-right">
                                 <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
@@ -310,6 +312,8 @@
                               <label>​Faculty Speciality</label>
                                 <%= fac_form.select :uni_faculties_speciality, options_for_select(@faculty_specialties.collect { |faculty_speciality|  [faculty_speciality.speciality, faculty_speciality.id] }, 0), {:include_blank => false}, { id: 'faculty_specialties_select3', class: "select2", multiple:true, style: 'width:100%;' } %>
                             </div>
+
+                            <h6>Remove this speciality <%= fac_form.check_box :_destroy %></h6>
 
                             <ul class="list-inline pull-right">
                                 <li><button type="button" class="btn btn-default prev-step">Previous</button></li>

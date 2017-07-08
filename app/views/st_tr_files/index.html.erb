@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>St Tr Files</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>St ma un field</th>
+      <th>St tr un source</th>
+      <th>St tr un name</th>
+      <th>St tr un sem</th>
+      <th>St tr photo1</th>
+      <th>St tr photo2</th>
+      <th>St tr extra photo1</th>
+      <th>St tr extra photo2</th>
+      <th>St tr un target</th>
+      <th>St tr un name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @st_tr_files.each do |st_tr_file| %>
+      <tr>
+        <td><%= st_tr_file.st_ma_un_field %></td>
+        <td><%= st_tr_file.st_tr_un_source %></td>
+        <td><%= st_tr_file.st_tr_un_name %></td>
+        <td><%= st_tr_file.st_tr_un_sem %></td>
+        <td><%= st_tr_file.st_tr_photo1 %></td>
+        <td><%= st_tr_file.st_tr_photo2 %></td>
+        <td><%= st_tr_file.st_tr_extra_photo1 %></td>
+        <td><%= st_tr_file.st_tr_extra_photo2 %></td>
+        <td><%= st_tr_file.st_tr_un_target %></td>
+        <td><%= st_tr_file.st_tr_un_name %></td>
+        <td><%= link_to 'Show', st_tr_file %></td>
+        <td><%= link_to 'Edit', edit_st_tr_file_path(st_tr_file) %></td>
+        <td><%= link_to 'Destroy', st_tr_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New St Tr File', new_st_tr_file_path %>

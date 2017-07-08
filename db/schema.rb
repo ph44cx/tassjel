@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170707180302) do
+ActiveRecord::Schema.define(version: 20170708183701) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
@@ -113,6 +113,34 @@ ActiveRecord::Schema.define(version: 20170707180302) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "st_ma_files", force: :cascade do |t|
+    t.string "st_ma_cer_source"
+    t.string "st_ma_cer_field"
+    t.string "st_ma_cer_marks"
+    t.string "st_ma_cer_year"
+    t.string "st_ma_passport_photo"
+    t.string "st_ma_offical_photo"
+    t.string "st_ma_extra_photo1"
+    t.string "st_ma_extra_photo2"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "st_phd_files", force: :cascade do |t|
+    t.string "st_maba_cer_source"
+    t.string "st_maba_cer_field"
+    t.string "st_maba_cer_marks"
+    t.string "st_maba_cer_year"
+    t.string "st_maphd_cer_source"
+    t.string "st_maphd_cer_field"
+    t.string "st_maphd_cer_marks"
+    t.string "st_maphd_cer_year"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "st_profiles", force: :cascade do |t|
     t.string "st_ba_name"
     t.string "st_ba_surname"
@@ -129,15 +157,31 @@ ActiveRecord::Schema.define(version: 20170707180302) do
     t.string "st_ba_official_photo"
   end
 
+  create_table "st_tr_files", force: :cascade do |t|
+    t.string "st_ma_un_field"
+    t.string "st_tr_un_source"
+    t.string "st_tr_un_name"
+    t.string "st_tr_un_sem"
+    t.string "st_tr_photo1"
+    t.string "st_tr_photo2"
+    t.string "st_tr_extra_photo1"
+    t.string "st_tr_extra_photo2"
+    t.string "st_tr_un_target"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "st_wishes", force: :cascade do |t|
-    t.string "st_ba_country_wish"
-    t.string "st_ba_city_wish"
+    t.string "st_country_wish"
+    t.string "st_city_wish"
     t.string "st_wish_priority"
-    t.string "st_ba_univ_wish"
-    t.string "st_ba_specialty_wish"
+    t.string "st_univ_wish"
+    t.string "st_specialty_wish"
     t.integer "st_ba_file_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "st_ma_file_id"
   end
 
   create_table "universities", force: :cascade do |t|

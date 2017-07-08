@@ -1,0 +1,2 @@
+class StTrFile < ApplicationRecord
+end

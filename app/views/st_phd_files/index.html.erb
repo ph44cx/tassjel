@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>St Phd Files</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>St maba cer source</th>
+      <th>St maba cer field</th>
+      <th>St maba cer marks</th>
+      <th>St maba cer year</th>
+      <th>St maphd cer source</th>
+      <th>St maphd cer field</th>
+      <th>St maphd cer marks</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @st_phd_files.each do |st_phd_file| %>
+      <tr>
+        <td><%= st_phd_file.st_maba_cer_source %></td>
+        <td><%= st_phd_file.st_maba_cer_field %></td>
+        <td><%= st_phd_file.st_maba_cer_marks %></td>
+        <td><%= st_phd_file.st_maba_cer_year %></td>
+        <td><%= st_phd_file.st_maphd_cer_source %></td>
+        <td><%= st_phd_file.st_maphd_cer_field %></td>
+        <td><%= st_phd_file.st_maphd_cer_marks %></td>
+        <td><%= link_to 'Show', st_phd_file %></td>
+        <td><%= link_to 'Edit', edit_st_phd_file_path(st_phd_file) %></td>
+        <td><%= link_to 'Destroy', st_phd_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New St Phd File', new_st_phd_file_path %>

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  st_ma_cer_source: MyString
+  st_ma_cer_field: MyString
+  st_ma_cer_marks: MyString
+  st_ma_cer_year: MyString
+  st_ma_passport_photo: MyString
+  st_ma_offical_photo: MyString
+  st_ma_extra_photo1: MyString
+  st_ma_extra_photo2: MyString
+  user_id: 1
+
+two:
+  st_ma_cer_source: MyString
+  st_ma_cer_field: MyString
+  st_ma_cer_marks: MyString
+  st_ma_cer_year: MyString
+  st_ma_passport_photo: MyString
+  st_ma_offical_photo: MyString
+  st_ma_extra_photo1: MyString
+  st_ma_extra_photo2: MyString
+  user_id: 1

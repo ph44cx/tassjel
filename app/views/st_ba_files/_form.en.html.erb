@@ -3,9 +3,9 @@
     <div class="col-lg-12">
       <div class="well bs-component">
         <%= nested_form_for (@st_ba_file), :html => { novalidate: true }  do |form| %>
-        <%#= render 'shared/errors', object: @st_ba_file %>
+        <%= render 'errors', object: @st_ba_file %>
         <fieldset>
-        <legend>ST-FILE-BA(HIGH SCHOOL)</legend>
+        <legend>ST-FILE-BA</legend>
           <div class="col-lg-6">
             <%= form.hidden_field :user_id, value: current_user.id%>
             <div class="form-group">
@@ -74,34 +74,34 @@
               <a class="btn btn-warning" id="addStCertificates">Upload Certificates</a>
             </div>
 
-              <div id="st_certificates">
+              <div id="st_certificates" class="upload_div">
                 <!-- Attachments -->
-                <div class="form-group">
+                <div class="form-group upload_area">
                   <label for="st_file_ba_st_ba_cer_photo" class="control-label">Certificate photo</label>&nbsp;&nbsp;
                   <%= form.file_field :st_ba_cer_photo, id: :st_file_ba_st_ba_cer_photo, class: 'btn btn-default btn-xs' %>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group upload_area">
                   <label for="st_file_ba_st_ba_cer_photo_transcript" class="control-label">Certificate photo transcript</label>&nbsp;&nbsp;
                   <%= form.file_field :st_ba_cer_photo_transcript, id: :st_file_ba_st_ba_cer_photo_transcript, class: 'btn btn-default btn-xs' %>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group upload_area">
                   <label for="st_file_ba_st_ba_cer_extra_photo1" class="control-label">Certificate extra photo1</label>&nbsp;&nbsp;
                   <%= form.file_field :st_ba_cer_extra_photo1, id: :st_file_ba_st_ba_cer_extra_photo1, class: 'btn btn-default btn-xs' %>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group upload_area">
                   <label for="st_file_ba_st_ba_cer_extra_photo2" class="control-label">Certificate extra photo2</label>&nbsp;&nbsp;
                   <%= form.file_field :st_ba_cer_extra_photo2, id: :st_file_ba_st_ba_cer_extra_photo2, class: 'btn btn-default btn-xs' %>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group upload_area">
                   <label for="st_file_ba_st_ba_cer_extra_photo3" class="control-label">Certificate extra photo3</label>&nbsp;&nbsp;
                   <%= form.file_field :st_ba_cer_extra_photo3, id: :st_file_ba_st_ba_cer_extra_photo3, class: 'btn btn-default btn-xs' %>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group upload_area">
                   <label for="st_file_ba_st_ba_cer_extra_photo4" class="control-label">Certificate extra photo4</label>&nbsp;&nbsp;
                   <%= form.file_field :st_ba_cer_extra_photo4, id: :st_file_ba_st_ba_cer_extra_photo4, class: 'btn btn-default btn-xs' %>
                 </div>
@@ -128,22 +128,22 @@
 
                         <div class="form-group">
                           <label for="university_uni_institutions_name" class="control-label">​Country</label>
-                            <%= st_wish.select :st_ba_country_wish, options_for_select(@countries.collect { |country|[country.name.titleize, country.id] }, 1), {:include_blank => "Select country"}, { id: 'country_name_select', class: "select2", :required => true, style: 'width:100%;' } %>
+                            <%= st_wish.select :st_country_wish, options_for_select(@countries.collect { |country|[country.name.titleize, country.id] }, 1), {:include_blank => "Select country"}, { id: 'country_name_select', class: "select2", :required => true, style: 'width:100%;' } %>
                         </div>
 
                         <div class="form-group">
                           <label for="university_uni_institution_speciality" class="control-label">​City</label>
-                            <%= st_wish.select :st_ba_city_wish, options_for_select(@cities.collect { |city|[city.name.titleize, city.id] }, 0), {:include_blank => "Select city"}, { id: 'city_name_select', class: "select2", :required => true, style: 'width:100%;' }  %>
+                            <%= st_wish.select :st_city_wish, options_for_select(@cities.collect { |city|[city.name.titleize, city.id] }, 0), {:include_blank => "Select city"}, { id: 'city_name_select', class: "select2", :required => true, style: 'width:100%;' }  %>
                         </div>
 
                         <div class="form-group">
                           <label for="university_uni_institutions_name" class="control-label">​Institution name</label>
-                            <%= st_wish.select :st_ba_univ_wish, options_for_select(University.all.collect { |university|[university.uni_name.titleize, university.id] }), {:include_blank => "Select Institution"}, { id: 'university_uni_institutions_name', class: "select2", :required => true, style: 'width:100%;' } %>
+                            <%= st_wish.select :st_univ_wish, options_for_select(University.all.collect { |university|[university.uni_name.titleize, university.id] }), {:include_blank => "Select Institution"}, { id: 'university_uni_institutions_name', class: "select2", :required => true, style: 'width:100%;' } %>
                         </div>
 
                         <div class="form-group">
                           <label for="university_uni_institutions_name" class="control-label">​Specialty</label>
-                            <%= st_wish.select :st_ba_specialty_wish, options_for_select(University.all.collect { |university|[university.uni_name.titleize, university.id] }), {:include_blank => "Select Institution"}, { id: 'university_uni_institutions_name', class: "select2", :required => true, style: 'width:100%;' } %>
+                            <%= st_wish.select :st_specialty_wish, options_for_select(University.all.collect { |university|[university.uni_name.titleize, university.id] }), {:include_blank => "Select Institution"}, { id: 'university_uni_institutions_name', class: "select2", :required => true, style: 'width:100%;' } %>
                         </div>
 
                         <div class="form-group">

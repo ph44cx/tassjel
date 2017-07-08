@@ -1,0 +1,11 @@
+<% if @st_tr_file.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@st_tr_file.errors.count, "error") %> prohibited this st_tr_file from being saved:</h2>
+
+    <ul>
+    <% @st_tr_file.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

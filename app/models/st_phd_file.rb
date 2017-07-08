@@ -1,0 +1,2 @@
+class StPhdFile < ApplicationRecord
+end

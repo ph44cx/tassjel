@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  st_ma_un_field: MyString
+  st_tr_un_source: MyString
+  st_tr_un_name: MyString
+  st_tr_un_sem: MyString
+  st_tr_photo1: MyString
+  st_tr_photo2: MyString
+  st_tr_extra_photo1: MyString
+  st_tr_extra_photo2: MyString
+  st_tr_un_target: MyString
+  st_tr_un_name: MyString
+
+two:
+  st_ma_un_field: MyString
+  st_tr_un_source: MyString
+  st_tr_un_name: MyString
+  st_tr_un_sem: MyString
+  st_tr_photo1: MyString
+  st_tr_photo2: MyString
+  st_tr_extra_photo1: MyString
+  st_tr_extra_photo2: MyString
+  st_tr_un_target: MyString
+  st_tr_un_name: MyString
