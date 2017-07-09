@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :st_profiles
     resources :university_profiles
     resources :universities
-    resources :st_ba_files
+    resources :st_ba_files, :only => [:new, :create, :edit, :update, :destroy, :index, :update_specialities]
     resources :st_tr_files
     resources :st_phd_files
     resources :st_ma_files
@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get 'unm_dash/update_faculties1'
     get 'unm_dash/update_faculties2'
     get 'unm_dash/update_faculties3'
+    get 'st_ba_files/update_specialities'
     get 'create_file' => 'st_dashboard#create_file'
     # 
   end

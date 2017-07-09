@@ -24,21 +24,21 @@ class UnmDashController < ApplicationController
     end
   end
 
-   def update_faculties1
+  def update_faculties1
     @faculty_specialties = FacultySpeciality.where("faculty_name_id = ?", params[:faculty_name_id])
     respond_to do |format|
       format.js
     end
   end
 
-   def update_faculties2
+  def update_faculties2
     @faculty_specialties = FacultySpeciality.where("faculty_name_id = ?", params[:faculty_name_id])
     respond_to do |format|
       format.js
     end
   end
 
-   def update_faculties3
+  def update_faculties3
     @faculty_specialties = FacultySpeciality.where("faculty_name_id = ?", params[:faculty_name_id])
     respond_to do |format|
       format.js

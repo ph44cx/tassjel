@@ -18,6 +18,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'cancancan', '~> 1.15'
 gem 'carrierwave', '~> 1.0'
+gem "mini_magick"
 gem "nested_form"
 gem 'jquery-datatables-rails', '~> 3.4'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
@@ -29,7 +30,6 @@ end
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
-  gem 'pry-rails'
   gem 'sqlite3'
   gem 'spring'
   gem 'pry-rails'

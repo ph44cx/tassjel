@@ -1,0 +1,119 @@
+<% @st_ba_file = StBaFile.find_by_user_id(current_user.id)%>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="well bs-component">
+      <div class="col-lg-6">
+        <p>
+          <strong>St ba cer source:</strong>
+          <%= @st_ba_file.st_ba_cer_source %>
+        </p>
+
+        <p>
+          <strong>St ba cer marks:</strong>
+          <%= @st_ba_file.st_ba_cer_marks %>
+        </p>
+
+        <p>
+          <strong>St ba cer year:</strong>
+          <%= @st_ba_file.st_ba_cer_year %>
+        </p>
+
+        <p>
+          <strong>St ba cer extra:</strong>
+          <%= @st_ba_file.st_ba_cer_extra %>
+        </p>
+
+        <p>
+          <strong>St ba cer extra cert:</strong>
+          <%= @st_ba_file.st_ba_cer_extra_cert %>
+        </p>
+
+        <p>
+          <strong>St ba cer extra sat:</strong>
+          <%= @st_ba_file.st_ba_cer_extra_sat %>
+        </p>
+
+        <p>
+          <strong>St ba cer extra gcse:</strong>
+          <%= @st_ba_file.st_ba_cer_extra_gcse %>
+        </p>
+
+        <p>
+          <strong>St ba cer extra tahseli:</strong>
+          <%= @st_ba_file.st_ba_cer_extra_tahseli %>
+        </p>
+
+        <p>
+          <strong>St ba cer extra qudorat:</strong>
+          <%= @st_ba_file.st_ba_cer_extra_qudorat %>
+        </p>
+
+        <p>
+          <strong>St ba cer extra yos:</strong>
+          <%= @st_ba_file.st_ba_cer_extra_yos %>
+        </p>
+
+        <p>
+          <strong>St ba cer extra mearyi:</strong>
+          <%= @st_ba_file.st_ba_cer_extra_mearyi %>
+        </p>
+
+      </div>
+      
+      <div class="col-lg-6">
+
+        <p>
+          <strong>St ba cer lang:</strong>
+          <%= @st_ba_file.st_ba_cer_lang %>
+        </p>
+
+        <p>
+          <strong>St ba cer lang toefl:</strong>
+          <%= @st_ba_file.st_ba_cer_lang_toefl %>
+        </p>
+
+        <p>
+          <strong>St ba cer lang ielts:</strong>
+          <%= @st_ba_file.st_ba_cer_lang_ielts %>
+        </p>
+
+        <p>
+          <strong>St ba cer lang other:</strong>
+          <%= @st_ba_file.st_ba_cer_lang_other %>
+        </p>
+
+        <p>
+          <strong>St ba cer photo:</strong>
+          <%= image_tag @st_ba_file.st_ba_cer_photo.url(:thumb) %>
+        </p>
+
+        <p>
+          <strong>St ba cer photo transcript:</strong>
+          <%=  image_tag@st_ba_file.st_ba_cer_photo_transcript.url(:thumb) %>
+        </p>
+
+        <p>
+          <strong>St ba cer extra photo1:</strong>
+          <%= image_tag @st_ba_file.st_ba_cer_extra_photo1.url(:thumb) %>
+        </p>
+
+        <p>
+          <strong>St ba cer extra photo2:</strong>
+          <%= image_tag @st_ba_file.st_ba_cer_extra_photo2.url(:thumb) %>
+        </p>
+
+        <p>
+          <strong>St ba cer extra photo3:</strong>
+          <%= image_tag @st_ba_file.st_ba_cer_extra_photo3.url(:thumb) %>
+        </p>
+
+        <p>
+          <strong>St ba cer extra photo4:</strong>
+          <%= image_tag @st_ba_file.st_ba_cer_extra_photo4.url(:thumb) %>
+        </p>
+      </div>
+
+        <%= link_to 'Edit', edit_st_ba_file_path(@st_ba_file), class: 'btn btn-success' %>
+    </div>
+  </div>
+</div>
