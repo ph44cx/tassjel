@@ -40,7 +40,7 @@ $(document).ajaxSend(function(e, xhr, options) {
   var token = $("meta[name='csrf-token']").attr("content");
 });
 
-$(document).on('turbolinks:load', function() {
+$(document).ready(function() {
   $(".myTable").DataTable();
   $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
         localStorage.setItem('activeTab', $(e.target).attr('href'));

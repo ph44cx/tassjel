@@ -102,7 +102,7 @@
                   <div class="well bs-component">
                     <p>
                       <strong>Uni logo:</strong>
-                      <%= @university.university_profile.uni_logo %>
+                      <%= image_tag @university.university_profile.uni_logo.url if @university.university_profile.uni_logo? %>
                     </p>
 
                     <p>
@@ -110,10 +110,10 @@
                       <%= @university.university_profile.uni_description %>
                     </p>
 
-                    <p>
-                      <strong>Uni galaries:</strong>
-                      <%= @university.university_profile.uni_galaries %>
-                    </p>
+                    <!--<p>-->
+                    <!--  <strong>Uni galaries:</strong>-->
+                    <!--  <%#= @university.university_profile.uni_galaries %>-->
+                    <!--</p>-->
 
                     <p>
                       <strong>Uni log rank:</strong>
