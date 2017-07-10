@@ -26,13 +26,13 @@ class ApplicationController < ActionController::Base
       current_user.service == "Bachelor Degree" && current_user.st_ba_file.nil?
         create_file_url
     elsif
-      current_user.service == "Master" && current_user.st_ba_file.nil?
+      current_user.service == "Master" && current_user.st_ma_file.nil?
         create_file_url
     elsif
-      current_user.service == "PhD" && current_user.st_ba_file.nil?
+      current_user.service == "PhD" && current_user.st_phd_file.nil?
         create_file_url
     elsif
-      current_user.service == "Transfer University" && current_user.st_ba_file.nil?
+      current_user.service == "Transfer University" && current_user.st_tr_file.nil?
         create_file_url
     else
       st_dashboard_url
