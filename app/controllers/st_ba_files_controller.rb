@@ -43,6 +43,9 @@ class StBaFilesController < ApplicationController
         @university_specialities << specs.speciality
       end
     end
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /st_ba_files
@@ -60,6 +63,8 @@ class StBaFilesController < ApplicationController
       end
     end
     @st_ba_file = StBaFile.new(st_ba_file_params)
+    @st_profile = StProfile.find_by_user_id(current_user.id)
+    @st_profile.update(st_ba_father: params[:st_ba_file][:st_ba_father], st_ba_mother: params[:st_ba_file][:st_ba_mother], st_ba_cellphone: params[:st_ba_file][:st_ba_cellphone], st_ba_passport: params[:st_ba_file][:st_ba_passport], st_ba_nationality: params[:st_ba_file][:st_ba_nationality], st_ba_passport_photo: params[:st_ba_file][:st_ba_passport_photo], st_ba_official_photo: params[:st_ba_file][:st_ba_official_photo])
 
     respond_to do |format|
       if @st_ba_file.save
@@ -77,6 +82,8 @@ class StBaFilesController < ApplicationController
   # PATCH/PUT /st_ba_files/1.json
   def update
     @st_ba_file = StBaFile.find(params[:id])
+    @st_profile = StProfile.find_by_user_id(current_user.id)
+    @st_profile.update(st_ba_father: params[:st_ba_file][:st_ba_father], st_ba_mother: params[:st_ba_file][:st_ba_mother], st_ba_cellphone: params[:st_ba_file][:st_ba_cellphone], st_ba_passport: params[:st_ba_file][:st_ba_passport], st_ba_nationality: params[:st_ba_file][:st_ba_nationality], st_ba_passport_photo: params[:st_ba_file][:st_ba_passport_photo], st_ba_official_photo: params[:st_ba_file][:st_ba_official_photo])
     respond_to do |format|
       if @st_ba_file.update(st_ba_file_params)
         format.html { redirect_to st_dashboard_url, notice: 'St file ba was successfully updated.' }
@@ -110,6 +117,11 @@ class StBaFilesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+
+    def st_profile_params
+      params.require(:st_profile).permit(:st_ba_name, :st_ba_surname, :st_ba_father, :st_ba_mother, :st_ba_cellphone, :st_ba_passport, :st_ba_nationality, :st_ba_passport_photo, :st_ba_official_photo, :st_ba_passport_photo_cache, :st_ba_official_photo_cache)
+    end
+
     def st_ba_file_params
       params.require(:st_ba_file).permit(:st_ba_cer_source, :st_ba_cer_marks, :st_ba_cer_year, :st_ba_cer_extra, :st_ba_cer_extra_cert, :st_ba_cer_extra_sat, :st_ba_cer_extra_gcse, :st_ba_cer_extra_tahseli, :st_ba_cer_extra_qudorat, :st_ba_cer_extra_yos, :st_ba_cer_extra_mearyi, :st_ba_cer_lang, :st_ba_cer_lang_toefl, :st_ba_cer_lang_ielts, :st_ba_cer_lang_other, :st_ba_cer_photo, :st_ba_cer_photo_transcript, :st_ba_cer_extra_photo1, :st_ba_cer_extra_photo2, :st_ba_cer_extra_photo3, :st_ba_cer_extra_photo4, :user_id, :st_ba_cer_photo_cache, :st_ba_cer_photo_transcript_cache, :st_ba_cer_extra_photo1_cache, :st_ba_cer_extra_photo2_cache, :st_ba_cer_extra_photo3_cache, :st_ba_cer_extra_photo4_cache, :st_wishes_attributes => [ :id, :st_country_wish, :st_city_wish, :st_wish_priority, :st_univ_wish, :st_specialty_wish, :_destroy])
     end

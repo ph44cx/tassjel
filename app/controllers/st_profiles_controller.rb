@@ -27,11 +27,12 @@ class StProfilesController < ApplicationController
   end
 
   def update
-    respond_to do |format| 
+    respond_to do |format|
       if @st_profile.update(st_profile_params)
-        format.js{}
+        format.html { redirect_to st_dashboard_url, notice: 'Your Profile was successfully updated.' }
+        format.json { render :show, status: :ok, location: @st_profile }
       else
-        format.js{}
+        format.json { render json: @st_profile.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,6 +43,6 @@ class StProfilesController < ApplicationController
     end
 
     def st_profile_params
-      params.require(:st_profile).permit(:st_ba_name, :st_ba_surname, :st_ba_father, :st_ba_mother, :st_ba_cellphone, :st_ba_passport, :st_ba_nationality)
+      params.require(:st_profile).permit(:st_ba_name, :st_ba_surname, :st_ba_father, :st_ba_mother, :st_ba_cellphone, :st_ba_passport, :st_ba_nationality, :st_ba_passport_photo, :st_ba_official_photo, :st_ba_passport_photo_cache, :st_ba_official_photo_cache)
     end
 end

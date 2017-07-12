@@ -1,5 +1,21 @@
 <script type="text/javascript">
-$(document).on('turbolinks:load', function() {
+$(document).ready(function() {
+    $('select').select2();
+    $('input[type=file]').bootstrapFileInput();
+    $('#extraCert').hide();
+    $('#certLang').hide();
+    $('#st_ba_file_st_ba_cer_extra_yes').click(function() {
+      $('#extraCert').show();
+    });
+    $('#st_ba_file_st_ba_cer_extra_no').click(function() {
+      $('#extraCert').hide();
+    });
+    $('#st_ba_file_st_ba_cer_lang_yes').click(function() {
+      $('#certLang').show();
+    });
+    $('#st_ba_file_st_ba_cer_lang_no').click(function() {
+      $('#certLang').hide();
+    });
     $('.wish').hide();
     $('.addMore').hide();
     $('#clos').click(function(){
@@ -63,400 +79,431 @@ $(document).on('turbolinks:load', function() {
     });
   });
 </script>
-<div class="jumbotron">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="well bs-component">
-        <%= nested_form_for (@st_ba_file), :html => { novalidate: true }  do |form| %>
-        <%= render 'errors', object: @st_ba_file %>
-        <fieldset>
-        <%if @st_ba_file.id?%>
-          <legend>Edit ST-FILE-BA</legend>
-        <%else%>
-          <legend>ST-FILE-BA</legend>
-        <%end%>
-          <div class="col-lg-6">
-            <%= form.hidden_field :user_id, value: current_user.id%>
-            <div class="form-group">
-              <label for="st_file_ba_st_ba_cer_source" class="control-label">Certificate Source</label>
-                <%= form.text_field :st_ba_cer_source, class: 'form-control', id: 'st_file_ba_st_ba_cer_source', placeholder: 'Certificate Source', autofocus: true %>
-            </div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="well bs-component">
+      <%= nested_form_for (@st_ba_file), :html => { novalidate: true }  do |form| %>
+      <%= render 'errors', object: @st_ba_file %>
+      <fieldset>
+      <%if @st_ba_file.id?%>
+        <legend>Edit ST-FILE-BA</legend>
+      <%else%>
+        <legend>ST-FILE-BA</legend>
+      <%end%>
+        <div class="col-lg-4">
+        <h6><b>Personal information</b></h6>
+          <%= form.hidden_field :user_id, value: current_user.id%>
 
-            <div class="form-group">
-              <label for="st_file_ba_st_ba_cer_marks" class="control-label">Certificate Marks</label>
-                <%= form.text_field :st_ba_cer_marks, class: 'form-control', id: 'st_file_ba_st_ba_cer_marks', placeholder: 'Certificate Marks', autofocus: true %>
-            </div>
-
-            <div class="form-group">
-              <label for="st_file_ba_st_ba_cer_year" class="control-label">Certificate Year</label>
-                <%= form.text_field :st_ba_cer_year, class: 'form-control', id: 'st_file_ba_st_ba_cer_year', placeholder: 'Certificate Year', autofocus: true %>
-            </div>
-
-            <div class="form-group">
-              <label for="st_file_ba_st_ba_cer_extra" class="control-label">Extra Certificates</label>
-                <div class="radio">
-                  <label>
-                    <%= form.radio_button :st_ba_cer_extra, 'yes' %>Yes
-                  </label>
-                </div>
-                <div class="radio">
-                  <label>
-                    <%= form.radio_button :st_ba_cer_extra, 'no' %>No
-                  </label>
-                </div>
-            </div>
-
-            <div id="extraCert">
-              <div class="form-group">
-                  <label for="st_file_ba_st_ba_cer_extra_cert" class="control-label">Certificates</label>
-                    <%= form.select :st_ba_cer_extra_cert, StBaFile::CERTIFICATES, { prompt: "Select Certificate" }, { class: "select2", id: "select", :required => true, style: 'width:100%;'} %>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="st_file_ba_st_ba_cer_lang" class="control-label">Language Certificate</label>
-                <div class="radio">
-                  <label>
-                    <%= form.radio_button :st_ba_cer_lang, 'yes' %>Yes
-                  </label>
-                </div>
-                <div class="radio">
-                  <label>
-                    <%= form.radio_button :st_ba_cer_lang, 'no' %>No
-                  </label>
-                </div>
-            </div>
-
-            <div id="certLang">
-              <div class="form-group">
-                <label for="st_file_ba_st_ba_cer_lang" class="control-label">Select certificate</label>
-                  <%= form.select :st_ba_cer_lang, StBaFile::LANGUAGECERTIFICATES, { prompt: "Select Certificate" }, { class: "select2", id: "select", :required => true, style: 'width:100%;'} %>
-              </div>
-            </div>
-
+          <div class="form-group">
+            <label>First name</label>
+              <%= form.text_field :st_ba_name, class: 'form-control', placeholder: 'First name', autofocus: true, value: current_user.first_name %>
           </div>
 
+          <div class="form-group">
+            <label>Surname</label>
+              <%= form.text_field :st_ba_surname, class: 'form-control', placeholder: 'Surname', autofocus: true, value: current_user.surname %>
+          </div>
 
-          <div class="col-lg-6">
+          <div class="form-group">
+            <label>Father name</label>
+              <%= form.text_field :st_ba_father, class: 'form-control', placeholder: 'Father name', autofocus: true %>
+          </div>
+        
+          <div class="form-group">
+            <label>Mother name</label>
+              <%= form.text_field :st_ba_mother, class: 'form-control', placeholder: 'Mother name', autofocus: true %>
+          </div>
 
+          <div class="form-group">
+            <label>Cellphone</label>
+              <%= form.text_field :st_ba_cellphone, class: 'form-control', placeholder: 'Cellphone', autofocus: true %>
+          </div>
+
+          <div class="form-group">
+            <label>Passport no.</label>
+              <%= form.text_field :st_ba_passport, class: 'form-control', placeholder: 'Passport no.', autofocus: true %>
+          </div>
+
+          <div class="form-group">
+            <label for="profile_st_ba_nationality">Nationality</label>
+              <%= form.text_field :st_ba_nationality, class: 'form-control', id: 'profile_st_ba_nationality', placeholder: 'Nationality', autofocus: true %>
+          </div>
+
+          <div class="form-group">
+            <%= image_tag current_user.st_profile.st_ba_passport_photo.url(:thumb) if current_user.st_profile.st_ba_passport_photo? %>
+            <label for="profile_st_ba_passport_photo">Passport photo</label>
+              <%= form.file_field :st_ba_passport_photo, class: 'btn btn-default btn-xs', id: 'profile_st_ba_passport_photo' %>
+              <%= form.hidden_field :st_ba_passport_photo_cache %>
+          </div>
+
+          <div class="form-group">
+            <%= image_tag current_user.st_profile.st_ba_official_photo.url(:thumb) if current_user.st_profile.st_ba_official_photo? %>
+            <label for="profile_st_ba_official_photo">Official photo</label>
+              <%= form.file_field :st_ba_official_photo, class: 'btn btn-default btn-xs', id: 'profile_st_ba_official_photo' %>
+              <%= form.hidden_field :st_ba_official_photo_cache %>
+          </div>
+
+        </div>
+
+
+        <div class="col-lg-4">
+
+          <h6><b>High School Certificate information</b></h6>
+          <div class="form-group">
+            <label for="st_file_ba_st_ba_cer_source" class="control-label">Certificate Source</label>
+              <%= form.text_field :st_ba_cer_source, class: 'form-control', id: 'st_file_ba_st_ba_cer_source', placeholder: 'Certificate Source', autofocus: true %>
+          </div>
+
+          <div class="form-group">
+            <label for="st_file_ba_st_ba_cer_marks" class="control-label">Certificate Marks</label>
+              <%= form.text_field :st_ba_cer_marks, class: 'form-control', id: 'st_file_ba_st_ba_cer_marks', placeholder: 'Certificate Marks', autofocus: true %>
+          </div>
+
+          <div class="form-group">
+            <label for="st_file_ba_st_ba_cer_year" class="control-label">Certificate Year</label>
+              <%= form.text_field :st_ba_cer_year, class: 'form-control', id: 'st_file_ba_st_ba_cer_year', placeholder: 'Certificate Year', autofocus: true %>
+          </div>
+
+          <div class="form-group">
+            <label for="st_file_ba_st_ba_cer_extra" class="control-label">Extra Certificates</label>
+              <div class="radio">
+                <label>
+                  <%= form.radio_button :st_ba_cer_extra, 'yes' %>Yes
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <%= form.radio_button :st_ba_cer_extra, 'no' %>No
+                </label>
+              </div>
+          </div>
+
+          <div id="extraCert">
             <div class="form-group">
-              <a class="btn btn-warning btn-block disabled">Upload Certificates</a>
+                <label for="st_file_ba_st_ba_cer_extra_cert" class="control-label">Certificates</label>
+                  <%= form.select :st_ba_cer_extra_cert, StBaFile::CERTIFICATES, { prompt: "Select Certificate" }, { class: "select2", id: "select", :required => true, style: 'width:100%;'} %>
             </div>
+          </div>
 
-              <div id="st_certificates" class="upload_div">
-                <!-- Attachments -->
-                <div class="form-group upload_area">
-                  <%= image_tag @st_ba_file.st_ba_cer_photo.url(:thumb) if @st_ba_file.st_ba_cer_photo? %>
-                  <label for="st_file_ba_st_ba_cer_photo" class="control-label">Certificate photo</label>&nbsp;&nbsp;
-                  <%= form.file_field :st_ba_cer_photo, id: :st_file_ba_st_ba_cer_photo, class: 'btn btn-default btn-xs' %>
-                  <%= form.hidden_field :st_ba_cer_photo_cache %>
-                </div>
+          <div class="form-group">
+            <label for="st_file_ba_st_ba_cer_lang" class="control-label">Language Certificate</label>
+              <div class="radio">
+                <label>
+                  <%= form.radio_button :st_ba_cer_lang, 'yes' %>Yes
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <%= form.radio_button :st_ba_cer_lang, 'no' %>No
+                </label>
+              </div>
+          </div>
 
-                <div class="form-group upload_area">
-                  <%= image_tag @st_ba_file.st_ba_cer_photo_transcript.url(:thumb) if @st_ba_file.st_ba_cer_photo_transcript? %>
-                  <label for="st_file_ba_st_ba_cer_photo_transcript" class="control-label">Certificate photo transcript</label>&nbsp;&nbsp;
-                  <%= form.file_field :st_ba_cer_photo_transcript, id: :st_file_ba_st_ba_cer_photo_transcript, class: 'btn btn-default btn-xs' %>
-                  <%= form.hidden_field :st_ba_cer_photo_transcript_cache %>
-                </div>
+          <div id="certLang">
+            <div class="form-group">
+              <label for="st_file_ba_st_ba_cer_lang" class="control-label">Select certificate</label>
+                <%= form.select :st_ba_cer_lang, StBaFile::LANGUAGECERTIFICATES, { prompt: "Select Certificate" }, { class: "select2", id: "select", :required => true, style: 'width:100%;'} %>
+            </div>
+          </div>
+        </div>
 
-                <div class="form-group upload_area">
-                  <%= image_tag @st_ba_file.st_ba_cer_extra_photo1.url(:thumb) if @st_ba_file.st_ba_cer_extra_photo1? %>
-                  <label for="st_file_ba_st_ba_cer_extra_photo1" class="control-label">Certificate extra photo1</label>&nbsp;&nbsp;
-                  <%= form.file_field :st_ba_cer_extra_photo1, id: :st_file_ba_st_ba_cer_extra_photo1, class: 'btn btn-default btn-xs' %>
-                  <%= form.hidden_field :st_ba_cer_extra_photo1_cache %>
-                </div>
-
-                <div class="form-group upload_area">
-                  <%= image_tag @st_ba_file.st_ba_cer_extra_photo2.url(:thumb) if @st_ba_file.st_ba_cer_extra_photo2? %>
-                  <label for="st_file_ba_st_ba_cer_extra_photo2" class="control-label">Certificate extra photo2</label>&nbsp;&nbsp;
-                  <%= form.file_field :st_ba_cer_extra_photo2, id: :st_file_ba_st_ba_cer_extra_photo2, class: 'btn btn-default btn-xs' %>
-                  <%= form.hidden_field :st_ba_cer_extra_photo2_cache %>
-                </div>
-
-                <div class="form-group upload_area">
-                  <%= image_tag @st_ba_file.st_ba_cer_extra_photo3.url(:thumb) if @st_ba_file.st_ba_cer_extra_photo3? %>
-                  <label for="st_file_ba_st_ba_cer_extra_photo3" class="control-label">Certificate extra photo3</label>&nbsp;&nbsp;
-                  <%= form.file_field :st_ba_cer_extra_photo3, id: :st_file_ba_st_ba_cer_extra_photo3, class: 'btn btn-default btn-xs' %>
-                  <%= form.hidden_field :st_ba_cer_extra_photo3_cache %>
-                </div>
-
-                <div class="form-group upload_area">
-                  <%= image_tag @st_ba_file.st_ba_cer_extra_photo4.url(:thumb) if @st_ba_file.st_ba_cer_extra_photo4? %>
-                  <label for="st_file_ba_st_ba_cer_extra_photo4" class="control-label">Certificate extra photo4</label>&nbsp;&nbsp;
-                  <%= form.file_field :st_ba_cer_extra_photo4, id: :st_file_ba_st_ba_cer_extra_photo4, class: 'btn btn-default btn-xs' %>
-                  <%= form.hidden_field :st_ba_cer_extra_photo4_cache %>
-                </div>
-                <!-- Attachments -->
+          <div class="col-lg-4">
+          <h6><b>Upload Certificates</b></h6>
+            <div id="st_certificates" class="upload_div">
+              <!-- Attachments -->
+              <div class="form-group upload_area">
+                <%= image_tag @st_ba_file.st_ba_cer_photo.url(:thumb) if @st_ba_file.st_ba_cer_photo? %>
+                <label for="st_file_ba_st_ba_cer_photo" class="control-label">Certificate photo</label>&nbsp;&nbsp;
+                <%= form.file_field :st_ba_cer_photo, id: :st_file_ba_st_ba_cer_photo, class: 'btn btn-default btn-xs' %>
+                <%= form.hidden_field :st_ba_cer_photo_cache %>
               </div>
 
-              <!-- ST-WISH-MODAL -->
-              <div class="modal" id="stWishModal">
-                <div class="modal-dialog">
-                  <div class="modal-content">
+              <div class="form-group upload_area">
+                <%= image_tag @st_ba_file.st_ba_cer_photo_transcript.url(:thumb) if @st_ba_file.st_ba_cer_photo_transcript? %>
+                <label for="st_file_ba_st_ba_cer_photo_transcript" class="control-label">Certificate photo transcript</label>&nbsp;&nbsp;
+                <%= form.file_field :st_ba_cer_photo_transcript, id: :st_file_ba_st_ba_cer_photo_transcript, class: 'btn btn-default btn-xs' %>
+                <%= form.hidden_field :st_ba_cer_photo_transcript_cache %>
+              </div>
 
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title">My Wish</h4>
-                    </div>
+              <div class="form-group upload_area">
+                <%= image_tag @st_ba_file.st_ba_cer_extra_photo1.url(:thumb) if @st_ba_file.st_ba_cer_extra_photo1? %>
+                <label for="st_file_ba_st_ba_cer_extra_photo1" class="control-label">Certificate extra photo1</label>&nbsp;&nbsp;
+                <%= form.file_field :st_ba_cer_extra_photo1, id: :st_file_ba_st_ba_cer_extra_photo1, class: 'btn btn-default btn-xs' %>
+                <%= form.hidden_field :st_ba_cer_extra_photo1_cache %>
+              </div>
 
-                    <div class="modal-body">
-                      <section>
-                      <div class="wizard">
-                          <div class="wizard-inner">
-                              <div class="connecting-line"></div>
-                              <ul class="nav nav-tabs" role="tablist">
+              <div class="form-group upload_area">
+                <%= image_tag @st_ba_file.st_ba_cer_extra_photo2.url(:thumb) if @st_ba_file.st_ba_cer_extra_photo2? %>
+                <label for="st_file_ba_st_ba_cer_extra_photo2" class="control-label">Certificate extra photo2</label>&nbsp;&nbsp;
+                <%= form.file_field :st_ba_cer_extra_photo2, id: :st_file_ba_st_ba_cer_extra_photo2, class: 'btn btn-default btn-xs' %>
+                <%= form.hidden_field :st_ba_cer_extra_photo2_cache %>
+              </div>
 
-                                  <li role="presentation" class="active">
-                                      <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Wish1">
-                                          <span class="round-tab">
-                                              <!-- <i class="glyphicon glyphicon-folder-open"></i> -->
-                                              Wish1
-                                          </span>
-                                      </a>
-                                  </li>
+              <div class="form-group upload_area">
+                <%= image_tag @st_ba_file.st_ba_cer_extra_photo3.url(:thumb) if @st_ba_file.st_ba_cer_extra_photo3? %>
+                <label for="st_file_ba_st_ba_cer_extra_photo3" class="control-label">Certificate extra photo3</label>&nbsp;&nbsp;
+                <%= form.file_field :st_ba_cer_extra_photo3, id: :st_file_ba_st_ba_cer_extra_photo3, class: 'btn btn-default btn-xs' %>
+                <%= form.hidden_field :st_ba_cer_extra_photo3_cache %>
+              </div>
 
-                                  <li role="presentation" class="disabled">
-                                      <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Wish2">
-                                          <span class="round-tab">
-                                              <!-- <i class="glyphicon glyphicon-pencil"></i> -->
-                                              Wish2
-                                          </span>
-                                      </a>
-                                  </li>
-                                  <li role="presentation" class="disabled">
-                                      <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Wish3">
-                                          <span class="round-tab">
-                                              <!-- <i class="glyphicon glyphicon-picture"></i> -->
-                                              Wish3
-                                          </span>
-                                      </a>
-                                  </li>
+              <div class="form-group upload_area">
+                <%= image_tag @st_ba_file.st_ba_cer_extra_photo4.url(:thumb) if @st_ba_file.st_ba_cer_extra_photo4? %>
+                <label for="st_file_ba_st_ba_cer_extra_photo4" class="control-label">Certificate extra photo4</label>&nbsp;&nbsp;
+                <%= form.file_field :st_ba_cer_extra_photo4, id: :st_file_ba_st_ba_cer_extra_photo4, class: 'btn btn-default btn-xs' %>
+                <%= form.hidden_field :st_ba_cer_extra_photo4_cache %>
+              </div>
+              <!-- Attachments -->
+            </div>
 
-                                  <li role="presentation" class="disabled">
-                                      <a href="#step4" data-toggle="tab" aria-controls="step3" role="tab" title="Wish3">
-                                          <span class="round-tab">
-                                              <!-- <i class="glyphicon glyphicon-picture"></i> -->
-                                              Wish4
-                                          </span>
-                                      </a>
-                                  </li>
+            <!-- ST-WISH-MODAL -->
+            <div class="modal" id="stWishModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
 
-                                  <li role="presentation" class="disabled">
-                                      <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
-                                          <span class="round-tab">
-                                              <i class="glyphicon glyphicon-ok"></i>
-                                          </span>
-                                      </a>
-                                  </li>
-                              </ul>
-                          </div>
-                        
-                        <script type="text/javascript">
-                          $(document).ready(function(){
-                            $('.select2').select2();
-                          });
-                        </script>
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">My Wish</h4>
+                  </div>
 
-                        <div class="tab-content">
-                        
-                          <div class="tab-pane active" role="tabpanel" id="step1">
-                            <%= form.fields_for :st_wishes, StWish.new, :html => { novalidate: true } do |st_wish| %>
+                  <div class="modal-body">
+                    <section>
+                    <div class="wizard">
+                        <div class="wizard-inner">
+                            <div class="connecting-line"></div>
+                            <ul class="nav nav-tabs" role="tablist">
 
-                              <div class="form-group">
-                                <label for="university_uni_institutions_name" class="control-label">​Country</label>
-                                  <%= st_wish.select :st_country_wish, options_for_select(@countries.collect { |country|[country.name.titleize, country.id] }, 0), {:include_blank => true}, { id: 'country_name_select_st', class: "select2", style: 'width:100%;' } %>
-                              </div>
+                                <li role="presentation" class="active">
+                                    <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Wish1">
+                                        <span class="round-tab">
+                                            <!-- <i class="glyphicon glyphicon-folder-open"></i> -->
+                                            Wish1
+                                        </span>
+                                    </a>
+                                </li>
 
-                              <div class="form-group">
-                                <label for="university_uni_institution_speciality" class="control-label">​City</label>
-                                  <%= st_wish.select :st_city_wish, options_for_select(@cities.collect { |city|[city.name.titleize, city.id] }, 0), {:include_blank => true}, { id: 'city_name_select', class: "select2", style: 'width:100%;' }  %>
-                              </div>
+                                <li role="presentation" class="disabled">
+                                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Wish2">
+                                        <span class="round-tab">
+                                            <!-- <i class="glyphicon glyphicon-pencil"></i> -->
+                                            Wish2
+                                        </span>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="disabled">
+                                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Wish3">
+                                        <span class="round-tab">
+                                            <!-- <i class="glyphicon glyphicon-picture"></i> -->
+                                            Wish3
+                                        </span>
+                                    </a>
+                                </li>
 
-                              <div class="form-group">
-                                <label for="university_uni_institutions_name" class="control-label">University name</label>
-                                  <%= st_wish.select :st_univ_wish, options_for_select(@universities.collect { |university|[university.uni_name.titleize, university.id] }), {:include_blank => "Select University"}, { id: 'university_uni_institutions_name', class: "select2", style: 'width:100%;' } %>
-                              </div>
+                                <li role="presentation" class="disabled">
+                                    <a href="#step4" data-toggle="tab" aria-controls="step3" role="tab" title="Wish3">
+                                        <span class="round-tab">
+                                            <!-- <i class="glyphicon glyphicon-picture"></i> -->
+                                            Wish4
+                                        </span>
+                                    </a>
+                                </li>
 
-                              <div class="form-group">
-                                <label for="st_ba_files_university_specialities" class="control-label">​Specialty</label>
-                                  <%= st_wish.select :st_specialty_wish, options_for_select(@university_specialities), {:include_blank => "Select ​Specialty"}, { id: 'st_ba_files_university_specialities', class: "select2", style: 'width:100%;' } %>
-                              </div>
+                                <li role="presentation" class="disabled">
+                                    <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                                        <span class="round-tab">
+                                            <i class="glyphicon glyphicon-ok"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                      
+                      <script type="text/javascript">
+                        $(document).ready(function(){
+                          $('.select2').select2();
+                        });
+                      </script>
 
-                              <div class="form-group">
-                                <label for="st_ba_files_st_wish_priority" class="control-label">Set wish priority</label>
-                                  <%= st_wish.select :st_wish_priority, StBaFile::PRIORITY, { prompt: "Select priority" }, { class: "select2", id: "select", style: 'width:100%;'} %>
-                              </div>
+                      <div class="tab-content">
+                      
+                        <div class="tab-pane active" role="tabpanel" id="step1">
+                          <%= form.fields_for :st_wishes, StWish.new, :html => { novalidate: true } do |st_wish| %>
 
-                              <ul class="list-inline pull-right">
-                                  <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
-                              </ul>
-                            <%end%>
-                          </div>
+                            <div class="form-group">
+                              <label for="university_uni_institutions_name" class="control-label">​Country</label>
+                                <%= st_wish.select :st_country_wish, options_for_select(@countries.collect { |country|[country.name.titleize, country.id] }, 0), {:include_blank => true}, { id: 'country_name_select_st', class: "select2", style: 'width:100%;' } %>
+                            </div>
 
-                          <div class="tab-pane" role="tabpanel" id="step2">
-                            <%= form.fields_for :st_wishes, StWish.new, :html => { novalidate: true } do |st_wish| %>
+                            <div class="form-group">
+                              <label for="university_uni_institution_speciality" class="control-label">​City</label>
+                                <%= st_wish.select :st_city_wish, options_for_select(@cities.collect { |city|[city.name.titleize, city.id] }, 0), {:include_blank => true}, { id: 'city_name_select', class: "select2", style: 'width:100%;' }  %>
+                            </div>
 
-                              <div class="form-group">
-                                <label for="university_uni_institutions_name" class="control-label">​Country</label>
-                                  <%= st_wish.select :st_country_wish, options_for_select(@countries.collect { |country|[country.name.titleize, country.id] }, 0), {:include_blank => true}, { id: 'country_name_select_st', class: "select2", style: 'width:100%;' } %>
-                              </div>
+                            <div class="form-group">
+                              <label for="university_uni_institutions_name" class="control-label">University name</label>
+                                <%= st_wish.select :st_univ_wish, options_for_select(@universities.collect { |university|[university.uni_name.titleize, university.id] }), {:include_blank => "Select University"}, { id: 'university_uni_institutions_name', class: "select2", style: 'width:100%;' } %>
+                            </div>
 
-                              <div class="form-group">
-                                <label for="university_uni_institution_speciality" class="control-label">​City</label>
-                                  <%= st_wish.select :st_city_wish, options_for_select(@cities.collect { |city|[city.name.titleize, city.id] }, 0), {:include_blank => false}, { id: 'city_name_select', class: "select2", style: 'width:100%;' }  %>
-                              </div>
+                            <div class="form-group">
+                              <label for="st_ba_files_university_specialities" class="control-label">​Specialty</label>
+                                <%= st_wish.select :st_specialty_wish, options_for_select(@university_specialities), {:include_blank => "Select ​Specialty"}, { id: 'st_ba_files_university_specialities', class: "select2", style: 'width:100%;' } %>
+                            </div>
 
-                              <div class="form-group">
-                                <label for="university_uni_institutions_name" class="control-label">University name</label>
-                                  <%= st_wish.select :st_univ_wish, options_for_select(@universities.collect { |university|[university.uni_name.titleize, university.id] }), {:include_blank => "Select Institution"}, { id: 'university_uni_institutions_name', class: "select2", style: 'width:100%;' } %>
-                              </div>
-
-                              <div class="form-group">
-                                <label for="st_ba_files_university_specialities" class="control-label">​Specialty</label>
-                                  <%= st_wish.select :st_specialty_wish, options_for_select(@university_specialities), {:include_blank => "Select ​Specialty"}, { id: 'st_ba_files_university_specialities', class: "select2", style: 'width:100%;' } %>
-                              </div>
-
-                              <div class="form-group">
-                                <label for="st_ba_files_st_wish_priority" class="control-label">Set wish priority</label>
-                                  <%= st_wish.select :st_wish_priority, StBaFile::PRIORITY, { prompt: "Select priority" }, { class: "select2", id: "select", style: 'width:100%;'} %>
-                              </div>
-
-                              <h6>Remove this wish <%= st_wish.check_box :_destroy %></h6>
-
-                              <ul class="list-inline pull-right">
-                                  <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                                  <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
-                              </ul>
-                            <%end%>
-                          </div>
-                        
-
-                        
-                          <div class="tab-pane" role="tabpanel" id="step3">
-                            <%= form.fields_for :st_wishes, StWish.new, :html => { novalidate: true } do |st_wish| %>
-                              <div class="form-group">
-                                <label for="university_uni_institutions_name" class="control-label">​Country</label>
-                                  <%= st_wish.select :st_country_wish, options_for_select(@countries.collect { |country|[country.name.titleize, country.id] }, 0), {:include_blank => true}, { id: 'country_name_select_st', class: "select2", style: 'width:100%;' } %>
-                              </div>
-
-                              <div class="form-group">
-                                <label for="university_uni_institution_speciality" class="control-label">​City</label>
-                                  <%= st_wish.select :st_city_wish, options_for_select(@cities.collect { |city|[city.name.titleize, city.id] }, 0), {:include_blank => false}, { id: 'city_name_select', class: "select2", style: 'width:100%;' }  %>
-                              </div>
-
-                              <div class="form-group">
-                                <label for="university_uni_institutions_name" class="control-label">University name</label>
-                                  <%= st_wish.select :st_univ_wish, options_for_select(@universities.collect { |university|[university.uni_name.titleize, university.id] }), {:include_blank => "Select university"}, { id: 'university_uni_institutions_name', class: "select2", style: 'width:100%;' } %>
-                              </div>
-
-                              <div class="form-group">
-                                <label for="st_ba_files_university_specialities" class="control-label">​Specialty</label>
-                                  <%= st_wish.select :st_specialty_wish, options_for_select(@university_specialities), {:include_blank => "Select ​Specialty"}, { id: 'st_ba_files_university_specialities', class: "select2", style: 'width:100%;' } %>
-                              </div>
-
-                              <div class="form-group">
-                                <label for="st_ba_files_st_wish_priority" class="control-label">Set wish priority</label>
-                                  <%= st_wish.select :st_wish_priority, StBaFile::PRIORITY, { prompt: "Select specialty" }, { class: "select2", id: "select", style: 'width:100%;'} %>
-                              </div>
-
-                              <h6>Remove this wish <%= st_wish.check_box :_destroy %></h6>
-
-                              <ul class="list-inline pull-right">
-                                  <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                                  <li><button type="button" class="btn btn-default next-step">Skip</button></li>
-                                  <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
-                              </ul>
-                            <% end %>
-                          </div>
-
-                          <div class="tab-pane" role="tabpanel" id="step4">
-                            <%= form.fields_for :st_wishes, StWish.new, :html => { novalidate: true } do |st_wish| %>
-                              <div class="form-group">
-                                <label for="university_uni_institutions_name" class="control-label">​Country</label>
-                                  <%= st_wish.select :st_country_wish, options_for_select(@countries.collect { |country|[country.name.titleize, country.id] }, 0), {:include_blank => true}, { id: 'country_name_select_st', class: "select2", style: 'width:100%;' } %>
-                              </div>
-
-                              <div class="form-group">
-                                <label for="university_uni_institution_speciality" class="control-label">​City</label>
-                                  <%= st_wish.select :st_city_wish, options_for_select(@cities.collect { |city|[city.name.titleize, city.id] }, 0), {:include_blank => false}, { id: 'city_name_select', class: "select2", style: 'width:100%;' }  %>
-                              </div>
-
-                              <div class="form-group">
-                                <label for="university_uni_institutions_name" class="control-label">University name</label>
-                                  <%= st_wish.select :st_univ_wish, options_for_select(@universities.collect { |university|[university.uni_name.titleize, university.id] }), {:include_blank => "Select university"}, { id: 'university_uni_institutions_name', class: "select2", style: 'width:100%;' } %>
-                              </div>
-
-                              <div class="form-group">
-                                <label for="st_ba_files_university_specialities" class="control-label">​Specialty</label>
-                                  <%= st_wish.select :st_specialty_wish, options_for_select(@university_specialities), {:include_blank => "Select ​Specialty"}, { id: 'st_ba_files_university_specialities', class: "select2", style: 'width:100%;' } %>
-                              </div>
-
-                              <div class="form-group">
-                                <label for="st_ba_files_st_wish_priority" class="control-label">Set wish priority</label>
-                                  <%= st_wish.select :st_wish_priority, StBaFile::PRIORITY, { prompt: "Select specialty" }, { class: "select2", id: "select", style: 'width:100%;'} %>
-                              </div>
-
-                              <h6>Remove this wish <%= st_wish.check_box :_destroy %></h6>
-
-                              <ul class="list-inline pull-right">
-                                  <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                                  <li><button type="button" class="btn btn-default next-step">Skip</button></li>
-                                  <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
-                              </ul>
-                            <% end %>
-                          </div>
-
-                          <div class="tab-pane" role="tabpanel" id="complete">
-                              <h3>Complete</h3>
-                              <p>You have successfully added wishes.</p>
-                          </div>
-                          <div class="clearfix"></div>
+                            <ul class="list-inline pull-right">
+                                <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                            </ul>
+                          <%end%>
                         </div>
 
+                        <div class="tab-pane" role="tabpanel" id="step2">
+                          <%= form.fields_for :st_wishes, StWish.new, :html => { novalidate: true } do |st_wish| %>
+
+                            <div class="form-group">
+                              <label for="university_uni_institutions_name" class="control-label">​Country</label>
+                                <%= st_wish.select :st_country_wish, options_for_select(@countries.collect { |country|[country.name.titleize, country.id] }, 0), {:include_blank => true}, { id: 'country_name_select_st', class: "select2", style: 'width:100%;' } %>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label">​City</label>
+                                <%= st_wish.select :st_city_wish, options_for_select(@cities.collect { |city|[city.name.titleize, city.id] }, 0), {:include_blank => false}, { id: 'city_name_select', class: "select2", style: 'width:100%;' }  %>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label">University name</label>
+                                <%= st_wish.select :st_univ_wish, options_for_select(@universities.collect { |university|[university.uni_name.titleize, university.id] }), {:include_blank => "Select Institution"}, { id: 'university_uni_institutions_name', class: "select2", style: 'width:100%;' } %>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="st_ba_files_university_specialities" class="control-label">​Specialty</label>
+                                <%= st_wish.select :st_specialty_wish, options_for_select(@university_specialities), {:include_blank => "Select ​Specialty"}, { id: 'st_ba_files_university_specialities', class: "select2", style: 'width:100%;' } %>
+                            </div>
+
+                            <h6>Remove this wish <%= st_wish.check_box :_destroy %></h6>
+
+                            <ul class="list-inline pull-right">
+                                <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                                <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                            </ul>
+                          <%end%>
+                        </div>
+                      
+
+                      
+                        <div class="tab-pane" role="tabpanel" id="step3">
+                          <%= form.fields_for :st_wishes, StWish.new, :html => { novalidate: true } do |st_wish| %>
+                            <div class="form-group">
+                              <label for="university_uni_institutions_name" class="control-label">​Country</label>
+                                <%= st_wish.select :st_country_wish, options_for_select(@countries.collect { |country|[country.name.titleize, country.id] }, 0), {:include_blank => true}, { id: 'country_name_select_st', class: "select2", style: 'width:100%;' } %>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="university_uni_institution_speciality" class="control-label">​City</label>
+                                <%= st_wish.select :st_city_wish, options_for_select(@cities.collect { |city|[city.name.titleize, city.id] }, 0), {:include_blank => false}, { id: 'city_name_select', class: "select2", style: 'width:100%;' }  %>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="university_uni_institutions_name" class="control-label">University name</label>
+                                <%= st_wish.select :st_univ_wish, options_for_select(@universities.collect { |university|[university.uni_name.titleize, university.id] }), {:include_blank => "Select university"}, { id: 'university_uni_institutions_name', class: "select2", style: 'width:100%;' } %>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="st_ba_files_university_specialities" class="control-label">​Specialty</label>
+                                <%= st_wish.select :st_specialty_wish, options_for_select(@university_specialities), {:include_blank => "Select ​Specialty"}, { id: 'st_ba_files_university_specialities', class: "select2", style: 'width:100%;' } %>
+                            </div>
+
+
+                            <h6>Remove this wish <%= st_wish.check_box :_destroy %></h6>
+
+                            <ul class="list-inline pull-right">
+                                <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                                <li><button type="button" class="btn btn-default next-step">Skip</button></li>
+                                <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
+                            </ul>
+                          <% end %>
+                        </div>
+
+                        <div class="tab-pane" role="tabpanel" id="step4">
+                          <%= form.fields_for :st_wishes, StWish.new, :html => { novalidate: true } do |st_wish| %>
+                            <div class="form-group">
+                              <label class="control-label">​Country</label>
+                                <%= st_wish.select :st_country_wish, options_for_select(@countries.collect { |country|[country.name.titleize, country.id] }, 0), {:include_blank => true}, { id: 'country_name_select_st', class: "select2", style: 'width:100%;' } %>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label">​City</label>
+                                <%= st_wish.select :st_city_wish, options_for_select(@cities.collect { |city|[city.name.titleize, city.id] }, 0), {:include_blank => false}, { id: 'city_name_select', class: "select2", style: 'width:100%;' }  %>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label">University name</label>
+                                <%= st_wish.select :st_univ_wish, options_for_select(@universities.collect { |university|[university.uni_name.titleize, university.id] }), {:include_blank => "Select university"}, { id: 'university_uni_institutions_name', class: "select2", style: 'width:100%;' } %>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="st_ba_files_university_specialities" class="control-label">​Specialty</label>
+                                <%= st_wish.select :st_specialty_wish, options_for_select(@university_specialities), {:include_blank => "Select ​Specialty"}, { id: 'st_ba_files_university_specialities', class: "select2", style: 'width:100%;' } %>
+                            </div>
+
+
+                            <h6>Remove this wish <%= st_wish.check_box :_destroy %></h6>
+
+                            <ul class="list-inline pull-right">
+                                <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                                <li><button type="button" class="btn btn-default next-step">Skip</button></li>
+                                <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
+                            </ul>
+                          <% end %>
+                        </div>
+
+                        <div class="tab-pane" role="tabpanel" id="complete">
+                            <h3>Complete</h3>
+                            <p>You have successfully added wishes.</p>
+                        </div>
+                        <div class="clearfix"></div>
                       </div>
-                    </section>
-                    
+
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" id ="clos" class="btn btn-default" data-dismiss="modal">Finish</button>
-                    </div>
+                  </section>
+                  
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" id ="clos" class="btn btn-default" data-dismiss="modal">Finish</button>
                   </div>
                 </div>
-              </div><br>
-              <!-- ST-WISH-MODAL-ENDS -->
+              </div>
+            </div><br>
+            <!-- ST-WISH-MODAL-ENDS -->
 
-              <label class="wish" style="color:#2494a9;">Wishes added successfully</label>
+            <label class="wish" style="color:#2494a9;">Wishes added successfully</label>
 
-              <%if @st_ba_file.id?%>
-                <div class="addMyWish">
-                  <a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a>&nbsp;
-                  <a data-toggle="modal" href="#" data-target="#stWishModal">Update Wishes</a>
-                </div><br>
-              <%else%>
-                <div class="addMyWish">
-                  <a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a>&nbsp;
-                  <a data-toggle="modal" href="#" data-target="#stWishModal">Add Wishes</a>
-                </div><br>
-              <%end%>
-
-              <div class="addMore">
+            <%if @st_ba_file.id?%>
+              <div class="addMyWish">
                 <a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a>&nbsp;
-                <a data-toggle="modal" href="#" data-target="#stWishModal">View Wishes</a>
+                <a data-toggle="modal" href="#" data-target="#stWishModal">Update Wishes</a>
               </div><br>
+            <%else%>
+              <div class="addMyWish">
+                <a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a>&nbsp;
+                <a data-toggle="modal" href="#" data-target="#stWishModal">Add Wishes</a>
+              </div><br>
+            <%end%>
 
-              <%if @st_ba_file.id?%>
-                <div class="form-group">
-                  <%= form.button 'Update file', class: "btn btn-primary", style: 'width:66%;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Updating file...."}%>
-                  <li class="btn btn-warning" style='width:33%;' id="st_dashboard"> Cancel</li>
-                </div>
-              <%else%>
-                <div class="form-group">
-                  <%= form.button 'Save file', class: "btn btn-primary", style: 'width:100%;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Creating file...."}%>
-                </div>
-              <%end%>
-            </fieldset>
-          </div>
-        <% end %>
-    </div>
+            <div class="addMore">
+              <a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a>&nbsp;
+              <a data-toggle="modal" href="#" data-target="#stWishModal">View Wishes</a>
+            </div><br>
+
+            <%if @st_ba_file.id?%>
+              <div class="form-group">
+                <%= form.button 'Update file', class: "btn btn-primary", style: 'width:65%;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Updating file...."}%>
+                <li class="btn btn-warning" style='width:33%;' id="st_dashboard"> Cancel</li>
+              </div>
+            <%else%>
+              <div class="form-group">
+                <%= form.button 'Save file', class: "btn btn-primary", style: 'width:100%;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Creating file...."}%>
+              </div>
+            <%end%>
+          </fieldset>
+        </div>
+      <% end %>
   </div>
 </div>

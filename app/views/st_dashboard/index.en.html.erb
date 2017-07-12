@@ -7,19 +7,31 @@
 </script>
 
 <div class="container">
+	<%if current_user.service == "Bachelor Degree" && current_user.st_ba_file.nil?%>
+			<a class="btn btn-primary btn-lg btn-block" id="createStFile" href="/st_ba_files/new">Create file</a>
+		<%end%>
+		<%if current_user.service == "Master"%>
+			<a class="btn btn-primary btn-lg btn-block" id="createStFile" href="/st_ma_files/new">Create file</a>
+		<%end%>
+		<% if current_user.service == "PhD"%>
+			<a class="btn btn-primary btn-lg btn-block" id="createStFile" href="/st_phd_files/new">Create file</a>
+		<%end%>
+		<%if current_user.service == "Transfer University"%>
+			<a class="btn btn-primary btn-lg btn-block" id="createStFile" href="/st_tr_files/new">Create file</a>
+		<%end%><br>
 	<div class="jumbotron">
 		<ul class="nav nav-tabs tabReload" id="myTabs">
+			<li class=""><a href="#en_myFile" id="uploadedFile" data-toggle="tab" aria-expanded="false">My files</a></li>
 	  	<li class="active"><a href="#en_home" data-toggle="tab" aria-expanded="true">Profile</a></li>
-	  	<li class=""><a href="#en_myFile" id="uploadedFile" data-toggle="tab" aria-expanded="false">My files</a></li>
 	  	<li><a href="#en_package" data-toggle="tab" aria-expanded="false" id="en_membership">Membership</a></li>
 	  	<li class=""><a href="#en_instruction" id="en_instructionID" data-toggle="tab" aria-expanded="false">Instructions</a></li>
 		</ul>
 		<div class="tab-content">
-		  <div class="tab-pane fade active in" id="en_home">
-		    <%= render template: '/st_profiles/show'%>
-		  </div>
 		  <div class="tab-pane fade" id="en_myFile">
 		    <%= render template: '/st_ba_files/show'%>
+		  </div>
+		  <div class="tab-pane fade active in" id="en_home">
+		    <%= render template: '/st_profiles/show'%>
 		  </div>
 		  <div class="tab-pane fade" id="en_package">
 		  	<%= render partial: 'membership'%>

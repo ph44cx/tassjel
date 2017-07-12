@@ -1,0 +1,49 @@
+<!-- <p id="notice"><%#= notice %></p> -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="well bs-component">
+      <fieldset>
+        <legend>My Profile
+        <%= link_to 'Edit', edit_st_profile_path(@st_profile), :class => 'btn btn-primary btn-block',style:'width:40%;float: right;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Please wait...."}, remote: true %></legend>
+        <div class="col-sm-4">
+          <b>First name:</b>
+          <%= @st_profile.try(:st_ba_name) %><br>
+
+          <b>Surname:</b>
+          <%= @st_profile.try(:st_ba_surname) %><br>
+  
+          <b>Father name:</b>
+          <%= @st_profile.try(:st_ba_father) %><br>
+
+          <b>Mother name:</b>
+          <%= @st_profile.try(:st_ba_mother) %><br>
+        </div>
+
+        <div class="col-sm-4">
+
+          <b>Cellphone:</b>
+          <%= @st_profile.try(:st_ba_cellphone) %><br>
+
+          <b>Passport number:</b>
+          <%= @st_profile.try(:st_ba_passport) %><br>
+
+          <b>Nationality:</b>
+          <%= @st_profile.try(:st_ba_nationality) %><br>
+
+          <b>Current country:</b>
+          <%= @st_profile.try(:st_ba_country) %><br>
+
+        </div>
+
+        <div class="col-sm-4">
+          <b>Passport photo:</b>
+          <%= image_tag @st_profile.st_ba_passport_photo.url(:thumb) if @st_profile.st_ba_passport_photo? %><br>
+
+          <b>Official photo:</b>
+          <%= image_tag @st_profile.st_ba_official_photo.url(:thumb) if @st_profile.st_ba_official_photo?%>
+        </div>
+
+      </fieldset>
+    </div>
+  </div>
+</div>
