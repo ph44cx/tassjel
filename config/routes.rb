@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   scope "(:locale)", locale: /en|ar/ do
+    mount Ckeditor::Engine => '/ckeditor'
     root "pages#index"
     devise_for :users, :controllers => { :registrations => "users/registrations" }
     resources :conversations, only: [:create] do

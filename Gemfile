@@ -22,6 +22,7 @@ gem "mini_magick"
 gem "nested_form"
 gem 'jquery-datatables-rails', '~> 3.4'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
+gem 'ckeditor'
 
 group :development, :test do
   gem 'byebug', platform: :mri

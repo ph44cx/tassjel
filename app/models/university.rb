@@ -8,6 +8,7 @@ class University < ApplicationRecord
 												"Law Faculty" => ["Economics", "Employment Discrimination", "Criminal Defense", "Civil Litigation", "Comparative Law"],
 												"Literature Faculty" => ["Employment Discrimination", "Medieval Resources"]
 											}
+	LANGUAGES = ['EN', 'AR', 'TR', 'RU', 'DE', 'UK', 'FR']
 	accepts_nested_attributes_for :faculties, allow_destroy: true, reject_if: :faculty_rejectable?
 	accepts_nested_attributes_for :institutions, allow_destroy: true, reject_if: :institute_rejectable?
 

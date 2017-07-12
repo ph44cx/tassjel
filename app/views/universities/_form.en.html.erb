@@ -99,9 +99,34 @@
                   </div>
               </div>
 
+              <div class="form-group">
+                <label class="control-label">Open Enrollment date</label>
+                  <%= form.date_field :uni_open_enrollment_date, class: 'form-control', placeholder: 'Open Enrollment date', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="university_uni_name" class="control-label">Close Enrollment date</label>
+                  <%= form.date_field :uni_close_enrollment_date, class: 'form-control', placeholder: 'Close Enrollment date', autofocus: true %>
+              </div>
+
             </div>
 
             <div class="col-lg-6">
+
+              <div class="form-group">
+                <label class="control-label">Result Enrollment date</label>
+                  <%= form.date_field :uni_result_enrollment_date, class: 'form-control', placeholder: 'Result Enrollment date', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">Start Study date</label>
+                  <%= form.date_field :uni_start_study_date, class: 'form-control', placeholder: 'Start Study date', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">Languages</label>
+                  <%= form.select :uni_langs, University::LANGUAGES, { prompt: "Select languages" }, { class: "select2", multiple:true, :required => true, style: 'width:100%;'}  %>
+              </div>
 
             <!-- Add Institution modal -->
             <div class="modal" id="instModal">
@@ -247,6 +272,11 @@
                                 <%= fac_form.select :uni_faculties_speciality, options_for_select(@faculty_specialties.collect { |faculty_speciality|  [faculty_speciality.speciality, faculty_speciality.id] }, 0), {:include_blank => false}, { id: 'faculty_specialties_select', class: "select2", multiple:true, style: 'width:100%;' } %>
                             </div>
 
+                            <div class="form-group">
+                              <label class="control-label">Price</label>
+                                <%= fac_form.text_field :faculty_price, class: 'form-control', placeholder: 'price' , autofocus: true%>
+                            </div>
+
                             <ul class="list-inline pull-right">
                                 <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
                             </ul>
@@ -264,6 +294,11 @@
                             <div class="form-group">
                               <label>​Faculty Speciality</label>
                                 <%= fac_form.select :uni_faculties_speciality, options_for_select(@faculty_specialties.collect { |faculty_speciality|  [faculty_speciality.speciality, faculty_speciality.id] }, 0), {:include_blank => false}, { id: 'faculty_specialties_select1', class: "select2", multiple:true, style: 'width:100%;' } %>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label">Price</label>
+                                <%= fac_form.text_field :faculty_price, class: 'form-control', placeholder: 'price' , autofocus: true%>
                             </div>
 
                             <h6>Remove this speciality <%= fac_form.check_box :_destroy %></h6>
@@ -290,6 +325,11 @@
                                 <%= fac_form.select :uni_faculties_speciality, options_for_select(@faculty_specialties.collect { |faculty_speciality|  [faculty_speciality.speciality, faculty_speciality.id] }, 0), {:include_blank => false}, { id: 'faculty_specialties_select2', class: "select2", multiple:true, style: 'width:100%;' } %>
                             </div>
 
+                            <div class="form-group">
+                              <label>Price</label>
+                                <%= fac_form.text_field :faculty_price, class: 'form-control', placeholder: 'price' %>
+                            </div>
+
                             <h6>Remove this speciality <%= fac_form.check_box :_destroy %></h6>
 
                             <ul class="list-inline pull-right">
@@ -311,6 +351,11 @@
                             <div class="form-group">
                               <label>​Faculty Speciality</label>
                                 <%= fac_form.select :uni_faculties_speciality, options_for_select(@faculty_specialties.collect { |faculty_speciality|  [faculty_speciality.speciality, faculty_speciality.id] }, 0), {:include_blank => false}, { id: 'faculty_specialties_select3', class: "select2", multiple:true, style: 'width:100%;' } %>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label">Price</label>
+                                <%= fac_form.text_field :faculty_price, class: 'form-control', placeholder: 'price' , autofocus: true%>
                             </div>
 
                             <h6>Remove this speciality <%= fac_form.check_box :_destroy %></h6>
@@ -354,7 +399,7 @@
                 <a data-toggle="modal" href="#" data-target="#myModal">View Faculty</a>
               </div>
 
-                <div class="form-group">
+              <div class="form-group">
                 <%= form.button "Create University", class: "btn btn-primary", style: 'width:65%;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>In progress...."} %>&nbsp;&nbsp;
                 <li class="btn btn-primary" style='width:30%;' id="unm_dashboard"> Cancel</li>
               </div>

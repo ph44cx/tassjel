@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170708183701) do
+ActiveRecord::Schema.define(version: 20170711111212) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,18 @@ ActiveRecord::Schema.define(version: 20170708183701) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_cities_on_country_id"
+  end
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string "data_file_name", null: false
+    t.string "data_content_type"
+    t.integer "data_file_size"
+    t.string "type", limit: 30
+    t.integer "width"
+    t.integer "height"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -40,6 +52,7 @@ ActiveRecord::Schema.define(version: 20170708183701) do
     t.integer "uni_faculties_number"
     t.string "uni_faculties_name"
     t.string "uni_faculties_speciality"
+    t.string "faculty_price"
     t.integer "university_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -199,6 +212,11 @@ ActiveRecord::Schema.define(version: 20170708183701) do
     t.string "uni_institution_number"
     t.string "uni_institutions_name"
     t.string "uni_institution_speciality"
+    t.string "uni_open_enrollment_date"
+    t.string "uni_close_enrollment_date"
+    t.string "uni_result_enrollment_date"
+    t.string "uni_start_study_date"
+    t.string "uni_langs"
     t.integer "university_profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -209,7 +227,8 @@ ActiveRecord::Schema.define(version: 20170708183701) do
     t.string "uni_cover_photo"
     t.string "uni_description"
     t.string "uni_galaries"
-    t.string "uni_log_rank"
+    t.string "uni_loc_rank"
+    t.string "uni_int_rank"
     t.date "uni_founded_date"
     t.string "uni_url"
     t.string "uni_email"

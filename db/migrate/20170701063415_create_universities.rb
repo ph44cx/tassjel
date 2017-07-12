@@ -15,6 +15,11 @@ class CreateUniversities < ActiveRecord::Migration[5.1]
       t.string :uni_institution_number
       t.string :uni_institutions_name
       t.string :uni_institution_speciality
+      t.string :uni_open_enrollment_date
+      t.string :uni_close_enrollment_date
+      t.string :uni_result_enrollment_date
+      t.string :uni_start_study_date
+      t.string :uni_langs
       t.integer :university_profile_id
 
       t.timestamps
