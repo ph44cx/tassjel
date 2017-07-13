@@ -93,9 +93,34 @@
                   </div>
               </div>
 
+              <div class="form-group">
+                <label class="control-label">Open Enrollment date</label>
+                  <%= form.date_field :uni_open_enrollment_date, class: 'form-control', placeholder: 'Open Enrollment date', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">Close Enrollment date</label>
+                  <%= form.date_field :uni_close_enrollment_date, class: 'form-control', placeholder: 'Close Enrollment date', autofocus: true %>
+              </div>
+
             </div>
 
             <div class="col-lg-6">
+
+            <div class="form-group">
+                <label class="control-label">Result Enrollment date</label>
+                  <%= form.date_field :uni_result_enrollment_date, class: 'form-control', placeholder: 'Result Enrollment date', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">Start Study date</label>
+                  <%= form.date_field :uni_start_study_date, class: 'form-control', placeholder: 'Start Study date', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">Languages</label>
+                  <%= form.select :uni_langs, University::LANGUAGES, { prompt: "Select languages" }, { class: "select2", multiple:true, :required => true, style: 'width:100%;'}  %>
+              </div>
 
             <!-- Add Institution modal -->
             <div class="modal" id="instModal">

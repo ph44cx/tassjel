@@ -81,6 +81,6 @@ class UniversityProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def university_profile_params
-      params.require(:university_profile).permit(:uni_logo, :uni_cover_photo, :uni_description, :uni_log_rank, :uni_founded_date, :uni_url, :uni_email, :uni_phone1, :uni_phone2, :uni_fax, :uni_address, :university_name, :uni_galaries =>[])
+      params.require(:university_profile).permit(:uni_logo, :uni_cover_photo, :uni_description, :uni_founded_date, :uni_url, :uni_email, :uni_phone1, :uni_phone2, :uni_fax, :uni_address, :university_name, :uni_loc_rank, :uni_int_rank, :uni_galaries =>[])
     end
 end

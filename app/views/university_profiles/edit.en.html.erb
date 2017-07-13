@@ -3,6 +3,9 @@
     $('.select2').select2();
     $('.file-inputs').bootstrapFileInput();
     $('input[type=file]').bootstrapFileInput();
+    $(".st_dashboard").click(function(){
+      window.location.replace("<%=unm_dashboard_url%>")
+    });
   });
 </script>
 <div class="row">
@@ -102,7 +105,7 @@
 
             <div class="form-group">
               <%= form.button "Update", class: "btn btn-primary", style: 'width:33%;float:left;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>In progress...."} %>
-              <li class="btn btn-warning" style='width:33%;float:right;' id="st_dashboard"> Cancel</li>
+              <li class="btn btn-warning st_dashboard" style='width:33%;float:right;'> Cancel</li>
             </div>
           </div>
         </fieldset>

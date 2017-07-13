@@ -11,6 +11,7 @@ class CreateUniversities < ActiveRecord::Migration[5.1]
       t.string :uni_private_den_ava_fees
       t.string :uni_private_eng_ava_fees
       t.string :uni_private_lit_ava_fees
+      t.string :uni_private_business_ava_fees
       t.string :uni_inst_private_fees
       t.string :uni_institution_number
       t.string :uni_institutions_name
