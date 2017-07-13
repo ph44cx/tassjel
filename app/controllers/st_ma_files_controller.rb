@@ -15,19 +15,26 @@ class StMaFilesController < ApplicationController
   # GET /st_ma_files/new
   def new
     @st_ma_file = StMaFile.new
+    @countries = Country.all
+    @cities = City.where('country_id=?', Country.first.id)
+    @universities = University.all
   end
 
   # GET /st_ma_files/1/edit
   def edit
+    @countries = Country.all
+    @cities = City.where('country_id=?', Country.first.id)
+    @universities = University.all
   end
 
   # POST /st_ma_files
   # POST /st_ma_files.json
   def create
     @st_ma_file = StMaFile.new(st_ma_file_params)
-
     respond_to do |format|
       if @st_ma_file.save
+        @st_wish = StWish.new(st_country_wish: params[:st_ma_file][:st_country_wish], st_city_wish: params[:st_ma_file][:st_city_wish], st_univ_wish: params[:st_ma_file][:st_univ_wish], st_specialty_wish: params[:st_ma_file][:st_specialty_wish], st_ma_file_id: @st_ma_file.id)
+        @st_wish.save
         format.html { redirect_to @st_ma_file, notice: 'St ma file was successfully created.' }
         format.json { render :show, status: :created, location: @st_ma_file }
       else

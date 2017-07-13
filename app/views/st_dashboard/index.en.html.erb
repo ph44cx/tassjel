@@ -10,13 +10,13 @@
 	<%if current_user.service == "Bachelor Degree" && current_user.st_ba_file.nil?%>
 			<a class="btn btn-primary btn-lg btn-block" id="createStFile" href="/st_ba_files/new">Create file</a>
 		<%end%>
-		<%if current_user.service == "Master"%>
+		<%if current_user.service == "Master" && current_user.st_ma_file.nil?%>
 			<a class="btn btn-primary btn-lg btn-block" id="createStFile" href="/st_ma_files/new">Create file</a>
 		<%end%>
-		<% if current_user.service == "PhD"%>
+		<% if current_user.service == "PhD" && current_user.st_phd_file.nil?%>
 			<a class="btn btn-primary btn-lg btn-block" id="createStFile" href="/st_phd_files/new">Create file</a>
 		<%end%>
-		<%if current_user.service == "Transfer University"%>
+		<%if current_user.service == "Transfer University" && current_user.st_tr_file.nil?%>
 			<a class="btn btn-primary btn-lg btn-block" id="createStFile" href="/st_tr_files/new">Create file</a>
 		<%end%><br>
 	<div class="jumbotron">
@@ -28,7 +28,17 @@
 		</ul>
 		<div class="tab-content">
 		  <div class="tab-pane fade" id="en_myFile">
-		    <%= render template: '/st_ba_files/show'%>
+		  	<%if current_user.service == "Bachelor Degree"%>
+		    	<%= render template: '/st_ba_files/show'%>
+		    	<%elsif current_user.service == "Master" %>
+		    	<%= render template: '/st_ma_files/show'%>
+		    	<%elsif current_user.service == "PhD" %>
+		    	<%= render template: '/st_phd_files/show'%>
+		    	<%elsif current_user.service == "Transfer University" %>
+		    	<%= render template: '/st_tr_files/show'%>
+		    	<%else%>
+		    	<%nil%>
+		    <%end%>
 		  </div>
 		  <div class="tab-pane fade active in" id="en_home">
 		    <%= render template: '/st_profiles/show'%>

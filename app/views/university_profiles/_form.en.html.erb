@@ -16,7 +16,7 @@
             <div class="col-lg-6">
 
               <div class="form-group">
-                <label for="university_uni_country" class="control-label">Country</label>
+                <label for="university_uni_country" class="control-label">University name</label>
                   <%= form.select :university_name, University.all.map { |u| [u.uni_name] }, { prompt: "Select University" }, { class: "select2", id: "select", :required => true, style: 'width:100%;' }%>
               </div>
 

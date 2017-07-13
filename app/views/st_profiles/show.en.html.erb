@@ -6,41 +6,61 @@
         <legend>My Profile
         <%= link_to 'Edit', edit_st_profile_path(@st_profile), :class => 'btn btn-primary btn-block',style:'width:40%;float: right;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Please wait...."}, remote: true %></legend>
         <div class="col-sm-4">
-          <b>First name:</b>
-          <%= @st_profile.try(:st_ba_name) %><br>
+          <p>
+            <strong>First name:</strong>
+            <%= @st_profile.try(:st_ba_name) %>
+          </p>
 
-          <b>Surname:</b>
-          <%= @st_profile.try(:st_ba_surname) %><br>
-  
-          <b>Father name:</b>
-          <%= @st_profile.try(:st_ba_father) %><br>
+          <p>
+            <strong>Surname:</strong>
+            <%= @st_profile.try(:st_ba_surname) %>
+          </p>
 
-          <b>Mother name:</b>
-          <%= @st_profile.try(:st_ba_mother) %><br>
+          <p>
+            <strong>Father name:</strong>
+            <%= @st_profile.try(:st_ba_father) %>
+          </p>
+
+          <p>
+            <strong>Mother name:</strong>
+            <%= @st_profile.try(:st_ba_mother) %>
+          </p>
         </div>
 
         <div class="col-sm-4">
 
-          <b>Cellphone:</b>
-          <%= @st_profile.try(:st_ba_cellphone) %><br>
+          <p>
+            <strong>Cellphone:</strong>
+            <%= @st_profile.try(:st_ba_cellphone) %>
+          </p>
 
-          <b>Passport number:</b>
-          <%= @st_profile.try(:st_ba_passport) %><br>
+          <p>
+            <strong>Passport number:</strong>
+            <%= @st_profile.try(:st_ba_passport) %>
+          </p>
 
-          <b>Nationality:</b>
-          <%= @st_profile.try(:st_ba_nationality) %><br>
+          <p>
+            <strong>Nationality:</strong>
+            <%= @st_profile.try(:st_ba_nationality) %>
+          </p>
 
-          <b>Current country:</b>
-          <%= @st_profile.try(:st_ba_country) %><br>
+          <p>
+            <strong>Current country:</strong>
+            <%= @st_profile.try(:st_ba_country) %>
+          </p>
 
         </div>
 
         <div class="col-sm-4">
-          <b>Passport photo:</b>
-          <%= image_tag @st_profile.st_ba_passport_photo.url(:thumb) if @st_profile.st_ba_passport_photo? %><br>
+          <p>
+            <strong>Passport photo:</strong>
+            <%= image_tag @st_profile.st_ba_passport_photo.url(:thumb) if @st_profile.st_ba_passport_photo? %>
+          </p>
 
-          <b>Official photo:</b>
-          <%= image_tag @st_profile.st_ba_official_photo.url(:thumb) if @st_profile.st_ba_official_photo?%>
+          <p>
+            <strong>Official photo:</strong>
+            <%= image_tag @st_profile.st_ba_official_photo.url(:thumb) if @st_profile.st_ba_official_photo?%>
+          </p>
         </div>
 
       </fieldset>
