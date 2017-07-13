@@ -1,12 +1,8 @@
 <script type="text/javascript">
-$( document ).ajaxComplete(function () { 
-  CKEDITOR.replace('university_profile_uni_description')  
-} );
-
   $(document).ready(function(){
     $('.select2').select2();
-    $('input[type=file]').bootstrapFileInput();
     $('.file-inputs').bootstrapFileInput();
+    $('input[type=file]').bootstrapFileInput();
   });
 </script>
 <div class="row">
@@ -14,39 +10,45 @@ $( document ).ajaxComplete(function () {
     <div class="well bs-component">
       <%= form_for (@university_profile) do |form| %>
         <fieldset>
-          <legend>Update University Profile</legend>
+          <legend>Update University Profile
+          <%= link_to 'Go to dashboard', unm_dashboard_path, style:'float: right;'%></legend>
           <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>
 
             <div class="col-lg-6">
 
               <div class="form-group">
-                <label for="university_uni_country" class="control-label">Country</label>
-                  <%= form.select :university_name, University.all.map { |u| [u.uni_name] }, { prompt: "Select University" }, { class: "select2", id: "select", :required => true, style: 'width:100%;' }%>
+                <label for="university_uni_country" class="control-label">University name</label>
+                  <%= form.select :university_name, options_from_collection_for_select(University.all, :id, :uni_name, selected: @university_profile.university.uni_name), {},  {class: "select2", style: 'width:100%;'} %>
               </div>
 
               <div class="form-group">
                 <label for="uni_profile_uni_logo" class="control-label">Logo</label><br/>
-                  <%= form.file_field :uni_logo, title: 'choose logo', id: 'uni_profile_uni_logo', class: "btn-sm btn-primary" %>
+                  <%= form.file_field :uni_logo, title: 'choose logo', id: 'uni_profile_uni_logo', class: "btn-sm btn-primary" %><br>
+                  <%= image_tag @university_profile.uni_logo.url(:thumb) if @university_profile.uni_logo? %>
               </div>
 
               <div class="form-group">
                 <label for="uni_profile_uni_cover_photo" class="control-label">Cover photo</label><br/>
-                  <%= form.file_field :uni_cover_photo,title: 'choose cover photo', class: 'btn-sm btn-primary', id: 'uni_profile_uni_logo'%>
-              </div>
-
-              <div class="form-group">
-                <label for="university_profile_uni_description" class="control-label">Description</label>
-                  <%= form.cktext_area :uni_description, class: 'form-control', id: 'university_profile_uni_description', placeholder: 'Description', autofocus: true%>
+                  <%= form.file_field :uni_cover_photo,title: 'choose cover photo', class: 'btn-sm btn-primary', id: 'uni_profile_uni_logo'%><br>
+                   <%= image_tag @university_profile.uni_cover_photo.url(:thumb) if @university_profile.uni_cover_photo? %>
               </div>
 
               <div class="form-group">
                 <label for="uni_profile_uni_galaries" class="control-label">Galleries</label><br/>
-                  <%= form.file_field :uni_galaries, title: 'choose galery images', multiple: true, class: 'btn-sm btn-primary', id: 'uni_profile_uni_galaries' %>
+                  <%= form.file_field :uni_galaries, title: 'choose galery images', multiple: true, class: 'btn-sm btn-primary', id: 'uni_profile_uni_galaries' %><br>
+                  <% @university_profile.uni_galaries.each do |file|%>
+                <%= image_tag file.url(:thumb) %>
+              <%end%>
               </div>
 
               <div class="form-group">
-                <label for="uni_profile_uni_log_rank" class="control-label">Rank</label>
-                  <%= form.text_field :uni_loc_rank, class: 'form-control', id: 'uni_profile_uni_log_rank', placeholder: 'Rank', autofocus: true %>
+                <label for="uni_profile_uni_log_rank" class="control-label">Local Rank</label>
+                  <%= form.text_field :uni_loc_rank, class: 'form-control', id: 'uni_profile_uni_log_rank', placeholder: 'Local Rank', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="uni_profile_uni_log_rank" class="control-label">International Rank</label>
+                  <%= form.text_field :uni_int_rank, class: 'form-control', id: 'uni_profile_uni_log_rank', placeholder: 'International Rank', autofocus: true %>
               </div>
 
               <div class="form-group">
@@ -85,15 +87,26 @@ $( document ).ajaxComplete(function () {
 
               <div class="form-group">
                 <label for="uni_profile_uni_address" class="control-label">Address</label>
-                  <%= form.text_field :uni_address, class: 'form-control', id: 'uni_profile_uni_address', placeholder: 'Address', autofocus: true %>
+                  <%= form.text_area :uni_address, class: 'form-control', id: 'uni_profile_uni_address', placeholder: 'Address', autofocus: true %>
               </div>
 
-              <div class="form-group">
-                <%= form.button "Update Profile", class: "btn btn-primary", style: 'width:65%;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>In progress...."} %>
-              </div>
-          </div>
+            </div>
           </fieldset>
-        <% end %>
+          <fieldset>
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label for="university_profile_uni_description" class="control-label">Description</label>
+                <%= form.cktext_area :uni_description, class: 'form-control', id: 'university_profile_uni_description', placeholder: 'Description', autofocus: true%>
+            </div>
+          
+
+            <div class="form-group">
+              <%= form.button "Update", class: "btn btn-primary", style: 'width:33%;float:left;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>In progress...."} %>
+              <li class="btn btn-warning" style='width:33%;float:right;' id="st_dashboard"> Cancel</li>
+            </div>
+          </div>
+        </fieldset>
+      <% end %>
     </div>
   </div>
 </div>

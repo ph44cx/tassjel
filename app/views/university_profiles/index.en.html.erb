@@ -4,6 +4,7 @@
     $(".myTable1").DataTable();
     $('.select2').select2();
     $('.file-inputs').bootstrapFileInput();
+    $('input[type=file]').bootstrapFileInput();
     $('.newUniProfile').click(function(){
       $('.ProfileIndex').hide()
       $('#formNew').show(150);
@@ -38,7 +39,7 @@
               <td><%= university_profile.uni_url %></td>
               <td><%= university_profile.uni_email %></td>
               <td><%= link_to 'Show', university_profile , remote:true%>
-                  <%= link_to 'Edit', edit_university_profile_path(university_profile), remote:true %>
+                  <%= link_to 'Edit', edit_university_profile_path(university_profile) %>
                   <%= link_to 'Destroy', university_profile, data: { behavior: 'delete' } %></td>
             </tr>
           <% end %>

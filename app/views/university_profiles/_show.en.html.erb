@@ -1,9 +1,8 @@
 <!-- <p id="notice"><%#= notice %></p> -->
 <script>
   $(document).ready(function(){
-      $("#goBackShow").click(function(){
-      var url = '/universities/<%= @university_profile.university.id%>';
-      $.get(url);
+      $(".goBackShow").click(function(){
+      window.location.replace("<%=unm_dashboard_url%>")
     });
   });
 </script>
@@ -11,7 +10,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="well bs-component">
-    <button id= 'goBackShow' class="btn btn-primary custom">Back</button>
+    <li href="#" class="btn btn-primary custom goBackShow">Back</li>
       <p>
         <strong>Uni logo:</strong>
         <%= @university_profile.uni_logo %>

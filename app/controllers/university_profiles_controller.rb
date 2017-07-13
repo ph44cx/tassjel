@@ -27,7 +27,7 @@ class UniversityProfilesController < ApplicationController
   # GET /university_profiles/1/edit
   def edit
     respond_to do |format|
-      format.js{}
+      format.html{}
     end
   end
 
@@ -54,7 +54,7 @@ class UniversityProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @university_profile.update(university_profile_params)
-        format.html { redirect_to unm_dashboard_url, notice: 'University profile was successfully updated.' }
+        format.html { redirect_to unm_dashboard_url, notice: "#{@university_profile.university.uni_name}'s profile was successfully updated." }
         format.json { render :show, status: :ok, location: @university_profile }
       else
         format.html { render :edit }
