@@ -1,55 +1,20 @@
 <script type="text/javascript">
+$( document ).ajaxComplete(function () { 
+  CKEDITOR.replace('university_profile_uni_description')  
+} );
+
   $(document).ready(function(){
-    $('#formNew').hide()
-    $(".myTable1").DataTable();
     $('.select2').select2();
+    $('input[type=file]').bootstrapFileInput();
     $('.file-inputs').bootstrapFileInput();
-    $('.newUniProfile').click(function(){
-      $('.ProfileIndex').hide()
-      $('#formNew').show(150);
-    });
   });
 </script>
 <div class="row">
   <div class="col-lg-12">
     <div class="well bs-component">
-    <div class="ProfileIndex">
-      <table class="table table-striped table-bordered dt-responsive nowrap myTable">
-      <button class="btn btn-primary custom newUniProfile">Create Profile</button>
-        <thead>
-          <tr>
-            <th>University name</th>
-            <th>Description</th>
-            <th>Local rank</th>
-            <th>Founded date</th>
-            <th>Profile url</th>
-            <th>Email</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @university_profiles.each do |university_profile| %>
-            <tr>
-              <td><%= university_profile.university.try(:uni_name) %></td>
-              <td><%= university_profile.uni_description.html_safe %></td>
-              <td><%= university_profile.uni_loc_rank %></td>
-              <td><%= university_profile.uni_founded_date %></td>
-              <td><%= university_profile.uni_url %></td>
-              <td><%= university_profile.uni_email %></td>
-              <td><%= link_to 'Show', university_profile , remote:true%>
-                  <%= link_to 'Edit', edit_university_profile_path(university_profile), remote:true %>
-                  <%= link_to 'Destroy', university_profile, data: { behavior: 'delete' } %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    
-    <div id="formNew">
       <%= form_for (@university_profile) do |form| %>
         <fieldset>
-          <legend>Create University Profile</legend>
+          <legend>Update University Profile</legend>
           <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>
 
             <div class="col-lg-6">
@@ -70,18 +35,18 @@
               </div>
 
               <div class="form-group">
+                <label for="university_profile_uni_description" class="control-label">Description</label>
+                  <%= form.cktext_area :uni_description, class: 'form-control', id: 'university_profile_uni_description', placeholder: 'Description', autofocus: true%>
+              </div>
+
+              <div class="form-group">
                 <label for="uni_profile_uni_galaries" class="control-label">Galleries</label><br/>
                   <%= form.file_field :uni_galaries, title: 'choose galery images', multiple: true, class: 'btn-sm btn-primary', id: 'uni_profile_uni_galaries' %>
               </div>
 
               <div class="form-group">
-                <label for="uni_profile_uni_log_rank" class="control-label">Local Rank</label>
-                  <%= form.text_field :uni_loc_rank, class: 'form-control', id: 'uni_profile_uni_log_rank', placeholder: 'Local Rank', autofocus: true %>
-              </div>
-
-              <div class="form-group">
-                <label for="uni_profile_uni_log_rank" class="control-label">International Rank</label>
-                  <%= form.text_field :uni_int_rank, class: 'form-control', id: 'uni_profile_uni_log_rank', placeholder: 'International Rank', autofocus: true %>
+                <label for="uni_profile_uni_log_rank" class="control-label">Rank</label>
+                  <%= form.text_field :uni_loc_rank, class: 'form-control', id: 'uni_profile_uni_log_rank', placeholder: 'Rank', autofocus: true %>
               </div>
 
               <div class="form-group">
@@ -120,27 +85,15 @@
 
               <div class="form-group">
                 <label for="uni_profile_uni_address" class="control-label">Address</label>
-                  <%= form.text_area :uni_address, class: 'form-control', id: 'uni_profile_uni_address', placeholder: 'Address', autofocus: true %>
+                  <%= form.text_field :uni_address, class: 'form-control', id: 'uni_profile_uni_address', placeholder: 'Address', autofocus: true %>
               </div>
 
-            </div>
-          </fieldset>
-          <fieldset>
-          <div class="col-lg-12">
-            <div class="form-group">
-              <label for="university_profile_uni_description" class="control-label">Description</label>
-                <%= form.cktext_area :uni_description, class: 'form-control', id: 'university_profile_uni_description', placeholder: 'Description', autofocus: true%>
-            </div>
-          
-
-          <div class="form-group">
-            <%= form.button "Create Profile", class: "btn btn-primary", style: 'width:33%;float:right;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>In progress...."} %>
-          </div>
+              <div class="form-group">
+                <%= form.button "Update Profile", class: "btn btn-primary", style: 'width:65%;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>In progress...."} %>
+              </div>
           </div>
           </fieldset>
-        <%end%>
-      </div>
-
+        <% end %>
     </div>
   </div>
 </div>
