@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   scope "(:locale)", locale: /en|ar/ do
     mount Ckeditor::Engine => '/ckeditor'
-    root "pages#index"
+    # root "pages#index"
+    root to: 'comments#index'
     devise_for :users, :controllers => { :registrations => "users/registrations" }
     resources :conversations, only: [:create] do
       resources :messages, only: [:create]
@@ -20,6 +21,9 @@ Rails.application.routes.draw do
     resources :faculties
     resources :showcases
     resources :articles
+    # resources :comments, only: [:index, :new, :create]
+    resources :comments, only: [:index, :create]
+    get '/comments/new/(:parent_id)', to: 'comments#new', as: :new_comment
 
     # custom routes
     get 'st_dashboard' => 'st_dashboard#index'
