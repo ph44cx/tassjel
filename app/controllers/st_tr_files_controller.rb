@@ -19,6 +19,9 @@ class StTrFilesController < ApplicationController
 
   # GET /st_tr_files/1/edit
   def edit
+    respond_to do |format|
+      format.js{}
+    end
   end
 
   # POST /st_tr_files
@@ -42,7 +45,7 @@ class StTrFilesController < ApplicationController
   def update
     respond_to do |format|
       if @st_tr_file.update(st_tr_file_params)
-        format.html { redirect_to @st_tr_file, notice: 'St tr file was successfully updated.' }
+        format.html { redirect_to st_dashboard_url, notice: 'St tr file was successfully updated.' }
         format.json { render :show, status: :ok, location: @st_tr_file }
       else
         format.html { render :edit }

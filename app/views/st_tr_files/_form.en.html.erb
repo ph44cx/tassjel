@@ -1,16 +1,21 @@
 <script type="text/javascript">
 $(document).ready(function() {
+    $('select').select2();
     $('input[type=file]').bootstrapFileInput();
   });
 </script>
 
-<div class="jumbotron">
+<!-- <div class="jumbotron"> -->
   <div class="row">
       <div class="well bs-component">
         <%= form_for (@st_tr_file) do |form| %>
           <%= render 'errors', object: @st_tr_file %>
           <fieldset>
+          <%if @st_tr_file.id.present? %>
+            <legend>Editing St-Tr File</legend>
+          <%else%>
             <legend>ST-FILE-TR</legend>
+          <%end%>
 
             <div class="col-lg-12">
           <legend>Personal information</legend>
@@ -138,13 +143,19 @@ $(document).ready(function() {
                 
                 <%= form.hidden_field :user_id, value: current_user.id %>
 
-                <div class="actions">
-                  <%= form.button 'Save file', :class => "btn btn-primary", style: 'width:33%;float:right;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Creating file...."} %>
-                </div>
+                <%if @st_tr_file.id.present? %>
+                  <div class="actions">
+                  <%= form.button 'Update file', :class => "btn btn-primary", style: 'width:33%;float:right;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Updating file...."} %>
+                  </div>
+                  <%else%>
+                    <div class="actions">
+                    <%= form.button 'Save file', :class => "btn btn-primary", style: 'width:33%;float:right;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Creating file...."} %>
+                  </div>
+                <%end%>
             </div>
             
           </fieldset>
         <% end %>
       </div>
   </div>
-</div>
+<!-- </div> -->
