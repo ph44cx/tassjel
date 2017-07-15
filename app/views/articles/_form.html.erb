@@ -1,0 +1,47 @@
+<%= form_with(model: article, local: true) do |form| %>
+  <% if article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+      <% article.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :article_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subtitle %>
+    <%= form.text_field :subtitle, id: :article_subtitle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :blog_image %>
+    <%= form.text_field :blog_image, id: :article_blog_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_field :body, id: :article_body %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tags %>
+    <%= form.text_field :tags, id: :article_tags %>
+  </div>
+
+  <div class="field">
+    <%= form.label :share %>
+    <%= form.text_field :share, id: :article_share %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

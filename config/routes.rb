@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   scope "(:locale)", locale: /en|ar/ do
     mount Ckeditor::Engine => '/ckeditor'
     root "pages#index"
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
     resources :st_phd_files
     resources :st_ma_files
     resources :faculties
+    resources :showcases
+    resources :articles
 
     # custom routes
     get 'st_dashboard' => 'st_dashboard#index'
@@ -32,6 +35,7 @@ Rails.application.routes.draw do
     get 'unm_dash/update_faculties3'
     get 'st_ba_files/update_specialities'
     get 'create_file' => 'st_dashboard#create_file'
+    get 'bm_manager/index'
     # 
   end
 end
