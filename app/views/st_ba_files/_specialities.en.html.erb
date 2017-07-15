@@ -1,4 +1,4 @@
-<%= @university_specialities = [] %>
+<% @university_specialities = [] %>
 <% University.find(params[:university_id]).faculties.each do |faculty| %>
   <% @faculty_specialty_ids = faculty.uni_faculties_speciality.delete('"" ') %>
     <% @specialities_array_ids = @faculty_specialty_ids.tr('[]', '').split(',').map(&:to_i) %>
@@ -6,4 +6,6 @@
     <% @university_specialities << specs.speciality %>
   <% end %>
 <% end %>
-<option value="<% @university_specialities.map(&:inspect).join(', ').delete('""')%>"><%= @university_specialities.map(&:inspect).join(', ').delete('""')%></option>
+<% @university_specialities.each do |speciality|%>
+<option value="<%= speciality %>"><%= speciality%></option>
+<%end%>

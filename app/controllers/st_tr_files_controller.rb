@@ -28,7 +28,7 @@ class StTrFilesController < ApplicationController
 
     respond_to do |format|
       if @st_tr_file.save
-        format.html { redirect_to @st_tr_file, notice: 'St tr file was successfully created.' }
+        format.html { redirect_to st_dashboard_url, notice: 'St tr file was successfully created.' }
         format.json { render :show, status: :created, location: @st_tr_file }
       else
         format.html { render :new }
@@ -69,6 +69,6 @@ class StTrFilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def st_tr_file_params
-      params.require(:st_tr_file).permit(:st_ma_un_field, :st_tr_un_source, :st_tr_un_name, :st_tr_un_sem, :st_tr_photo1, :st_tr_photo2, :st_tr_extra_photo1, :st_tr_extra_photo2, :st_tr_un_target, :st_tr_un_name)
+      params.require(:st_tr_file).permit(:st_ma_un_field, :st_tr_un_source, :st_tr_un_name, :st_tr_un_sem, :st_tr_photo1, :st_tr_photo2, :st_tr_extra_photo1, :st_tr_extra_photo2, :st_tr_un_target, :st_tr_un_name, :user_id)
     end
 end

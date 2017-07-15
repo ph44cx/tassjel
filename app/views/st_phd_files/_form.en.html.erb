@@ -1,6 +1,10 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    $('input[type=file]').bootstrapFileInput();
+  });
+</script>
 <div class="jumbotron">
   <div class="row">
-    <div class="col-lg-12">
       <div class="well bs-component">
 
         <%= form_for (@st_phd_file) do |form| %>
@@ -8,43 +12,117 @@
           <fieldset>
           <legend>ST-FILE-PHD</legend>
 
+          <div class="col-lg-12">
+          <legend>Personal information</legend>
+            <div class="col-lg-6">
+              <%= form.hidden_field :user_id, value: current_user.id%>
+
+              <div class="form-group">
+                <label>First name</label>
+                  <%= form.text_field :st_ba_name, class: 'form-control', placeholder: 'First name', autofocus: true, value: current_user.first_name %>
+              </div>
+
+              <div class="form-group">
+                <label>Surname</label>
+                  <%= form.text_field :st_ba_surname, class: 'form-control', placeholder: 'Surname', autofocus: true, value: current_user.surname %>
+              </div>
+
+              <div class="form-group">
+                <label>Father name</label>
+                  <%= form.text_field :st_ba_father, class: 'form-control', placeholder: 'Father name', autofocus: true %>
+              </div>
+            
+              <div class="form-group">
+                <label>Mother name</label>
+                  <%= form.text_field :st_ba_mother, class: 'form-control', placeholder: 'Mother name', autofocus: true %>
+              </div>
+            </div>
+            <div class="col-lg-6">
+
+              <div class="form-group">
+                <label>Cellphone</label>
+                  <%= form.text_field :st_ba_cellphone, class: 'form-control', placeholder: 'Cellphone', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label>Passport no.</label>
+                  <%= form.text_field :st_ba_passport, class: 'form-control', placeholder: 'Passport no.', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="profile_st_ba_nationality">Nationality</label>
+                  <%= form.text_field :st_ba_nationality, class: 'form-control', id: 'profile_st_ba_nationality', placeholder: 'Nationality', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <%= image_tag current_user.st_profile.st_ba_passport_photo.url(:thumb) if current_user.st_profile.st_ba_passport_photo? %>
+                <label for="profile_st_ba_passport_photo">Passport photo</label>
+                  <%= form.file_field :st_ba_passport_photo, class: 'btn btn-default btn-xs', id: 'profile_st_ba_passport_photo' %>
+                  <%= form.hidden_field :st_ba_passport_photo_cache %>
+              </div>
+
+              <div class="form-group">
+                <%= image_tag current_user.st_profile.st_ba_official_photo.url(:thumb) if current_user.st_profile.st_ba_official_photo? %>
+                <label for="profile_st_ba_official_photo">Official photo</label>
+                  <%= form.file_field :st_ba_official_photo, class: 'btn btn-default btn-xs', id: 'profile_st_ba_official_photo' %>
+                  <%= form.hidden_field :st_ba_official_photo_cache %>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-lg-12">
+          <legend>BA Certificate information</legend>
             <div class="col-lg-6">
               <div class="form-group">
-                <label for="st_phd_file_st_maba_cer_source" class="control-label">Certificate Source</label>
-                <%= form.text_field :st_maba_cer_source, class: 'form-control', id: 'st_phd_file_st_maba_cer_source', placeholder: 'Certificate Source', autofocus: true %>
+                <label for="st_phd_file_st_maba_cer_source" class="control-label">BA Certificate Source</label>
+                <%= form.text_field :st_maba_cer_source, class: 'form-control', id: 'st_phd_file_st_maba_cer_source', placeholder: 'India , Saudi, Qatar....', autofocus: true %>
               </div>
 
               <div class="form-group">
-                <label for="st_phd_file_st_maba_cer_field" class="control-label">Certificate Source</label>
-                <%= form.text_field :st_maba_cer_field, class: 'form-control', id: 'st_phd_file_st_maba_cer_field', placeholder: 'Certificate Source', autofocus: true %>
-              </div>
-
-              <div class="form-group">
-                <label for="st_phd_file_st_maba_cer_marks" class="control-label">Certificate Source</label>
-                <%= form.text_field :st_maba_cer_marks, class: 'form-control', id: 'st_phd_file_st_maba_cer_marks', placeholder: 'Certificate Source', autofocus: true %>
-              </div>
-
-              <div class="form-group">
-                <label for="st_phd_file_st_maba_cer_year" class="control-label">Certificate Source</label>
-                <%= form.text_field :st_maba_cer_year, class: 'form-control', id: 'st_phd_file_st_maba_cer_year', placeholder: 'Certificate Source', autofocus: true %>
+                <label for="st_phd_file_st_maba_cer_field" class="control-label">BA Certificate specialty</label>
+                <%= form.text_field :st_maba_cer_field, class: 'form-control', id: 'st_phd_file_st_maba_cer_field', placeholder: 'Computer Science, Business Admin, Electric Engineering...', autofocus: true %>
               </div>
             </div>
 
             <div class="col-lg-6">
 
               <div class="form-group">
-                <label for="st_phd_file_st_maphd_cer_source" class="control-label">Certificate Source</label>
-                <%= form.text_field :st_maphd_cer_source, class: 'form-control', id: 'st_phd_file_st_maphd_cer_source', placeholder: 'Certificate Source', autofocus: true %>
+                <label for="st_phd_file_st_maba_cer_marks" class="control-label">BA Certificate marks</label>
+                <%= form.text_field :st_maba_cer_marks, class: 'form-control', id: 'st_phd_file_st_maba_cer_marks', placeholder: '92%, 86%, 100....', autofocus: true %>
               </div>
 
               <div class="form-group">
-                <label for="st_phd_file_st_maphd_cer_field" class="control-label">Certificate Source</label>
-                <%= form.text_field :st_maphd_cer_field, class: 'form-control', id: 'st_phd_file_st_maphd_cer_field', placeholder: 'Certificate Source', autofocus: true %>
+                <label for="st_phd_file_st_maba_cer_year" class="control-label">BA Certificate year</label>
+                <%= form.text_field :st_maba_cer_year, class: 'form-control', id: 'st_phd_file_st_maba_cer_year', placeholder: '2014, 2016, 2017 ....', autofocus: true %>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12">
+          <legend>MA Certificate information</legend>
+            <div class="col-lg-6">
+
+              <div class="form-group">
+                <label for="st_phd_file_st_maphd_cer_source" class="control-label">MA Certificate Source</label>
+                <%= form.text_field :st_maphd_cer_source, class: 'form-control', id: 'st_phd_file_st_maphd_cer_source', placeholder: 'India , Saudi, Qatar ....', autofocus: true %>
               </div>
 
               <div class="form-group">
-                <label for="st_phd_file_st_maphd_cer_marks" class="control-label">Certificate Source</label>
-                <%= form.text_field :st_maphd_cer_marks, class: 'form-control', id: 'st_phd_file_st_maphd_cer_marks', placeholder: 'Certificate Source', autofocus: true %>
+                <label for="st_phd_file_st_maphd_cer_field" class="control-label">MA Certificate speciality</label>
+                <%= form.text_field :st_maphd_cer_field, class: 'form-control', id: 'st_phd_file_st_maphd_cer_field', placeholder: 'Computer Science, Business Admin, Electric Engineering ....', autofocus: true %>
+              </div>
+              </div>
+            <div class="col-lg-6">
+
+              <div class="form-group">
+                <label for="st_phd_file_st_maphd_cer_marks" class="control-label">MA Certificate marks</label>
+                <%= form.text_field :st_maphd_cer_marks, class: 'form-control', id: 'st_phd_file_st_maphd_cer_marks', placeholder: '92%, 86%, 100....', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="st_phd_file_st_maphd_cer_marks" class="control-label">MA Certificate year</label>
+                <%= form.text_field :st_maphd_cer_year, class: 'form-control', id: 'st_phd_file_st_maphd_cer_year', placeholder: '2014, 2016, 2017 ....', autofocus: true %>
               </div>
 
               <div class="actions">
@@ -53,7 +131,8 @@
               
               <%= form.hidden_field :user_id, value: current_user.id %> 
 
-            </div><br/> 
+            </div>
+            </div> 
           </fieldset>
         <% end %>
       </div>

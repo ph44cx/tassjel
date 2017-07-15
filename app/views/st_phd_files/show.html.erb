@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
-
+<% @st_phd_file = StPhdFile.find_by_user_id(current_user.id)%>
+<% if @st_phd_file.present?%>
 <p>
   <strong>St maba cer source:</strong>
   <%= @st_phd_file.st_maba_cer_source %>
@@ -37,3 +38,4 @@
 
 <%= link_to 'Edit', edit_st_phd_file_path(@st_phd_file) %> |
 <%= link_to 'Back', st_phd_files_path %>
+<%end%>

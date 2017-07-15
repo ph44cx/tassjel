@@ -44,7 +44,6 @@ $(document).ajaxSend(function(e, xhr, options) {
 $(document).on('turbolinks:load',function() {
   $(".myTable").DataTable();
   $('select').select2();
-  $('input[type=file]').bootstrapFileInput();
   $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
         localStorage.setItem('activeTab', $(e.target).attr('href'));
     });
