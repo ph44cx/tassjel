@@ -41,10 +41,9 @@ $(document).ajaxSend(function(e, xhr, options) {
   var token = $("meta[name='csrf-token']").attr("content");
 });
 
-$(document).ready(function() {
+$(document).on('turbolinks:load',function() {
   $(".myTable").DataTable();
   $('select').select2();
-  $('input[type=file]').bootstrapFileInput();
   $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
         localStorage.setItem('activeTab', $(e.target).attr('href'));
     });

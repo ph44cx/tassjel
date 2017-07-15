@@ -1,49 +1,86 @@
-<p id="notice"><%= notice %></p>
+<% @st_ma_file = StMaFile.find_by_user_id(current_user.id)%>
+  <% if @st_ma_file.present? %>
+      <div class="row">
+      <div class="col-lg-12">
+        <div class="well bs-component">
+          <fieldset>
+            <legend>My file
+            <%= link_to 'Edit',edit_st_ma_file_path(@st_ma_file), class: 'btn btn-primary btn-block', style:'width:40%;float:right;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Please wait...."}, remote:true %></legend>
+              <div class="col-sm-6">
+                <p>
+                  <strong>Certificate source:</strong>
+                  <%= @st_ma_file.st_ma_cer_source %>
+                </p>
 
-<p>
-  <strong>St ma cer source:</strong>
-  <%= @st_ma_file.st_ma_cer_source %>
-</p>
+                <p>
+                  <strong>Certificate field:</strong>
+                  <%= @st_ma_file.st_ma_cer_field %>
+                </p>
 
-<p>
-  <strong>St ma cer field:</strong>
-  <%= @st_ma_file.st_ma_cer_field %>
-</p>
+                <p>
+                  <strong>Certificate marks:</strong>
+                  <%= @st_ma_file.st_ma_cer_marks %>
+                </p>
 
-<p>
-  <strong>St ma cer marks:</strong>
-  <%= @st_ma_file.st_ma_cer_marks %>
-</p>
+                <p>
+                  <strong>Certificate year:</strong>
+                  <%= @st_ma_file.st_ma_cer_year %>
+                </p>
+              </div>
 
-<p>
-  <strong>St ma cer year:</strong>
-  <%= @st_ma_file.st_ma_cer_year %>
-</p>
+              <div class="col-sm-6">
+                <p>
+                  <strong>Passport photo:</strong>
+                  <%= image_tag @st_ma_file.st_ma_passport_photo.url if @st_ma_file.st_ma_passport_photo?%>
+                </p>
 
-<p>
-  <strong>St ma passport photo:</strong>
-  <%= @st_ma_file.st_ma_passport_photo %>
-</p>
+                <p>
+                  <strong>Offical photo:</strong>
+                  <%= image_tag @st_ma_file.st_ma_offical_photo.url if @st_ma_file.st_ma_offical_photo? %>
+                </p>
 
-<p>
-  <strong>St ma offical photo:</strong>
-  <%= @st_ma_file.st_ma_offical_photo %>
-</p>
+                <p>
+                  <strong>Extra photo1:</strong>
+                  <%= image_tag @st_ma_file.st_ma_extra_photo1.url if @st_ma_file.st_ma_extra_photo1? %>
+                </p>
 
-<p>
-  <strong>St ma extra photo1:</strong>
-  <%= @st_ma_file.st_ma_extra_photo1 %>
-</p>
+                <p>
+                  <strong>Extra photo2:</strong>
+                  <%= image_tag @st_ma_file.st_ma_extra_photo2 if @st_ma_file.st_ma_extra_photo2? %>
+                </p>
+              </div>
 
-<p>
-  <strong>St ma extra photo2:</strong>
-  <%= @st_ma_file.st_ma_extra_photo2 %>
-</p>
+              <legend>My Wishes</legend>
+              <div class="col-sm-6">
+                <% if @st_ma_file.st_wish.present?%>
+                  <p>
+                    <strong>Country:</strong>
+                    <%= @st_ma_file.st_wish.st_country_wish %>
+                  </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @st_ma_file.user_id %>
-</p>
+                  <p>
+                    <strong>City:</strong>
+                    <%= @st_ma_file.st_wish.st_city_wish %>
+                  </p>
 
-<%= link_to 'Edit', edit_st_ma_file_path(@st_ma_file) %> |
-<%= link_to 'Back', st_ma_files_path %>
+                  <p>
+                    <strong>University:</strong>
+                    <%= @st_ma_file.st_wish.st_univ_wish %>
+                  </p>
+
+                  <p>
+                    <strong>Speciality:</strong>
+                    <%= @st_ma_file.st_wish.st_specialty_wish %>
+                  </p>
+                <%end%>
+              </div>
+
+            </fieldset>
+          </div>
+        </div>
+      </div>
+  <%else%>
+  <div class="col-lg-6">
+    <h6>File is empty!</h6>
+  </div>
+<%end%>

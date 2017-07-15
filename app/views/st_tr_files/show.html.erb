@@ -1,5 +1,6 @@
-<p id="notice"><%= notice %></p>
-
+<!-- <p id="notice"><#%= notice %></p> -->
+<% @st_tr_file = StTrFile.find_by_user_id(current_user.id)%>
+<% if @st_tr_file.present?%>
 <p>
   <strong>St ma un field:</strong>
   <%= @st_tr_file.st_ma_un_field %>
@@ -50,5 +51,5 @@
   <%= @st_tr_file.st_tr_un_name %>
 </p>
 
-<%= link_to 'Edit', edit_st_tr_file_path(@st_tr_file) %> |
-<%= link_to 'Back', st_tr_files_path %>
+<%= link_to 'Edit', edit_st_tr_file_path(@st_tr_file), remote:true %>
+<%end%>

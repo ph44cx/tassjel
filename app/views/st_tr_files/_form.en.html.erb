@@ -1,76 +1,161 @@
-<div class="jumbotron">
+<script type="text/javascript">
+$(document).ready(function() {
+    $('select').select2();
+    $('input[type=file]').bootstrapFileInput();
+  });
+</script>
+
+<!-- <div class="jumbotron"> -->
   <div class="row">
-    <div class="col-lg-12">
       <div class="well bs-component">
         <%= form_for (@st_tr_file) do |form| %>
           <%= render 'errors', object: @st_tr_file %>
           <fieldset>
+          <%if @st_tr_file.id.present? %>
+            <legend>Editing St-Tr File</legend>
+          <%else%>
             <legend>ST-FILE-TR</legend>
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label for="st_tr_file_st_ma_un_field" class="control-label">Certificate Source</label>
-                  <%= form.text_field :st_ma_un_field, class: 'form-control', id: 'st_tr_file_st_ma_un_field', placeholder: 'Certificate Source', autofocus: true %>
-                </div>
+          <%end%>
 
-                <div class="form-group">
-                  <label for="st_tr_file_st_tr_un_source" class="control-label">Certificate Source</label>
-                  <%= form.text_field :st_tr_un_source, class: 'form-control', id: 'st_tr_file_st_tr_un_source', placeholder: 'Certificate Source', autofocus: true %>
-                </div>
+            <div class="col-lg-12">
+          <legend>Personal information</legend>
+            <div class="col-lg-6">
+              <%= form.hidden_field :user_id, value: current_user.id%>
 
-                <div class="form-group">
-                  <label for="st_tr_file_st_tr_un_name" class="control-label">Certificate Source</label>
-                  <%= form.text_field :st_tr_un_name, class: 'form-control', id: 'st_tr_file_st_tr_un_name', placeholder: 'Certificate Source', autofocus: true %>
-                </div>
-
-                <div class="form-group">
-                  <label for="st_tr_file_st_tr_un_sem" class="control-label">Certificate Source</label>
-                  <%= form.text_field :st_tr_un_sem, class: 'form-control', id: 'st_tr_file_st_tr_un_sem', placeholder: 'Certificate Source', autofocus: true %>
-                </div>
-
-                <div class="form-group">
-                  <label for="st_tr_file_st_tr_photo1" class="control-label">Certificate Source</label>
-                  <%= form.file_field :st_tr_photo1, class: 'form-control', id: 'st_tr_file_st_tr_photo1', placeholder: 'Certificate Source', autofocus: true %>
-                </div>
+              <div class="form-group">
+                <label>First name</label>
+                  <%= form.text_field :st_ba_name, class: 'form-control', placeholder: 'First name', autofocus: true, value: current_user.first_name %>
               </div>
 
+              <div class="form-group">
+                <label>Surname</label>
+                  <%= form.text_field :st_ba_surname, class: 'form-control', placeholder: 'Surname', autofocus: true, value: current_user.surname %>
+              </div>
+
+              <div class="form-group">
+                <label>Father name</label>
+                  <%= form.text_field :st_ba_father, class: 'form-control', placeholder: 'Father name', autofocus: true %>
+              </div>
+            
+              <div class="form-group">
+                <label>Mother name</label>
+                  <%= form.text_field :st_ba_mother, class: 'form-control', placeholder: 'Mother name', autofocus: true %>
+              </div>
+            </div>
+            <div class="col-lg-6">
+
+              <div class="form-group">
+                <label>Cellphone</label>
+                  <%= form.text_field :st_ba_cellphone, class: 'form-control', placeholder: 'Cellphone', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label>Passport no.</label>
+                  <%= form.text_field :st_ba_passport, class: 'form-control', placeholder: 'Passport no.', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label for="profile_st_ba_nationality">Nationality</label>
+                  <%= form.text_field :st_ba_nationality, class: 'form-control', id: 'profile_st_ba_nationality', placeholder: 'Nationality', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <%= image_tag current_user.st_profile.st_ba_passport_photo.url(:thumb) if current_user.st_profile.st_ba_passport_photo? %>
+                <label for="profile_st_ba_passport_photo">Passport photo</label>
+                  <%= form.file_field :st_ba_passport_photo, class: 'btn btn-default btn-xs', id: 'profile_st_ba_passport_photo' %>
+                  <%= form.hidden_field :st_ba_passport_photo_cache %>
+              </div>
+
+              <div class="form-group">
+                <%= image_tag current_user.st_profile.st_ba_official_photo.url(:thumb) if current_user.st_profile.st_ba_official_photo? %>
+                <label for="profile_st_ba_official_photo">Official photo</label>
+                  <%= form.file_field :st_ba_official_photo, class: 'btn btn-default btn-xs', id: 'profile_st_ba_official_photo' %>
+                  <%= form.hidden_field :st_ba_official_photo_cache %>
+              </div>
+
+            </div>
+          </div>
+
+        <div class="col-lg-12">
+          <legend>Old University information</legend>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="st_tr_file_st_ma_un_field" class="control-label">University specialty</label>
+                  <%= form.text_field :st_ma_un_field, class: 'form-control', id: 'st_tr_file_st_ma_un_field', placeholder: 'Computer Science, Business Admin, Electric Engineering ....', autofocus: true %>
+                </div>
+
+                <div class="form-group">
+                  <label for="st_tr_file_st_tr_un_source" class="control-label">University Source Country</label>
+                  <%= form.text_field :st_tr_un_source, class: 'form-control', id: 'st_tr_file_st_tr_un_source', placeholder: 'India , Saudi, Qatar ....', autofocus: true %>
+                </div>
+
+                <div class="form-group">
+                  <label for="st_tr_file_st_tr_un_name" class="control-label">University Name</label>
+                  <%= form.text_field :st_tr_un_name, class: 'form-control', id: 'st_tr_file_st_tr_un_name', placeholder: 'Istanbul University, Delhi University, Jeddah University....', autofocus: true %>
+                </div>
+
+              </div>
               <div class="col-lg-6">
 
                 <div class="form-group">
-                  <label for="st_tr_file_st_tr_photo2" class="control-label">Certificate Source</label>
-                  <%= form.file_field :st_tr_photo2, class: 'form-control', id: 'st_tr_file_st_tr_photo2', placeholder: 'Certificate Source', autofocus: true %>
+                  <label for="st_tr_file_st_tr_un_sem" class="control-label">University Semesters</label>
+                  <%= form.text_field :st_tr_un_sem, class: 'form-control', id: 'st_tr_file_st_tr_un_sem', placeholder: '2 Semester= 1 Year, 4 Semester = 2 years ....', autofocus: true %>
+                </div>
+
+                <p>​Transcript : if exist</p>
+                <div class="form-group">
+                  <label for="st_tr_file_st_tr_photo1" class="control-label">Upload Transcript photo1</label>
+                  <%= form.file_field :st_tr_photo1, class: 'btn btn-default btn-xs', id: 'st_tr_file_st_tr_photo1' %>
                 </div>
 
                 <div class="form-group">
-                  <label for="st_tr_file_st_tr_extra_photo1" class="control-label">Certificate Source</label>
-                  <%= form.file_field :st_tr_extra_photo1, class: 'form-control', id: 'st_tr_file_st_tr_extra_photo1', placeholder: 'Certificate Source', autofocus: true %>
+                  <label for="st_tr_file_st_tr_photo2" class="control-label">Upload Transcript photo2</label>
+                  <%= form.file_field :st_tr_photo2, class: 'btn btn-default btn-xs', id: 'st_tr_file_st_tr_photo2' %>
                 </div>
 
                 <div class="form-group">
-                  <label for="st_tr_file_st_tr_extra_photo2" class="control-label">Certificate Source</label>
-                  <%= form.file_field :st_tr_extra_photo2, class: 'form-control', id: 'st_tr_file_st_tr_extra_photo2', placeholder: 'Certificate Source', autofocus: true %>
+                  <label for="st_tr_file_st_tr_extra_photo1" class="control-label">Extra Support Document1</label>
+                  <%= form.file_field :st_tr_extra_photo1, class: 'btn btn-default btn-xs', id: 'st_tr_file_st_tr_extra_photo1' %>
                 </div>
 
                 <div class="form-group">
-                  <label for="st_tr_file_st_tr_un_target" class="control-label">Certificate Source</label>
-                  <%= form.text_field :st_tr_un_target, class: 'form-control', id: 'st_tr_file_st_tr_un_target', placeholder: 'Certificate Source', autofocus: true %>
+                  <label for="st_tr_file_st_tr_extra_photo2" class="control-label">Extra Support Document2</label>
+                  <%= form.file_field :st_tr_extra_photo2, class: 'btn btn-default btn-xs', id: 'st_tr_file_st_tr_extra_photo2'%>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+          <legend>New University information</legend>
+
+                <div class="form-group">
+                  <label for="st_tr_file_st_tr_un_target" class="control-label">University Wanted Country</label>
+                  <%= form.select :st_tr_un_target, options_for_select(Country.all.collect { |country|[country.name.titleize, country.id] }, 1), {}, { id: 'country_name_select', class: "select2", :required => true, style: 'width:100%;' } %>
+                  <span>Example: India , Saudi, Qatar ....</span>
                 </div>
 
                 <div class="form-group">
-                  <label for="st_tr_file_st_tr_un_name" class="control-label">Certificate Source</label>
-                  <%= form.text_field :st_tr_un_name, class: 'form-control', id: 'st_tr_file_st_tr_un_name', placeholder: 'Certificate Source', autofocus: true %>
+                  <label for="st_tr_file_st_tr_un_name" class="control-label">University Name wanted</label>
+                  <%= form.select :st_tr_un_name, options_for_select(University.all.collect { |university|[university.uni_name.titleize, university.id] }, 1), {}, {class: "select2", :required => true, style: 'width:100%;' } %>
+                  <span>Example: Istanbul University, Delhi University, Jeddah University....</span>
                 </div><br/>
                 
                 <%= form.hidden_field :user_id, value: current_user.id %>
 
-                <div class="actions">
-                  <%= form.button 'Save file', :class => "btn btn-primary", style: 'width:65%;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Creating file...."} %>
-                </div>
-
+                <%if @st_tr_file.id.present? %>
+                  <div class="actions">
+                  <%= form.button 'Update file', :class => "btn btn-primary", style: 'width:33%;float:right;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Updating file...."} %>
+                  </div>
+                  <%else%>
+                    <div class="actions">
+                    <%= form.button 'Save file', :class => "btn btn-primary", style: 'width:33%;float:right;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Creating file...."} %>
+                  </div>
+                <%end%>
             </div>
             
           </fieldset>
         <% end %>
       </div>
-    </div>
   </div>
-</div>
+<!-- </div> -->

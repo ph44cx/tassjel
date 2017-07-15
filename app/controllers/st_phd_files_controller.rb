@@ -28,7 +28,7 @@ class StPhdFilesController < ApplicationController
 
     respond_to do |format|
       if @st_phd_file.save
-        format.html { redirect_to @st_phd_file, notice: 'St phd file was successfully created.' }
+        format.html { redirect_to st_dashboard_url, notice: 'St phd file was successfully created.' }
         format.json { render :show, status: :created, location: @st_phd_file }
       else
         format.html { render :new }
@@ -69,6 +69,6 @@ class StPhdFilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def st_phd_file_params
-      params.require(:st_phd_file).permit(:st_maba_cer_source, :st_maba_cer_field, :st_maba_cer_marks, :st_maba_cer_year, :st_maphd_cer_source, :st_maphd_cer_field, :st_maphd_cer_marks)
+      params.require(:st_phd_file).permit(:st_maba_cer_source, :st_maba_cer_field, :st_maba_cer_marks, :st_maba_cer_year, :st_maphd_cer_source, :st_maphd_cer_field, :st_maphd_cer_marks, :user_id)
     end
 end

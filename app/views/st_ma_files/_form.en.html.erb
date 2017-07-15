@@ -1,180 +1,165 @@
-<div class="jumbotron">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="well bs-component">
-        <%= form_for (@st_ma_file) do |form| %>
-          <%= render 'errors', object: @st_ma_file %>
-            <fieldset>
-            <legend>ST-FILE-MA</legend>
+<script>
+  $(document).ready(function() {
+    $('select').select2();
+    $('input[type=file]').bootstrapFileInput();
+  });
+</script>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="well bs-component">
+      <%= form_for (@st_ma_file) do |form| %>
+        <%= render 'errors', object: @st_ma_file %>
+          <fieldset>
+          <legend>ST-FILE-MA</legend>
 
-              <div class="col-sm-12">
-              <legend>Personal information</legend>
+            <div class="col-sm-12">
+            <legend>Personal information</legend>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>First name</label>
+                  <%= form.text_field :st_ma_name, class: 'form-control', placeholder: 'First name', autofocus: true, value: current_user.first_name %>
+              </div>
+
+              <div class="form-group">
+                <label>Surname</label>
+                  <%= form.text_field :st_ma_surname, class: 'form-control', placeholder: 'Surname', autofocus: true, value: current_user.surname %>
+              </div>
+
+              <div class="form-group">
+                <label>Father name</label>
+                  <%= form.text_field :st_ma_father, class: 'form-control', placeholder: 'Father name', autofocus: true %>
+              </div>
+            
+              <div class="form-group">
+                <label>Mother name</label>
+                  <%= form.text_field :st_ma_mother, class: 'form-control', placeholder: 'Mother name', autofocus: true %>
+              </div>
+
+              <div class="form-group">
+                <label>Cellphone</label>
+                  <%= form.text_field :st_ma_cellphone, class: 'form-control', placeholder: 'Cellphone', autofocus: true %>
+              </div>
+
+              </div>
               <div class="col-sm-6">
-                <div class="form-group">
-                  <label>First name</label>
-                    <%= form.text_field :st_ma_name, class: 'form-control', placeholder: 'First name', autofocus: true, value: current_user.first_name %>
-                </div>
 
-                <div class="form-group">
-                  <label>Surname</label>
-                    <%= form.text_field :st_ma_surname, class: 'form-control', placeholder: 'Surname', autofocus: true, value: current_user.surname %>
-                </div>
+              <div class="form-group">
+                <label>Passport no.</label>
+                  <%= form.text_field :st_ma_passport, class: 'form-control', placeholder: 'Passport no.', autofocus: true %>
+              </div>
 
-                <div class="form-group">
-                  <label>Father name</label>
-                    <%= form.text_field :st_ma_father, class: 'form-control', placeholder: 'Father name', autofocus: true %>
-                </div>
-              
-                <div class="form-group">
-                  <label>Mother name</label>
-                    <%= form.text_field :st_ma_mother, class: 'form-control', placeholder: 'Mother name', autofocus: true %>
-                </div>
+              <div class="form-group">
+                <label for="profile_st_ma_nationality">Nationality</label>
+                  <%= form.text_field :st_ma_nationality, class: 'form-control', id: 'profile_st_ma_nationality', placeholder: 'Nationality', autofocus: true %>
+              </div>
 
-                <div class="form-group">
-                  <label>Cellphone</label>
-                    <%= form.text_field :st_ma_cellphone, class: 'form-control', placeholder: 'Cellphone', autofocus: true %>
-                </div>
+              <div class="form-group">
+                <label for="profile_st_ma_nationality">Country</label>
+                  <%= form.select :st_ma_country, options_for_select(Country.all.collect { |country|[country.name.titleize, country.id] }, 0), {:include_blank => true, prompt: 'Select country'}, {class: "select2", style: 'width:100%;' } %>
+              </div>
 
-                </div>
-                <div class="col-sm-6">
+              <div class="form-group">
+                <label for="profile_st_ma_passport_photo">Passport photo</label>
+                  <%= form.file_field :st_ma_passport_photo, class: 'btn btn-default btn-xs', id: 'profile_st_ma_passport_photo' %>
+                  <%= form.hidden_field :st_ma_passport_photo_cache %>
+              </div>
 
-                <div class="form-group">
-                  <label>Passport no.</label>
-                    <%= form.text_field :st_ma_passport, class: 'form-control', placeholder: 'Passport no.', autofocus: true %>
-                </div>
+              <div class="form-group">
+                <label for="profile_st_ma_official_photo">Official photo</label>
+                  <%= form.file_field :st_ma_official_photo, class: 'btn btn-default btn-xs', id: 'profile_st_ma_official_photo' %>
+                  <%= form.hidden_field :st_ma_official_photo_cache %>
+              </div>
 
-                <div class="form-group">
-                  <label for="profile_st_ma_nationality">Nationality</label>
-                    <%= form.text_field :st_ma_nationality, class: 'form-control', id: 'profile_st_ma_nationality', placeholder: 'Nationality', autofocus: true %>
-                </div>
+            </div>
+          </div>
 
-                <div class="form-group">
-                  <label for="profile_st_ma_nationality">Country</label>
-                    <%= form.select :st_ma_country, options_for_select(Country.all.collect { |country|[country.name.titleize, country.id] }, 0), {:include_blank => true, prompt: 'Select country'}, {class: "select2", style: 'width:100%;' } %>
-                </div>
+          <div class="col-sm-12">
+          <legend>Certificates information</legend>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="st_ma_file_st_ma_cer_source" class="control-label">Certificate Source</label>
+                <%= form.text_field :st_ma_cer_source, class: 'form-control', id: 'st_ma_file_st_ma_cer_source', placeholder: 'Certificate Source', autofocus: true %>
+              </div>
 
-                <div class="form-group">
-                  <label for="profile_st_ma_passport_photo">Passport photo</label>
-                    <%= form.file_field :st_ma_passport_photo, class: 'btn btn-default btn-xs', id: 'profile_st_ma_passport_photo' %>
-                    <%= form.hidden_field :st_ma_passport_photo_cache %>
-                </div>
+              <div class="form-group">
+                <label for="st_ma_file_st_ma_cer_field" class="control-label">Certificate Field</label>
+                <%= form.text_field :st_ma_cer_field, class: 'form-control', id: 'st_ma_file_st_ma_cer_field', placeholder: 'Certificate Field', autofocus: true %>
+              </div>
 
-                <div class="form-group">
-                  <label for="profile_st_ma_official_photo">Official photo</label>
-                    <%= form.file_field :st_ma_official_photo, class: 'btn btn-default btn-xs', id: 'profile_st_ma_official_photo' %>
-                    <%= form.hidden_field :st_ma_official_photo_cache %>
-                </div>
+              <div class="form-group">
+                <label for="st_ma_file_st_ma_cer_marks" class="control-label">Certificate Marks</label>
+                <%= form.text_field :st_ma_cer_marks, class: 'form-control', id: 'st_ma_file_st_ma_cer_marks', placeholder: 'Certificate Marks', autofocus: true %>
+              </div>
 
+              <div class="form-group">
+                <label for="st_ma_file_st_ma_cer_year" class="control-label">Certificate Year</label>
+                <%= form.text_field :st_ma_cer_year, class: 'form-control', id: 'st_ma_file_st_ma_cer_year', placeholder: 'Certificate Year', autofocus: true %>
               </div>
             </div>
 
-            <div class="col-sm-12">
-            <legend>Certificates information</legend>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="st_ma_file_st_ma_cer_source" class="control-label">Certificate Source</label>
-                  <%= form.text_field :st_ma_cer_source, class: 'form-control', id: 'st_ma_file_st_ma_cer_source', placeholder: 'Certificate Source', autofocus: true %>
+            <div class="col-sm-6">
+              <div class="upload_div">
+                <div class="form-group upload_area">
+                  <label for="st_ma_file_st_ma_passport_photo" class="control-label">Passport Photo</label>
+                  <%= form.file_field :st_ma_passport_photo, class: 'btn btn-default btn-xs', id: 'st_ma_file_st_ma_passport_photo', placeholder: 'Passport Photo', autofocus: true %>
                 </div>
 
-                <div class="form-group">
-                  <label for="st_ma_file_st_ma_cer_field" class="control-label">Certificate Field</label>
-                  <%= form.text_field :st_ma_cer_field, class: 'form-control', id: 'st_ma_file_st_ma_cer_field', placeholder: 'Certificate Field', autofocus: true %>
+                <div class="form-group upload_area">
+                  <label for="st_ma_file_st_ma_offical_photo" class="control-label">Official Photo</label>
+                  <%= form.file_field :st_ma_offical_photo, class: 'btn btn-default btn-xs', id: 'st_ma_file_st_ma_offical_photo', placeholder: 'Official Photo', autofocus: true %>
                 </div>
 
-                <div class="form-group">
-                  <label for="st_ma_file_st_ma_cer_marks" class="control-label">Certificate Marks</label>
-                  <%= form.text_field :st_ma_cer_marks, class: 'form-control', id: 'st_ma_file_st_ma_cer_marks', placeholder: 'Certificate Marks', autofocus: true %>
+                <div class="form-group upload_area">
+                  <label for="st_ma_file_st_ma_extra_photo1" class="control-label">Extra Photo1</label>
+                  <%= form.file_field :st_ma_extra_photo1, class: 'btn btn-default btn-xs', id: 'st_ma_file_st_ma_extra_photo1', placeholder: 'Extra Photo', autofocus: true %>
                 </div>
 
-                <div class="form-group">
-                  <label for="st_ma_file_st_ma_cer_year" class="control-label">Certificate Year</label>
-                  <%= form.text_field :st_ma_cer_year, class: 'form-control', id: 'st_ma_file_st_ma_cer_year', placeholder: 'Certificate Year', autofocus: true %>
-                </div>
-              </div>
-
-              <div class="col-sm-6">
-                <div class="upload_div">
-                  <div class="form-group upload_area">
-                    <label for="st_ma_file_st_ma_passport_photo" class="control-label">Passport Photo</label>
-                    <%= form.file_field :st_ma_passport_photo, class: 'btn btn-default btn-xs', id: 'st_ma_file_st_ma_passport_photo', placeholder: 'Passport Photo', autofocus: true %>
-                  </div>
-
-                  <div class="form-group upload_area">
-                    <label for="st_ma_file_st_ma_offical_photo" class="control-label">Official Photo</label>
-                    <%= form.file_field :st_ma_offical_photo, class: 'btn btn-default btn-xs', id: 'st_ma_file_st_ma_offical_photo', placeholder: 'Official Photo', autofocus: true %>
-                  </div>
-
-                  <div class="form-group upload_area">
-                    <label for="st_ma_file_st_ma_extra_photo1" class="control-label">Extra Photo1</label>
-                    <%= form.file_field :st_ma_extra_photo1, class: 'btn btn-default btn-xs', id: 'st_ma_file_st_ma_extra_photo1', placeholder: 'Extra Photo', autofocus: true %>
-                  </div>
-
-                  <div class="form-group upload_area">
-                    <label for="st_ma_file_st_ma_extra_photo2" class="control-label">Extra Photo2</label>
-                    <%= form.file_field :st_ma_extra_photo2, class: 'btn btn-default btn-xs', id: 'st_ma_file_st_ma_extra_photo2', placeholder: 'Certificate Source', autofocus: true %>
-                    <%= form.hidden_field :user_id, value: current_user.id %>
-                  </div>
+                <div class="form-group upload_area">
+                  <label for="st_ma_file_st_ma_extra_photo2" class="control-label">Extra Photo2</label>
+                  <%= form.file_field :st_ma_extra_photo2, class: 'btn btn-default btn-xs', id: 'st_ma_file_st_ma_extra_photo2', placeholder: 'Certificate Source', autofocus: true %>
+                  <%= form.hidden_field :user_id, value: current_user.id %>
                 </div>
               </div>
+            </div>
+            </div>
 
-            <div class="col-sm-12">
-              <legend>Wishes information</legend>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="st_ma_file_st_ma_cer_source" class="control-label">Certificate Source</label>
-                  <%= form.text_field :st_ma_cer_source, class: 'form-control', id: 'st_ma_file_st_ma_cer_source', placeholder: 'Certificate Source', autofocus: true %>
-                </div>
-
-                <div class="form-group">
-                  <label for="st_ma_file_st_ma_cer_field" class="control-label">Certificate Field</label>
-                  <%= form.text_field :st_ma_cer_field, class: 'form-control', id: 'st_ma_file_st_ma_cer_field', placeholder: 'Certificate Field', autofocus: true %>
-                </div>
-
-                <div class="form-group">
-                  <label for="st_ma_file_st_ma_cer_marks" class="control-label">Certificate Marks</label>
-                  <%= form.text_field :st_ma_cer_marks, class: 'form-control', id: 'st_ma_file_st_ma_cer_marks', placeholder: 'Certificate Marks', autofocus: true %>
-                </div>
-
-                <div class="form-group">
-                  <label for="st_ma_file_st_ma_cer_year" class="control-label">Certificate Year</label>
-                  <%= form.text_field :st_ma_cer_year, class: 'form-control', id: 'st_ma_file_st_ma_cer_year', placeholder: 'Certificate Year', autofocus: true %>
-                </div>
+          <div class="col-sm-12">
+            <legend>Wishes information</legend>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="control-label">Select country</label>
+                <%= form.select :st_country_wish, options_for_select(@countries.collect { |country|[country.name.titleize, country.id] }, 1), {:include_blank => "Select country"}, { id: 'country_name_select', class: "select2", :required => true, style: 'width:100%;' } %>
               </div>
 
-              <div class="col-sm-6">
-                <div class="upload_div">
-                  <div class="form-group upload_area">
-                    <label for="st_ma_file_st_ma_passport_photo" class="control-label">Passport Photo</label>
-                    <%= form.file_field :st_ma_passport_photo, class: 'btn btn-default btn-xs', id: 'st_ma_file_st_ma_passport_photo', placeholder: 'Passport Photo', autofocus: true %>
-                  </div>
-
-                  <div class="form-group upload_area">
-                    <label for="st_ma_file_st_ma_offical_photo" class="control-label">Official Photo</label>
-                    <%= form.file_field :st_ma_offical_photo, class: 'btn btn-default btn-xs', id: 'st_ma_file_st_ma_offical_photo', placeholder: 'Official Photo', autofocus: true %>
-                  </div>
-
-                  <div class="form-group upload_area">
-                    <label for="st_ma_file_st_ma_extra_photo1" class="control-label">Extra Photo1</label>
-                    <%= form.file_field :st_ma_extra_photo1, class: 'btn btn-default btn-xs', id: 'st_ma_file_st_ma_extra_photo1', placeholder: 'Extra Photo', autofocus: true %>
-                  </div>
-
-                  <div class="form-group upload_area">
-                    <label for="st_ma_file_st_ma_extra_photo2" class="control-label">Extra Photo2</label>
-                    <%= form.file_field :st_ma_extra_photo2, class: 'btn btn-default btn-xs', id: 'st_ma_file_st_ma_extra_photo2', placeholder: 'Certificate Source', autofocus: true %>
-                    <%= form.hidden_field :user_id, value: current_user.id %>
-                  </div>
-                </div><br>
-                <div class="actions">
-                  <%= form.button 'Save file', :class => "btn btn-primary", style: 'width:100%;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Creating file...."} %>
-                </div>
+              <div class="form-group">
+                <label class="control-label">Select city</label>
+                <%= form.select :st_city_wish, options_for_select(@cities.collect { |city|[city.name.titleize, city.id] }, 0), {:include_blank => "Select city"}, { id: 'city_name_select', class: "select2", :required => true, style: 'width:100%;' } %>
               </div>
-                
-                  
+              <%#= form.grouped_collection_select :st_city_wish, Country.order(:name), :cities, :name, :id, :name, {:include_blank=> "Select a City"}, {:class=>'select2', style: 'width:100%;'}%>
 
-              <!-- </div> -->
-          </fieldset>
-        <% end %>
-      </div>
+            </div>
+
+            <div class="col-sm-6">
+
+              <div class="form-group">
+                <label class="control-label">Select Universities</label>
+                <%= form.select :st_univ_wish, options_for_select(@universities.collect { |university|[university.uni_name.titleize, university.id] }, 1), {:include_blank => "Choose university"}, {class: "select2",multiple:true, :required => true, style: 'width:100%;' } %>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">Select specialties</label>
+                <%= form.select :st_specialty_wish, University::FACULTYSPECIALITY, { prompt: "Select specialty" }, { class: "select2", :required => true, style: 'width:100%;'}  %>
+              </div>
+              <div class="actions">
+                <%= form.button 'Save file', :class => "btn btn-primary", style: 'width:100%;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Creating file...."} %>
+              </div>
+            </div><br>
+
+              <%= form.hidden_field :user_id, value: current_user.id %>
+            </div>
+
+        </fieldset>
+      <% end %>
     </div>
   </div>
 </div>
