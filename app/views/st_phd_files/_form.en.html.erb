@@ -3,15 +3,17 @@ $(document).ready(function() {
     $('input[type=file]').bootstrapFileInput();
   });
 </script>
-<div class="jumbotron">
   <div class="row">
       <div class="well bs-component">
 
         <%= form_for (@st_phd_file) do |form| %>
           <%= render 'errors', object: @st_phd_file %>
           <fieldset>
-          <legend>ST-FILE-PHD</legend>
-
+          <%if @st_phd_file.id.present?%>
+            <legend>Editing ST-FILE-PHD</legend>
+          <%else%>
+              <legend>ST-FILE-PHD</legend>
+          <%end%>
           <div class="col-lg-12">
           <legend>Personal information</legend>
             <div class="col-lg-6">
@@ -125,9 +127,15 @@ $(document).ready(function() {
                 <%= form.text_field :st_maphd_cer_year, class: 'form-control', id: 'st_phd_file_st_maphd_cer_year', placeholder: '2014, 2016, 2017 ....', autofocus: true %>
               </div>
 
-              <div class="actions">
-                <%= form.button 'Save file', :class => "btn btn-primary", style: 'width:65%;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Creating file...."} %>
+              <%if @st_phd_file.id.present?%>
+                <div class="actions">
+                <%= form.button 'Update file', :class => "btn btn-primary", style: 'width:65%;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Creating file...."} %>
               </div>
+              <%else%>
+                <div class="actions">
+                  <%= form.button 'Save file', :class => "btn btn-primary", style: 'width:65%;', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>Creating file...."} %>
+                </div>
+              <%end%>
               
               <%= form.hidden_field :user_id, value: current_user.id %> 
 
@@ -138,5 +146,3 @@ $(document).ready(function() {
       </div>
     </div>
   </div>
-</div>
-
