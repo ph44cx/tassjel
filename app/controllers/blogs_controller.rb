@@ -12,6 +12,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1.json
   def show
     @comments = Comment.hash_tree
+    @comment = Comment.new(parent_id: params[:parent_id], blog_id: params[:blog_id])
   end
 
   def blog_listing

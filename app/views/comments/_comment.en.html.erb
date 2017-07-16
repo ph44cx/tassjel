@@ -1,11 +1,5 @@
 <div class="well">
-  <h2><%= comment.commenter %></h2>
-  <p class="text-muted"><%= comment.root? ? "Started by" : "Replied by" %> <strong><%= comment.commenter %></strong> on
-    <%= l(comment.created_at, format: '%B, %d %Y %H:%M:%S') %></p>
-
-  <blockquote>
-  	<p><%= comment.body %></p>
-	</blockquote>
+  	<p><%= comment.body %> &mdash;<span class="text-muted"><%= comment.root? ? "" : "Replied by" %><strong style="color:#0d87e9;font-weight:400;"><%= comment.commenter %></strong> on<%= l(comment.created_at, format: '%B, %d %Y %H:%M:%S') %></span></p>
 
 	<% from_reply_form ||= nil %>
 	<% unless from_reply_form %>

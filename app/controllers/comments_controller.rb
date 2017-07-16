@@ -18,7 +18,10 @@ class CommentsController < ApplicationController
 
     if @comment.save
       flash[:success] = 'Your comment was successfully added!'
-      redirect_to root_url
+      # redirect_to root_url
+      respond_to do |format|
+      format.js{}
+    end
     else
       render 'new'
     end
@@ -27,6 +30,6 @@ class CommentsController < ApplicationController
 private
 
   def comment_params
-    params.require(:comment).permit(:commenter, :body, :blog_id, :showcase_id)
+    params.require(:comment).permit(:commenter, :body, :blog_id, :showcase_id, :parent_id)
   end
 end
