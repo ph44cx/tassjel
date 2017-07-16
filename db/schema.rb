@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170715203738) do
 
-  create_table "articles", force: :cascade do |t|
+  create_table "blogs", force: :cascade do |t|
     t.string "title"
     t.string "subtitle"
     t.string "blog_image"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20170715203738) do
   create_table "comments", force: :cascade do |t|
     t.string "commenter"
     t.string "body"
-    t.integer "article_id"
+    t.integer "blog_id"
     t.integer "showcase_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

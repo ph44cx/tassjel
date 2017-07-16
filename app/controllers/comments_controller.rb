@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   end
 
   def new
-  	@comment = Comment.new(parent_id: params[:parent_id])
+  	@comment = Comment.new(parent_id: params[:parent_id], blog_id: params[:blog_id])
 	end
 
 	def create
@@ -27,6 +27,6 @@ class CommentsController < ApplicationController
 private
 
   def comment_params
-    params.require(:comment).permit(:commenter, :body, :article_id, :showcase_id)
+    params.require(:comment).permit(:commenter, :body, :blog_id, :showcase_id)
   end
 end

@@ -22,6 +22,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if current_user.role.name == "university_manager"
       unm_dashboard_url
+    elsif
+      current_user.role.name == "blogger_author"
+      blogger_admin_url
     else
       st_dashboard_url
     end

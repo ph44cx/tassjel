@@ -20,9 +20,9 @@ Rails.application.routes.draw do
     resources :st_ma_files
     resources :faculties
     resources :showcases
-    resources :articles
-    # resources :comments, only: [:index, :new, :create]
+    resources :blogs
     resources :comments, only: [:index, :create]
+    get 'blog_listing' => 'blogs#blog_listing'
     get '/comments/new/(:parent_id)', to: 'comments#new', as: :new_comment
 
     # custom routes
@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     get 'unm_dash/update_faculties3'
     get 'st_ba_files/update_specialities'
     get 'create_file' => 'st_dashboard#create_file'
-    get 'bm_manager/index'
+    get 'blogger_admin' => 'blogger#index'
     # 
   end
 end
