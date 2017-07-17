@@ -24,6 +24,9 @@ class CommentsController < ApplicationController
     end
     else
       render 'new'
+        respond_to do |format|
+        format.js{}
+      end
     end
 	end
 

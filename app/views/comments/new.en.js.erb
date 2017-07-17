@@ -1,0 +1,3 @@
+$("#replyToComment_<%= @comment.parent_id %>").empty();
+<%#= binding.pry%>
+$("#poppa_<%= @comment.parent_id%>").append("<%= escape_javascript render(:partial => 'form') %>");

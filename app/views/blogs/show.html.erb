@@ -36,16 +36,18 @@
                 <!-- Blog Comments -->
 
                 <!-- Comments Form -->
-                <div id="comments_new">
+                
                 <div class="well">
                   <%= render '/comments/form'%>
                 </div>
 
                 <hr>
 
+                <div id="comments_new">
                 <!-- Posted Comments -->
-                  <%= comments_tree_for @comments %>
+                  
                 </div>
+                <%= comments_tree_for @comments %>
             </div>
 
             <!-- Blog Sidebar Widgets Column -->
